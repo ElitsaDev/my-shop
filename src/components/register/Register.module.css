@@ -1,0 +1,11 @@
+.form {
+    display: flex;
+    border:solid 2px black;
+    background-color: blueviolet;
+    width: 400px;
+    height: 400px;
+}
+
+.main-form{
+    display: block;
+}
