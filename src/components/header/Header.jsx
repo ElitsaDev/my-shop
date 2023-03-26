@@ -39,19 +39,19 @@ export default function Header() {
                     <div className="col-lg-6 col-md-6">
                         <nav className="header__menu mobile-menu">
                             <ul>
-                                <li className="active"><a href="./index.html">Home</a></li>
-                                <li><a href="./shop.html">Shop</a></li>
+                                <li className="active"><a href="/">Home</a></li>
+                                <li><a href="/shop">Shop</a></li>
                                 <li><a href="#">Pages</a>
                                     <ul className="dropdown">
-                                        <li><a href="./about.html">About Us</a></li>
-                                        <li><a href="./shop-details.html">Shop Details</a></li>
-                                        <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                                        <li><a href="./checkout.html">Check Out</a></li>
-                                        <li><a href="./blog-details.html">Blog Details</a></li>
+                                        <li><a href="/about">About Us</a></li>
+                                        <li><a href="/shop-details">Shop Details</a></li>
+                                        <li><a href="/shopping-cart">Shopping Cart</a></li>
+                                        <li><a href="/checkout">Check Out</a></li>
+                                        <li><a href="/blog-details">Blog Details</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="./blog.html">Blog</a></li>
-                                <li><a href="./contact.html">Contacts</a></li>
+                                <li><a href="/blog">Blog</a></li>
+                                <li><a href="/contact">Contacts</a></li>
                             </ul>
                         </nav>
                     </div>

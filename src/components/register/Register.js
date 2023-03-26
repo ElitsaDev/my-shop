@@ -12,13 +12,13 @@ export default function Register() {
                     <form id="register-form" className={styles["register-form"]}>
                             <div className={styles.error}>Email or Password are not valid.</div>
                             <label className={styles.label}>E-mail: </label> 
-                            <input type="text" name="email"/> 
+                            <input type="text" name="email" className={styles.input}/> 
                             <label className={styles.label}>Username: </label> 
-                            <input type="text" name="username"/>
+                            <input type="text" name="username" className={styles.input}/>
                             <label className={styles.label}>Password: </label> 
-                            <input type="password" name="password"/>
+                            <input type="password" name="password" className={styles.input}/>
                             <label className={styles.label}>Repeat password: </label> 
-                            <input type="password" name="repass"/>
+                            <input type="password" name="repass" className={styles.input}/>
                             <input className={styles.btn} type="submit" value="Create Account"/>
                     </form>
                     
