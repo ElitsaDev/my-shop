@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3005/api/users";
+const baseUrl = "http://localhost:3030/users";
 
 export const getAll = async () => {
     const response = await fetch(baseUrl);

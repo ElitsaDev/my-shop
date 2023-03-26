@@ -1,43 +1,13 @@
 import styles from "./Categories.module.css";
-import { useState } from "react";
-import { useCountdown } from "../../hooks/useCountdown";
+import CountdownTimer from "./CountdownTimer";
+
 //3 * 24 * 60 * 60 * 1000;
-const THREE_DAYS_IN_MS =  60 * 1000;
+const THREE_DAYS_IN_MS = 60 * 1000;
 const NOW_IN_MS = new Date().getTime();
 
 const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
 
-export default function Categories() {
-    const [disabled, setDisabled] = useState(false);
-
-    const CountdownTimer = ({ targetDate }) => {
-        const [days, hours, minutes, seconds] = useCountdown(targetDate);
-      
-        if (days + hours + minutes + seconds <= 0) {
-          setDisabled(true);  
-          return <h5>Promotion is expired! But there will be a new one soon.</h5>;
-        }else {
-            return (<>
-                <div className="cd-item">
-                    <span>{days}</span>
-                    <p>Days</p>
-                </div>
-                <div className="cd-item">
-                    <span>{hours}</span>
-                    <p>Hours</p>
-                </div>
-                <div className="cd-item">
-                    <span>{minutes}</span>
-                    <p>Minutes</p>
-                </div>
-                <div className="cd-item">
-                    <span>{seconds}</span>
-                    <p>Seconds</p>
-                </div>
-            </>)
-        }
-    }
-
+export default function Categories() {  
     return (
         <section className="categories spad">
             <div className="container">
@@ -64,9 +34,10 @@ export default function Categories() {
                                 <CountdownTimer className={styles.countdown} targetDate={dateTimeAfterThreeDays} >
                                 </CountdownTimer>
                             </div>
-                            {!disabled &&
-                            <a href="/shop" className="primary-btn">Shop now</a>
-                            }
+
+                            {/* {!disabled &&
+                                <a href="/shop" className="primary-btn">Shop now</a>
+                            } */}
                         </div>
                     </div>
                 </div>

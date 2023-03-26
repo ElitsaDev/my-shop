@@ -16,11 +16,22 @@ import { useState, useEffect } from 'react';
 import PagePreloader from './components/pagePreloader/PagePreloader';
 import Categories from './components/categories/Categories';
 import * as productsService from './services/productsService';
+import * as heroService from './services/heroService';
 function App() {
     const [isLoading, setIsLoading] = useState(true);	
     const [products, setProducts] = useState([]);
+    const [heroes, setHeroes] = useState([]);
     
     useEffect(() => {
+        heroService.getAll()
+            .then(data => {
+                setHeroes(Object.values(Object.values(data)));
+                setIsLoading(false);
+            })
+            .catch(error => {
+                console.log("Error" + error);
+            })
+   
       productsService.getAll()
         .then(data => {
 /* Object.values(data)
@@ -53,7 +64,7 @@ length: 4
                 <Header />
                 <BrowserRouter>
                     <Routes>
-                        <Route path='/' element={<Home products={Object.values(products)}/>} />
+                        <Route path='/' element={<Home products={Object.values(products)} heroes={Object.values(heroes)}/>} />
                         <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<Register />} />
                         <Route path='/shop' element={<Shop products={products}/>} />
