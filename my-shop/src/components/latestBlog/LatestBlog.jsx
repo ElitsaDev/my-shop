@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 export default function LatestBlog(){
     return (
         <section className="latest spad">
@@ -17,7 +18,7 @@ export default function LatestBlog(){
                         <div className="blog__item__text">
                             <span><img src="img/icon/calendar.png" alt=""/> 16 February 2020</span>
                             <h5>What Curling Irons Are The Best Ones</h5>
-                            <a href="#">Read More</a>
+                            <Link to="#">Read More</Link>
                         </div>
                     </div>
                 </div>
@@ -27,7 +28,7 @@ export default function LatestBlog(){
                         <div className="blog__item__text">
                             <span><img src="img/icon/calendar.png" alt=""/> 21 February 2020</span>
                             <h5>Eternity Bands Do Last Forever</h5>
-                            <a href="#">Read More</a>
+                            <Link to="#">Read More</Link>
                         </div>
                     </div>
                 </div>
@@ -37,7 +38,7 @@ export default function LatestBlog(){
                         <div className="blog__item__text">
                             <span><img src="img/icon/calendar.png" alt=""/> 28 February 2020</span>
                             <h5>The Health Benefits Of Sunglasses</h5>
-                            <a href="#">Read More</a>
+                            <Link to="#">Read More</Link>
                         </div>
                     </div>
                 </div>

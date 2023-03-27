@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useCountdown } from "../../hooks/useCountdown";
-
+import { Link } from "react-router-dom";
 export default function CountdownTimer({ 
     targetDate, 
 }){
@@ -33,7 +33,7 @@ export default function CountdownTimer({
                 <p>Seconds</p>
             </div>
             
-            <a href="/shop" className="primary-btn">Shop now</a>
+            <Link to="/shop" className="primary-btn">Shop now</Link>
             
         </>)
     );

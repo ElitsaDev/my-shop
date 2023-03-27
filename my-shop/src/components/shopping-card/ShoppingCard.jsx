@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import styles from './ShoppingCard.module.css';
 
 export default function ShoppingCard() {
     const [counter, setCounter] = useState(1);
+    const navigate = useNavigate();
 
     const incrementCounterHanlder = () => {
         setCounter(oldCounter => oldCounter + 1);
@@ -14,7 +16,11 @@ export default function ShoppingCard() {
 
     const deleteCounter = () => {
         setCounter(1);
-    }
+    };
+
+    const onBackPageButtonClick = () => {
+        navigate('/shop');
+    };
 
     return (
         <>
@@ -26,8 +32,8 @@ export default function ShoppingCard() {
                             <div className="breadcrumb__text">
                                 <h4>Shopping Cart</h4>
                                 <div className="breadcrumb__links">
-                                    <a href="./index.html">Home</a>
-                                    <a href="./shop.html">Shop</a>
+                                    <Link to="/">Home</Link>
+                                    <Link to="/shop">Shop</Link>
                                     <span>Shopping Cart</span>
                                 </div>
                             </div>
@@ -143,7 +149,8 @@ export default function ShoppingCard() {
                             <div className="row">
                                 <div className="col-lg-6 col-md-6 col-sm-6">
                                     <div className="continue__btn">
-                                        <a href="#">Continue Shopping</a>
+                                        {/* <button onClick={onBackPageButtonClick}>Continue Shopping</button> */}
+                                        <Navigate to="/shop">Continue Shopping</Navigate> 
                                     </div>
                                 </div>
                                 <div className="col-lg-6 col-md-6 col-sm-6">

@@ -1,6 +1,6 @@
 import styles from "./Register.module.css"
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 export default function Register() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -75,7 +75,7 @@ export default function Register() {
                         <input className={styles.btn} type="submit" value="Create Account" />
                     </form>
 
-                    <div className="pad-small">Already have an account? <a href="/login" className="invert">Sign in here</a>
+                    <div className="pad-small">Already have an account? <Link to="/login" className="invert">Sign in here</Link>
                     </div>
                 </article>
             </section>

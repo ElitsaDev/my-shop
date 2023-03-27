@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 export default function Hero({
     title,
     imageUrl,
@@ -13,12 +14,12 @@ export default function Hero({
                             <h6>{collection}</h6>
                             <h2>{title}</h2>
                             <p>{description}</p>
-                            <a href="/shop" className="primary-btn">Shop now <span className="arrow_right"></span></a>
+                            <Link to="/shop" className="primary-btn">Shop now <span className="arrow_right"></span></Link>
                             <div className="hero__social">
-                                <a href="#"><i className="fa fa-facebook"></i></a>
-                                <a href="#"><i className="fa fa-twitter"></i></a>
-                                <a href="#"><i className="fa fa-pinterest"></i></a>
-                                <a href="#"><i className="fa fa-instagram"></i></a>
+                                <Link to="#"><i className="fa fa-facebook"></i></Link>
+                                <Link to="#"><i className="fa fa-twitter"></i></Link>
+                                <Link to="#"><i className="fa fa-pinterest"></i></Link>
+                                <Link to="/instagram"><i className="fa fa-instagram"></i></Link>
                             </div>
                         </div>
                     </div>

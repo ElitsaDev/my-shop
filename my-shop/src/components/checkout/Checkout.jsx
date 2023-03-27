@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Checkout() {
     const [account, setAccount] = useState('');
@@ -45,7 +46,7 @@ export default function Checkout() {
         console.log(`${e.target.value}=${e.target.checked}`);
         setAccount(state => ({ ...state, [e.target.value]: e.target.checked }));
     }
-//TODO validate form
+    //TODO validate form
     const formValidate = (e) => {
         console.log('asdasd');
         const value = e.target.value;
@@ -53,7 +54,7 @@ export default function Checkout() {
 
         if (e.target.name === 'firstName' && (value.length < 3 || value.length > 20)) {
             errors.firstName = 'First name should be between 3 and 20 characters';
-        } 
+        }
 
         if (e.target.name === 'lastName' && (value.length < 3 || value.length > 20)) {
             errors.lastName = 'Last name should be between 3 and 20 characters';
@@ -75,8 +76,8 @@ export default function Checkout() {
                             <div className="breadcrumb__text">
                                 <h4>Check Out</h4>
                                 <div className="breadcrumb__links">
-                                    <a href="./index.html">Home</a>
-                                    <a href="./shop.html">Shop</a>
+                                    <Link to="/">Home</Link>
+                                    <Link to="/shop">Shop</Link>
                                     <span>Check Out</span>
                                 </div>
                             </div>
@@ -100,12 +101,12 @@ export default function Checkout() {
                                         <div className="col-lg-6">
                                             <div className="checkout__input">
                                                 <p>Fist Name<span>*</span></p>
-                                                <input type="text" 
-                                                    name="firstName" 
-                                                    value={values.firstName} 
-                                                    onChange={onChangeHandler} 
+                                                <input type="text"
+                                                    name="firstName"
+                                                    value={values.firstName}
+                                                    onChange={onChangeHandler}
                                                     onBlur={formValidate}
-                                                    style={formErrors.firstName ? {borderColor: "red"} : {}}
+                                                    style={formErrors.firstName ? { borderColor: "red" } : {}}
                                                 />
                                             </div>
                                             {formErrors.firstName &&
@@ -117,12 +118,12 @@ export default function Checkout() {
                                         <div className="col-lg-6">
                                             <div className="checkout__input">
                                                 <p>Last Name<span>*</span></p>
-                                                <input type="text" 
-                                                    name="lastName" 
-                                                    value={values.lastName} 
-                                                    onChange={onChangeHandler} 
+                                                <input type="text"
+                                                    name="lastName"
+                                                    value={values.lastName}
+                                                    onChange={onChangeHandler}
                                                     onBlur={formValidate}
-                                                    style={formErrors.lastName ? {borderColor: "red"} : {}}
+                                                    style={formErrors.lastName ? { borderColor: "red" } : {}}
                                                 />
                                             </div>
                                             {formErrors.lastName &&
@@ -136,14 +137,14 @@ export default function Checkout() {
                                         <div className="col-lg-12">
                                             <div className="checkout__input">
                                                 <p>Country<span>*</span></p>
-                                                <input type="text" 
-                                                    name="country" 
-                                                    value={values.country} 
+                                                <input type="text"
+                                                    name="country"
+                                                    value={values.country}
                                                     onChange={onChangeHandler}
                                                     onBlur={formValidate}
-                                                    style={formErrors.country ? {borderColor: "red"} : {}} 
+                                                    style={formErrors.country ? { borderColor: "red" } : {}}
                                                 />
-                                                
+
                                             </div>
                                             {formErrors.country &&
                                                 <p className="form-error">
@@ -161,7 +162,7 @@ export default function Checkout() {
                                             value={values.streetAddress}
                                             onChange={onChangeHandler}
                                             onBlur={formValidate}
-                                            style={formErrors.streetAddress ? {borderColor: "red"} : {}} 
+                                            style={formErrors.streetAddress ? { borderColor: "red" } : {}}
                                         />
                                         <input type="text"
                                             placeholder="Apartment, suite, unite ect (optinal)"
@@ -169,62 +170,62 @@ export default function Checkout() {
                                             value={values.apartmentType}
                                             onChange={onChangeHandler}
                                             onBlur={formValidate}
-                                            style={formErrors.apartmentType ? {borderColor: "red"} : {}} 
+                                            style={formErrors.apartmentType ? { borderColor: "red" } : {}}
                                         />
                                     </div>
                                     <div className="checkout__input">
                                         <p>Town/City<span>*</span></p>
-                                        <input type="text" 
-                                            name="town" 
-                                            value={values.town} 
-                                            onChange={onChangeHandler} 
+                                        <input type="text"
+                                            name="town"
+                                            value={values.town}
+                                            onChange={onChangeHandler}
                                             onBlur={formValidate}
-                                            style={formErrors.town ? {borderColor: "red"} : {}}
+                                            style={formErrors.town ? { borderColor: "red" } : {}}
                                         />
                                     </div>
                                     <div className="checkout__input">
                                         <p>State<span>*</span></p>
-                                        <input type="text" 
-                                        name="state" 
-                                        value={values.state} 
-                                        onChange={onChangeHandler} 
-                                        onBlur={formValidate}
-                                        style={formErrors.state ? {borderColor: "red"} : {}}
-                                    />
+                                        <input type="text"
+                                            name="state"
+                                            value={values.state}
+                                            onChange={onChangeHandler}
+                                            onBlur={formValidate}
+                                            style={formErrors.state ? { borderColor: "red" } : {}}
+                                        />
                                     </div>
                                     <div className="checkout__input">
                                         <p>Postcode / ZIP<span>*</span></p>
-                                        <input type="text" 
-                                        name="postCode" 
-                                        value={values.postCode} 
-                                        onChange={onChangeHandler} 
-                                        onBlur={formValidate}
-                                        style={formErrors.postCode ? {borderColor: "red"} : {}}
-                                    />
+                                        <input type="text"
+                                            name="postCode"
+                                            value={values.postCode}
+                                            onChange={onChangeHandler}
+                                            onBlur={formValidate}
+                                            style={formErrors.postCode ? { borderColor: "red" } : {}}
+                                        />
                                     </div>
                                     <div className="row">
                                         <div className="col-lg-6">
                                             <div className="checkout__input">
                                                 <p>Phone<span>*</span></p>
-                                                <input type="text" 
-                                                name="phone" 
-                                                value={values.phone} 
-                                                onChange={onChangeHandler} 
-                                                onBlur={formValidate}
-                                                style={formErrors.phone ? {borderColor: "red"} : {}}
-                                            />
+                                                <input type="text"
+                                                    name="phone"
+                                                    value={values.phone}
+                                                    onChange={onChangeHandler}
+                                                    onBlur={formValidate}
+                                                    style={formErrors.phone ? { borderColor: "red" } : {}}
+                                                />
                                             </div>
                                         </div>
                                         <div className="col-lg-6">
                                             <div className="checkout__input">
                                                 <p>Email<span>*</span></p>
-                                                <input type="text" 
-                                                name="email" 
-                                                value={values.email} 
-                                                onChange={onChangeHandler} 
-                                                onBlur={formValidate}
-                                                style={formErrors.email ? {borderColor: "red"} : {}}
-                                            />
+                                                <input type="text"
+                                                    name="email"
+                                                    value={values.email}
+                                                    onChange={onChangeHandler}
+                                                    onBlur={formValidate}
+                                                    style={formErrors.email ? { borderColor: "red" } : {}}
+                                                />
                                             </div>
                                         </div>
                                     </div>

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Offcanvas() {
     return (
         <>
@@ -5,9 +7,9 @@ export default function Offcanvas() {
             <div className="offcanvas-menu-wrapper">
                 <div className="offcanvas__option">
                     <div className="offcanvas__links">
-                            <a href="/register">Sign up</a>
-                            <a href="/login">Sign in</a>
-                            <a href="#">FAQs</a>
+                        <Link to="/register">Sign up</Link>
+                        <Link to="/login">Sign in</Link>  
+                        <Link to="/faqs">FAQs</Link>   
                     </div>
                     <div className="offcanvas__top__hover">
                         <span>Usd <i className="arrow_carrot-down"></i></span>

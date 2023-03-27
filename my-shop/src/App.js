@@ -17,6 +17,9 @@ import PagePreloader from './components/pagePreloader/PagePreloader';
 import Categories from './components/categories/Categories';
 import * as productsService from './services/productsService';
 import * as heroService from './services/heroService';
+import About from './components/about/About';
+import BlogDetails from './components/blog/BlogDetails';
+import Instagram from './components/instagram/Instagram';
 function App() {
     const [isLoading, setIsLoading] = useState(true);	
     const [products, setProducts] = useState([]);
@@ -60,11 +63,13 @@ length: 4
             ? <PagePreloader />
             :  
             <>
-                <Offcanvas />
+            <BrowserRouter>
+                {/* <Offcanvas /> */}
                 <Header />
-                <BrowserRouter>
-                    <Routes>
+                <Routes>
+                    
                         <Route path='/' element={<Home products={Object.values(products)} heroes={Object.values(heroes)}/>} />
+                        <Route path='/index' element={<Home products={Object.values(products)} heroes={Object.values(heroes)}/>} />
                         <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<Register />} />
                         <Route path='/shop' element={<Shop products={products}/>} />
@@ -73,6 +78,10 @@ length: 4
                         <Route path='/checkout' element={<Checkout />} />
                         <Route path='/categories' element={<Categories />} />
                         <Route path='/shopping-cart' element={<ShoppingCard />} />
+                        <Route path='/about' element={<About />} />
+                        <Route path='/instagram' element={<Instagram />} />
+                        <Route path='/blog-details' element={<BlogDetails/>} />
+                        <Route path='*' element={<h1>Error 404</h1>} />
                     </Routes>
                 </BrowserRouter>
                 <Footer />

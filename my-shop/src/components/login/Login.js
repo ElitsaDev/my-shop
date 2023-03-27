@@ -1,5 +1,5 @@
 import styles from './Login.module.css';
-
+import { Link } from 'react-router-dom';
 export default function Login() {
     return (
         <section id="login" className={styles.container}>
@@ -15,7 +15,7 @@ export default function Login() {
                     <input type="password" name="password" placeholder="Enter your password" className={styles.input} />
                     <input className={styles.btn} type="submit" value="Sign In" />
                 </form>
-                <div className="pad-small">Don't have an account? <a href="/register" className="invert">Sign up here</a>
+                <div className="pad-small">Don't have an account? <Link to="/register" className="invert">Sign up here</Link>
                 </div>
             </article>
         </section>

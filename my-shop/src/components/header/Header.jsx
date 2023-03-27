@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Header() {
     return (
         <header className="header">
@@ -12,9 +14,9 @@ export default function Header() {
                         <div className="col-lg-6 col-md-5">
                             <div className="header__top__right">
                                 <div className="header__top__links">
-                                    <a href="/register">Sign up</a>
-                                    <a href="/login">Sign in</a>
-                                    <a href="#">FAQs</a>
+                                    <Link to="/register">Sign up</Link>
+                                    <Link to="/login">Sign in</Link>  
+                                    <Link to="/faqs">FAQs</Link>
                                 </div>
                                 <div className="header__top__hover">
                                     <span>Usd <i className="arrow_carrot-down"></i></span>
@@ -33,33 +35,33 @@ export default function Header() {
                 <div className="row">
                     <div className="col-lg-3 col-md-3">
                         <div className="header__logo">
-                            <a href="./index.html"><img src="img/logo.png" alt="" /></a>
+                            <Link to="/"><img src="img/logo.png" alt="" /></Link>
                         </div>
                     </div>
                     <div className="col-lg-6 col-md-6">
                         <nav className="header__menu mobile-menu">
                             <ul>
-                                <li className="active"><a href="/">Home</a></li>
-                                <li><a href="/shop">Shop</a></li>
-                                <li><a href="#">Pages</a>
+                                <li className="active"><Link to="/">Home</Link></li>
+                                <li><Link to="/shop">Shop</Link></li>
+                                <li><Link to="#">Pages</Link>
                                     <ul className="dropdown">
-                                        <li><a href="/about">About Us</a></li>
-                                        <li><a href="/shop-details">Shop Details</a></li>
-                                        <li><a href="/shopping-cart">Shopping Cart</a></li>
-                                        <li><a href="/checkout">Check Out</a></li>
-                                        <li><a href="/blog-details">Blog Details</a></li>
+                                        <li><Link to="/about">About Us</Link></li>
+                                        <li><Link to="/shop-details">Shop Details</Link></li>
+                                        <li><Link to="/shopping-cart">Shopping Cart</Link></li>
+                                        <li><Link to="/checkout">Check Out</Link></li>
+                                        <li><Link to="/blog-details">Blog Details</Link></li>
                                     </ul>
                                 </li>
-                                <li><a href="/blog">Blog</a></li>
-                                <li><a href="/contact">Contacts</a></li>
+                                <li><Link to="/blog">Blog</Link></li>
+                                <li><Link to="/contact">Contacts</Link></li>
                             </ul>
                         </nav>
                     </div>
                     <div className="col-lg-3 col-md-3">
                         <div className="header__nav__option">
-                            <a href="#" className="search-switch"><img src="img/icon/search.png" alt="" /></a>
-                            <a href="#"><img src="img/icon/heart.png" alt="" /></a>
-                            <a href="#"><img src="img/icon/cart.png" alt="" /> <span>0</span></a>
+                            <Link to="#" className="search-switch"><img src="img/icon/search.png" alt="" /></Link>
+                            <Link to="#"><img src="img/icon/heart.png" alt="" /></Link>
+                            <Link to="#"><img src="img/icon/cart.png" alt="" /> <span>0</span></Link>
                             <div className="price">$0.00</div>
                         </div>
                     </div>
