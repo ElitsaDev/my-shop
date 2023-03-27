@@ -1,0 +1,34 @@
+{
+    "53bc5432-06b9-4f8a-b575-5cd3fbd75057": {
+        "productId": 1,
+        "imageUrl": "img/shopping-cart/cart-1.jpg",
+        "name": "T-shirt Contrast Pocket",
+        "price": 98.49,
+        "quantity": 1,
+        "_id": "53bc5432-06b9-4f8a-b575-5cd3fbd75057"
+    },
+    "152610e2-0e90-403b-9945-3369b1baec03": {
+        "productId": 2,
+        "imageUrl": "img/shopping-cart/cart-2.jpg",
+        "name": "Diagonal Textured Cap",
+        "price": 50.49,
+        "quantity": 2,
+        "_id": "152610e2-0e90-403b-9945-3369b1baec03"
+    },
+    "e44d925b-959b-48d8-a236-99e8047082ba": {
+        "productId": 3,
+        "imageUrl": "img/shopping-cart/cart-3.jpg",
+        "name": "Basic Flowing Scarf",
+        "price": 25.49,
+        "quantity": 1,
+        "_id": "e44d925b-959b-48d8-a236-99e8047082ba"
+    },
+    "35daae37-dd19-46b3-bc62-f59169b8e38e": {
+        "productId": 4,
+        "imageUrl": "img/shopping-cart/cart-4.jpg",
+        "name": "Basic Leader Bag",
+        "price": 75.49,
+        "quantity": 1,
+        "_id": "35daae37-dd19-46b3-bc62-f59169b8e38e"
+    }
+}
