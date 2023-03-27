@@ -60,7 +60,7 @@ export default function Checkout() {
         }
 
         if (e.target.name === 'country' && (value.length < 3 || value.length > 20)) {
-            errors.lastName = 'Country name should be between 3 and 20 characters';
+            errors.lastName = 'Country name should be more than 3 characters long';
         }
         setFormErrors(errors);
     };
@@ -146,9 +146,9 @@ export default function Checkout() {
                                                 
                                             </div>
                                             {formErrors.country &&
-                                                    <p className="form-error">
-                                                        {formErrors.country}
-                                                    </p>
+                                                <p className="form-error">
+                                                    {formErrors.country}
+                                                </p>
                                             }
                                         </div>
                                     </div>
@@ -238,4 +238,69 @@ export default function Checkout() {
                                         <p>Create an account by entering the information below. If you are a returning customer
                                             please login at the top of the page</p>
                                     </div>
-                                    <div className="checkout__input"
+                                    <div className="checkout__input">
+                                        <p>Account Password<span>*</span></p>
+                                        <input type="text" />
+                                    </div>
+                                    <div className="checkout__input__checkbox">
+                                        <label htmlFor="diff-acc">
+                                            Note about your order, e.g, special noe for delivery
+                                            <input type="checkbox" id="diff-acc" name="account" value="node" onChange={onCreateNodeHandler} checked={account['node'] || false} />
+                                            <span className="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    <div className="checkout__input">
+                                        <p>Order notes<span>*</span></p>
+                                        <input type="text"
+                                            placeholder="Notes about your order, e.g. special notes for delivery." />
+                                    </div>
+                                </div>
+
+                                <div className="col-lg-4 col-md-6">
+                                    <div className="checkout__order">
+                                        <h4 className="order__title">Your order</h4>
+                                        <div className="checkout__order__products">Product <span>Total</span></div>
+                                        <ul className="checkout__total__products">
+                                            <li>01. Vanilla salted caramel <span>$ 300.0</span></li>
+                                            <li>02. German chocolate <span>$ 170.0</span></li>
+                                            <li>03. Sweet autumn <span>$ 170.0</span></li>
+                                            <li>04. Cluten free mini dozen <span>$ 110.0</span></li>
+                                        </ul>
+                                        <ul className="checkout__total__all">
+                                            <li>Subtotal <span>$750.99</span></li>
+                                            <li>Total <span>$750.99</span></li>
+                                        </ul>
+                                        <div className="checkout__input__checkbox">
+                                            <label htmlFor="acc-or">
+                                                Create an account?
+                                                <input type="checkbox" id="acc-or" />
+                                                <span className="checkmark"></span>
+                                            </label>
+                                        </div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
+                                            ut labore et dolore magna aliqua.</p>
+                                        <div className="checkout__input__checkbox">
+                                            <label htmlFor="payment">
+                                                Check Payment
+                                                <input type="checkbox" id="payment" />
+                                                <span className="checkmark"></span>
+                                            </label>
+                                        </div>
+                                        <div className="checkout__input__checkbox">
+                                            <label htmlFor="paypal">
+                                                Paypal
+                                                <input type="checkbox" id="paypal" />
+                                                <span className="checkmark"></span>
+                                            </label>
+                                        </div>
+                                        <button type="submit" className="site-btn">PLACE ORDER</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </>
+    );
+}
