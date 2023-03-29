@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 export default function Product({
     branding,
     categories,
@@ -16,14 +17,14 @@ export default function Product({
                     {isNew && <span className="label">New</span>}
                     {isBestSale && <span className="label">Sale</span>}
                     <ul className="product__hover">
-                        <li><a href="#"><img src="img/icon/heart.png" alt="" /></a></li>
-                        <li><a href="#"><img src="img/icon/compare.png" alt="" /> <span>Compare</span></a></li>
-                        <li><a href="#"><img src="img/icon/search.png" alt="" /></a></li>
+                        <li><Link to="#"><img src="img/icon/heart.png" alt="" /></Link></li>
+                        <li><Link to="#"><img src="img/icon/compare.png" alt="" /> <span>Compare</span></Link></li>
+                        <li><Link to="#"><img src="img/icon/search.png" alt="" /></Link></li>
                     </ul>
                 </div>
                 <div className="product__item__text">
                     <h6>{name}</h6>
-                    <a href="#" className="add-cart">+ Add To Cart</a>
+                    <Link to="#" className="add-cart">+ Add To Cart</Link>
                     <div className="rating">
                         <i className="fa fa-star-o"></i>
                         <i className="fa fa-star-o"></i>

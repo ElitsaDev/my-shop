@@ -44,10 +44,10 @@ console.log(products)
                                                 <div className="card-body">
                                                     <div className="shop__sidebar__categories">
                                                         <ul className="nice-scroll">
-                                                            <li><a href="#">Clothing (20)</a></li>
-                                                            <li><a href="#">Shoes (20)</a></li>
-                                                            <li><a href="#">Bags (20)</a></li>
-                                                            <li><a href="#">Accessories (20)</a></li>
+                                                            <li><Link to="#">Clothing (20)</Link></li>
+                                                            <li><Link to="#">Shoes (20)</Link></li>
+                                                            <li><Link to="#">Bags (20)</Link></li>
+                                                            <li><Link to="#">Accessories (20)</Link></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -61,10 +61,10 @@ console.log(products)
                                                 <div className="card-body">
                                                     <div className="shop__sidebar__brand">
                                                         <ul>
-                                                            <li><a href="#">Louis Vuitton</a></li>
-                                                            <li><a href="#">Chanel</a></li>
-                                                            <li><a href="#">Hermes</a></li>
-                                                            <li><a href="#">Gucci</a></li>
+                                                            <li><Link to="#">Louis Vuitton</Link></li>
+                                                            <li><Link to="#">Chanel</Link></li>
+                                                            <li><Link to="#">Hermes</Link></li>
+                                                            <li><Link to="#">Gucci</Link></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -78,12 +78,12 @@ console.log(products)
                                                 <div className="card-body">
                                                     <div className="shop__sidebar__price">
                                                         <ul>
-                                                            <li><a href="#">$0.00 - $50.00</a></li>
-                                                            <li><a href="#">$50.00 - $100.00</a></li>
-                                                            <li><a href="#">$100.00 - $150.00</a></li>
-                                                            <li><a href="#">$150.00 - $200.00</a></li>
-                                                            <li><a href="#">$200.00 - $250.00</a></li>
-                                                            <li><a href="#">250.00+</a></li>
+                                                            <li><Link to="#">$0.00 - $50.00</Link></li>
+                                                            <li><Link to="#">$50.00 - $100.00</Link></li>
+                                                            <li><Link to="#">$100.00 - $150.00</Link></li>
+                                                            <li><Link to="#">$150.00 - $200.00</Link></li>
+                                                            <li><Link to="#">$200.00 - $250.00</Link></li>
+                                                            <li><Link to="#">250.00+</Link></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -169,13 +169,13 @@ console.log(products)
                                             <div id="collapseSix" className="collapse show" data-parent="#accordionExample">
                                                 <div className="card-body">
                                                     <div className="shop__sidebar__tags">
-                                                        <a href="#">Product</a>
-                                                        <a href="#">Bags</a>
-                                                        <a href="#">Shoes</a>
-                                                        <a href="#">Fashio</a>
-                                                        <a href="#">Clothing</a>
-                                                        <a href="#">Hats</a>
-                                                        <a href="#">Accessories</a>
+                                                        <Link to="#">Product</Link>
+                                                        <Link to="#">Bags</Link>
+                                                        <Link to="#">Shoes</Link>
+                                                        <Link to="#">Fashio</Link>
+                                                        <Link to="#">Clothing</Link>
+                                                        <Link to="#">Hats</Link>
+                                                        <Link to="#">Accessories</Link>
                                                     </div>
                                                 </div>
                                             </div>
@@ -212,10 +212,10 @@ console.log(products)
                                         <div className="product__item__pic set-bg" data-setbg="img/product/product-2.jpg">
                                             {/* <span className="label">Sale</span> */}
                                             <ul className="product__hover">
-                                                <li><a href="#"><img src="img/icon/heart.png" alt="" /></a></li>
-                                                <li><a href="#"><img src="img/icon/compare.png" alt="" /> <span>Compare</span></a>
+                                                <li><Link to="#"><img src="img/icon/heart.png" alt="" /></Link></li>
+                                                <li><Link to="#"><img src="img/icon/compare.png" alt="" /> <span>Compare</span></Link>
                                                 </li>
-                                                <li><a href="#"><img src="img/icon/search.png" alt="" /></a></li>
+                                                <li><Link to="#"><img src="img/icon/search.png" alt="" /></Link></li>
                                             </ul>
                                         </div>
                                         <div className="product__item__text">
@@ -248,11 +248,11 @@ console.log(products)
                             <div className="row">
                                 <div className="col-lg-12">
                                     <div className="product__pagination">
-                                        <a className="active" href="#">1</a>
-                                        <a href="#">2</a>
-                                        <a href="#">3</a>
+                                        <Link className="active" to="#">1</Link>
+                                        <Link to="#">2</Link>
+                                        <Link to="#">3</Link>
                                         <span>...</span>
-                                        <a href="#">21</a>
+                                        <Link to="#">21</Link>
                                     </div>
                                 </div>
                             </div>

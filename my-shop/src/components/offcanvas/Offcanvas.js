@@ -21,9 +21,9 @@ export default function Offcanvas() {
                     </div>
                 </div>
                 <div className="offcanvas__nav__option">
-                    <a href="#" className="search-switch"><img src="img/icon/search.png" alt="" /></a>
-                    <a href="#"><img src="img/icon/heart.png" alt="" /></a>
-                    <a href="#"><img src="img/icon/cart.png" alt="" /> <span>0</span></a>
+                    <Link to="#" className="search-switch"><img src="img/icon/search.png" alt="" /></Link>
+                    <Link to="#"><img src="img/icon/heart.png" alt="" /></Link>
+                    <Link to="#"><img src="img/icon/cart.png" alt="" /> <span>0</span></Link>
                     <div className="price">$0.00</div>
                 </div>
                 <div id="mobile-menu-wrap"></div>

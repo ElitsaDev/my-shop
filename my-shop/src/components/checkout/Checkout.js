@@ -95,8 +95,8 @@ export default function Checkout() {
                         <form onSubmit={onSubmitHandler}  >
                             <div className="row">
                                 <div className="col-lg-8 col-md-6">
-                                    {/* <h6 className="coupon__code"><span className="icon_tag_alt"></span> Have a coupon? <a href="#">Click
-                                here</a> to enter your code</h6> */}
+                                    {/* <h6 className="coupon__code"><span className="icon_tag_alt"></span> Have a coupon? <Link to="#">Click
+                                here</Link> to enter your code</h6> */}
                                     <h6 className="checkout__title">Billing Details</h6>
                                     <div className="row">
                                         <div className="col-lg-6">
