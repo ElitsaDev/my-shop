@@ -1,0 +1,60 @@
+.container {
+    height: 100%;
+    width: 50%;
+    margin: auto;
+    margin-bottom: 50px;
+    position: relative;
+    text-align: center;
+    border-radius: 7px;
+    padding: 40px;
+    box-sizing: border-box;
+    text-align: center;
+    background: rgb(243,242,238);
+    box-shadow: 0px 0px 5px 0px #5a6b7c, -5px -5px 20px #53575e;     
+}
+
+input[type="text"] {
+    width: 100%; 
+    margin: 5px 0px 12px 0;  
+    padding: 8px;   
+    display: inline-block;   
+    border: 2px solid #22252c;   
+    border-radius: 7px;
+    box-sizing: border-box; 
+}
+
+textarea {
+    width: 100%; 
+    height: 250px;
+    margin: 5px 0px 12px 0;  
+    padding: 8px;   
+    display: inline-block;   
+    border: 2px solid #22252c;   
+    border-radius: 7px;
+    box-sizing: border-box; 
+}
+
+.btn {
+    display: inline-block;
+    background-color: gray;   
+    width: 100%;  
+    color: #000;   
+    padding: 14px 30px;  
+    margin: 50px 0px  10px;   
+    border: none;   
+    cursor: pointer;
+    size: 25px; 
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    box-shadow: #696969; 
+    text-transform: uppercase;
+    border-radius: 7px;
+}
+
+.btn:hover{
+color: white;
+background-image: repeating-linear-gradient(-45deg, rgba(255,255,255, 0.25), rgba(255,255,255, 0.25) 1px, transparent 1px, transparent 6px);
+background-size: 4px 4px;
+}
+

@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 export default function Shop({products}) {
 
     return (
@@ -11,7 +12,7 @@ export default function Shop({products}) {
                             <div className="breadcrumb__text">
                                 <h4>Shop</h4>
                                 <div className="breadcrumb__links">
-                                    <a href="/">Home</a>
+                                    <Link to="/">Home</Link>
                                     <span>Shop</span>
                                 </div>
                             </div>

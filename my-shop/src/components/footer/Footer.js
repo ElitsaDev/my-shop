@@ -52,7 +52,7 @@ export default function Footer(){
                     <div className="footer__copyright__text">
                         {/* <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> */}
                         <p>Copyright ©
-                            <script>
+                            <script type="text/javascript">
                                 document.write(new Date().getFullYear());
                             </script>2020
                             All rights reserved | This template is made with <i className="fa fa-heart-o"

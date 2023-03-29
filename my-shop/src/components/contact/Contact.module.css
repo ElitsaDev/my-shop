@@ -1,5 +1,28 @@
 .map {
-    height:"500"; 
+    height: "500";
     border: 0;
-    
+}
+
+.contact-form input[type="text"],
+.contact-form textarea[type="text"]
+{
+    width: 100%;
+    margin: 5px 0px 12px 0;
+    padding: 8px;
+    display: inline-block;
+    border: 2px solid #e1e1e1;
+    border-radius: 7px;
+    box-sizing: border-box;
+}
+
+.contact-form input[type="text"]:hover,
+.contact-form textarea[type="text"]:hover
+{
+    width: 100%;
+    margin: 5px 0px 12px 0;
+    padding: 8px;
+    display: inline-block;
+    border: 2px solid #696969;
+    border-radius: 7px;
+    box-sizing: border-box;
 }

@@ -1,5 +1,7 @@
 import './App.css';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+
+import PagePreloader from './components/pagePreloader/PagePreloader';
 import Offcanvas from './components/offcanvas/Offcanvas';
 import Header from './components/header/Header';
 import Home from './components/home/Home';
@@ -7,24 +9,29 @@ import Login from './components/login/Login';
 import Register from './components/register/Register';
 import Shop from './components/shop/Shop';
 import Footer from './components/footer/Footer';
-import Blog from './components/blog/Blog';
 import Contact from './components/contact/Contact';
 import Checkout from './components/checkout/Checkout';
 import ShoppingCard from './components/shopping-card/ShoppingCard';
 
 import { useState, useEffect } from 'react';
-import PagePreloader from './components/pagePreloader/PagePreloader';
+
 import Categories from './components/categories/Categories';
 import * as productsService from './services/productsService';
 import * as heroService from './services/heroService';
+import * as blogService from './services/blogService';
 import About from './components/about/About';
-import BlogDetails from './components/blog/BlogDetails';
+
 import Instagram from './components/instagram/Instagram';
 import ShopDetails from './components/shop/ShopDetails';
+import BlogCreate from './components/blog/BlogCreate';
+import BlogCatalog from './components/blog/BlogCatalog';
+import BlogDetails from './components/blog/BlogDetails';
 function App() {
     const [isLoading, setIsLoading] = useState(true);	
     const [products, setProducts] = useState([]);
     const [heroes, setHeroes] = useState([]);
+
+    const [blogs, setBlogs] = useState([]);
     
     useEffect(() => {
         heroService.getAll()
@@ -58,34 +65,51 @@ length: 4
         
     }, []);
 
+    useEffect(() => {
+        blogService.getAll()
+        .then(result => {
+            //console.log(result);
+            setBlogs(result);
+        })
+    },[]);
+
+    const onCreateBlogSubmit =  async (data) => {
+        const newBlog = await blogService.create(data);
+        setBlogs(state => [...state, newBlog]);
+    }
+
     return (
         <div className="App">
              {isLoading 
             ? <PagePreloader />
             :  
             <>
-            <BrowserRouter>
-                {/* <Offcanvas /> */}
+                <Offcanvas /> 
                 <Header />
+                <main>
                 <Routes>
-                    
                         <Route path='/' element={<Home products={Object.values(products)} heroes={Object.values(heroes)}/>} />
                         <Route path='/index' element={<Home products={Object.values(products)} heroes={Object.values(heroes)}/>} />
-                        <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<Register />} />
+                        <Route path='/login' element={<Login />} />
                         <Route path='/shop' element={<Shop products={products}/>} />
-                        <Route path='/blog' element={<Blog />} />
+                        <Route path='/blog-catalog' element={<BlogCatalog blogs={blogs} />} />
                         <Route path='/contact' element={<Contact />} />
+
                         <Route path='/checkout' element={<Checkout />} />
-                        <Route path='/categories' element={<Categories />} />
+                        
                         <Route path='/shopping-cart' element={<ShoppingCard />} />
                         <Route path='/about' element={<About />} />
                         <Route path='/instagram' element={<Instagram />} />
+
                         <Route path='/shop-details' element={<ShopDetails />} />
-                        <Route path='/blog-details' element={<BlogDetails/>} />
+                        <Route path='/blog-create' element={<BlogCreate onCreateBlogSubmit={onCreateBlogSubmit}/>} />
+                        <Route path='/blog-catalog/:blogId' element={<BlogDetails/>} />
+                        
+                        {/* <Route path='/categories' element={<Categories />} /> */}
                         <Route path='*' element={<h1>Error 404</h1>} />
                     </Routes>
-                </BrowserRouter>
+                    </main>
                 <Footer />
             </>
              } 

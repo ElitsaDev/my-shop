@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 export default function Login() {
     return (
         <section id="login" className={styles.container}>
+
             <article className={styles.narrow}>
                 <header className={styles.header}>
                     <h1>Login</h1>
@@ -15,7 +16,7 @@ export default function Login() {
                     <input type="password" name="password" placeholder="Enter your password" className={styles.input} />
                     <input className={styles.btn} type="submit" value="Sign In" />
                 </form>
-                <div className="pad-small">Don't have an account? <Link to="/register" className="invert">Sign up here</Link>
+                <div className="pad-small">Don't have an account? <Link to="/register" className={styles.invert}>Sign up here</Link>
                 </div>
             </article>
         </section>

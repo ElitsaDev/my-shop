@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import styles from "./Checkout.module.css";
 
 export default function Checkout() {
     const [account, setAccount] = useState('');
@@ -90,8 +91,8 @@ export default function Checkout() {
             {/* <!-- Checkout Section Begin --> */}
             <section className="checkout spad">
                 <div className="container">
-                    <div className="checkout__form">
-                        <form onSubmit={onSubmitHandler} >
+                    <div className={styles["checkout-form"]}>
+                        <form onSubmit={onSubmitHandler}  >
                             <div className="row">
                                 <div className="col-lg-8 col-md-6">
                                     {/* <h6 className="coupon__code"><span className="icon_tag_alt"></span> Have a coupon? <a href="#">Click

@@ -75,7 +75,7 @@ export default function Register() {
                         <input className={styles.btn} type="submit" value="Create Account" />
                     </form>
 
-                    <div className="pad-small">Already have an account? <Link to="/login" className="invert">Sign in here</Link>
+                    <div className="pad-small">Already have an account? <Link to="/login" className={styles.invert}>Sign in here</Link>
                     </div>
                 </article>
             </section>

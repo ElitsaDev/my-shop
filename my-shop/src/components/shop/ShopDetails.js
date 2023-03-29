@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function ShopDetails() {
     return (
         <>
@@ -8,8 +10,8 @@ export default function ShopDetails() {
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="product__details__breadcrumb">
-                                    <a href="./index.html">Home</a>
-                                    <a href="./shop.html">Shop</a>
+                                    <Link to="/">Home</Link>
+                                    <Link to="/shop">Shop</Link>
                                     <span>Product Details</span>
                                 </div>
                             </div>

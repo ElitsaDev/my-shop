@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styles from "./Contact.module.css";
 
 export default function Contact(){
     const [name, setName] = useState('');
@@ -26,7 +27,7 @@ export default function Contact(){
          {/* <!-- Map Begin --> */}
     <div className="map">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d111551.9926412813!2d-90.27317134641879!3d38.606612219170856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited%20States!5e0!3m2!1sen!2sbd!4v1597926938024!5m2!1sen!2sbd" 
-            height="500" className="map" allowFullScreen="" aria-hidden="false" tabIndex="0"></iframe>
+            height="500" className="map" allowFullScreen="" aria-hidden="false" tabIndex="0" title="Adress map"></iframe>
     </div>
     {/* <!-- Map End --> */}
 
@@ -56,7 +57,9 @@ export default function Contact(){
                 </div>
                 <div className="col-lg-6 col-md-6">
                     <div className="contact__form">
-                        <form onSubmit={onSubmitHandler}>
+                        <form onSubmit={onSubmitHandler}
+                            className={styles["contact-form"]}
+                        >
                             <div className="row">
                                 <div className="col-lg-6">
                                     <input type="text" 
@@ -75,7 +78,8 @@ export default function Contact(){
                                     />
                                 </div>
                                 <div className="col-lg-12">
-                                    <textarea name="message" 
+                                    <textarea name="message" className={styles.message}
+                                                type="text"
                                                 id="message" 
                                                 value={message} 
                                                 onChange={onMessageChange} 
