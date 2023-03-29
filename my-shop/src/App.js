@@ -71,10 +71,16 @@ length: 4
             //console.log(result);
             setBlogs(result);
         })
+        .catch(error => {
+            console.log("Error" + error);
+        });
     },[]);
 
     const onCreateBlogSubmit =  async (data) => {
-        const newBlog = await blogService.create(data);
+        const newBlog = await blogService.create(data)
+                                        .catch(error => {
+                                            console.log("Error" + error);
+                            });
         setBlogs(state => [...state, newBlog]);
     }
 
@@ -92,7 +98,7 @@ length: 4
                         <Route path='/index' element={<Home products={Object.values(products)} heroes={Object.values(heroes)}/>} />
                         <Route path='/register' element={<Register />} />
                         <Route path='/login' element={<Login />} />
-                        <Route path='/shop' element={<Shop products={products}/>} />
+                        <Route path='/shop' element={<Shop products={Object.values(products)}/>} />
                         <Route path='/blog-catalog' element={<BlogCatalog blogs={blogs} />} />
                         <Route path='/contact' element={<Contact />} />
 

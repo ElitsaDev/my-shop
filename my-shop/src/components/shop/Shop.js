@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 export default function Shop({products}) {
-
+console.log(products)
     return (
         <>
             {/* <!-- Breadcrumb Section Begin --> */}
