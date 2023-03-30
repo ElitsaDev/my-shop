@@ -24,7 +24,7 @@ export default function Product({
                 {isBestSale && <span className="label">Sale</span>}
                 <ul className="product__hover">
                     <li><Link to="#"><img src="img/icon/heart.png" alt="" /></Link></li>
-                    <li><Link to="#"><img src="img/icon/details_icon.png" alt="" /></Link></li>
+                    <li><Link to={`/product-details/${id}`}><img src="img/icon/details_icon.png" alt="" /></Link></li>
                 </ul>
             </div>
             <div className="product__item__text">

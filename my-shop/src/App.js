@@ -115,7 +115,7 @@ length: 4
                         <Route path='/shopping-cart' element={<ShoppingCard products={Object.values(products)}/>} />
                         
 
-                        <Route path='/shopping-cart/details' element={<ShopDetails />} />
+                        <Route path='/product-details/:productId' element={<ShopDetails />} />
                         
                         {/* <Route path='/instagram' element={<Instagram />} /> */}
                         {/* <Route path='/categories' element={<Categories />} /> */}
