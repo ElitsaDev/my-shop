@@ -1,0 +1,188 @@
+[
+	{
+		"id": 1,
+		"categories": "clothing",
+		"branding": "Hermes",
+		"name": "Piqué Biker Jacket",
+		"imageUrl": "img/product/product-1.jpg",
+		"price": 267.24,
+		"created_at": "",
+		"description": "",
+		"discount": 0,
+		"featured": true,
+		"rating": 5,
+		"package_format": "box",
+		"sku": "",
+		"status": "available",
+		"stock": 100,
+		"stock_unlimited": true,
+		"weight": 1,
+		"variants": [
+			null
+		],
+		"colors": [
+			"beige",
+			"black"
+		],
+		"sizes": [
+			"S",
+			"XL",
+			"2XL"
+		]
+	},
+	{
+		"id": 2,
+		"categories": "shoes",
+		"branding": "Louis Vuitton",
+		"name": "Ankle Boots",
+		"imageUrl": "img/product/product-2.jpg",
+		"price": 150.15,
+		"created_at": "",
+		"description": "",
+		"discount": 0,
+		"featured": true,
+		"rating": 4,
+		"package_format": "box",
+		"sku": "",
+		"status": "available",
+		"stock": 100,
+		"stock_unlimited": true,
+		"weight": 1,
+		"variants": [
+			null
+		],
+		"colors": [
+			"white",
+			"black"
+		],
+		"sizes": [
+			"S",
+			"M",
+			"XL",
+			"2XL"
+		]
+	},
+	{
+		"id": 3,
+		"categories": "clothing",
+		"branding": "Chanel",
+		"name": "Velvet loose sweatshirt",
+		"imageUrl": "img/product/product-3.jpg",
+		"price": 70.15,
+		"created_at": "",
+		"description": "",
+		"discount": 10,
+		"featured": true,
+		"rating": 5,
+		"package_format": "box",
+		"sku": "",
+		"status": "available",
+		"stock": 100,
+		"stock_unlimited": true,
+		"weight": 1,
+		"variants": [
+			null
+		],
+		"colors": [
+			"beige"
+		],
+		"sizes": [
+			"S",
+			"XL",
+			"2XL"
+		]
+	},
+	{
+		"id": 4,
+		"categories": "accessories",
+		"branding": "Hermes",
+		"name": "Basic Flowing Scarf",
+		"imageUrl": "img/product/product-4.jpg",
+		"price": 25,
+		"created_at": "",
+		"description": "",
+		"discount": 0,
+		"featured": true,
+		"rating": 3,
+		"package_format": "box",
+		"sku": "",
+		"status": "available",
+		"stock": 100,
+		"stock_unlimited": true,
+		"weight": 1,
+		"variants": [
+			null
+		],
+		"colors": [
+			"beige",
+			"black"
+		],
+		"sizes": [
+			"S",
+			"XL",
+			"2XL"
+		]
+	},
+	{
+		"id": 5,
+		"categories": "accessories",
+		"branding": "Gucci",
+		"name": "Multi-pocket Chest Bag",
+		"imageUrl": "img/product/product-5.jpg",
+		"price": 50.15,
+		"created_at": "",
+		"description": "",
+		"discount": 0,
+		"featured": true,
+		"rating": 5,
+		"package_format": "box",
+		"sku": "",
+		"status": "available",
+		"stock": 100,
+		"stock_unlimited": true,
+		"weight": 1,
+		"variants": [
+			null
+		],
+		"colors": [
+			"beige",
+			"black"
+		],
+		"sizes": [
+			"S",
+			"XL",
+			"2XL"
+		]
+	},
+	{
+		"id": 6,
+		"categories": "clothing",
+		"branding": "Chanel",
+		"name": "T-shirt Contrast Pocket",
+		"imageUrl": "img/product/product-6.jpg",
+		"price": 50.15,
+		"created_at": "",
+		"description": "",
+		"discount": 0,
+		"featured": true,
+		"rating": 5,
+		"package_format": "box",
+		"sku": "",
+		"status": "available",
+		"stock": 100,
+		"stock_unlimited": true,
+		"weight": 1,
+		"variants": [
+			null
+		],
+		"colors": [
+			"beige",
+			"black"
+		],
+		"sizes": [
+			"S",
+			"XL",
+			"2XL"
+		]
+	}
+]

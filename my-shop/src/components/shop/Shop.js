@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Product from "../product/Product";
 
 export default function Shop({products}) {
 console.log(products)
@@ -206,44 +207,15 @@ console.log(products)
                             </div>
                             <div className="row">
 
-                                
-                                <div className="col-lg-4 col-md-6 col-sm-6">
-                                    <div className="product__item"> {/*sale*/}
-                                        <div className="product__item__pic set-bg" data-setbg="img/product/product-2.jpg">
-                                            {/* <span className="label">Sale</span> */}
-                                            <ul className="product__hover">
-                                                <li><Link to="#"><img src="img/icon/heart.png" alt="" /></Link></li>
-                                                <li><Link to="#"><img src="img/icon/compare.png" alt="" /> <span>Compare</span></Link>
-                                                </li>
-                                                <li><Link to="#"><img src="img/icon/search.png" alt="" /></Link></li>
-                                            </ul>
-                                        </div>
-                                        <div className="product__item__text">
-                                            <h6>Piqué Biker Jacket</h6>
-                                            <a href="#" className="add-cart">+ Add To Cart</a>
-                                            <div className="rating">
-                                                 <i className="fa fa-star-o"></i> {/*fa fa-star */}
-                                                <i className="fa fa-star-o"></i>
-                                                <i className="fa fa-star-o"></i>
-                                                <i className="fa fa-star-o"></i>
-                                                <i className="fa fa-star-o"></i>
-                                            </div>
-                                            <h5>$67.24</h5>
-                                            <div className="product__color__select">
-                                                <label htmlFor="pc-4">
-                                                    <input type="radio" id="pc-4" />
-                                                </label>
-                                                <label className="active black" htmlFor="pc-5">
-                                                    <input type="radio" id="pc-5" />
-                                                </label>
-                                                <label className="grey" htmlFor="pc-6">
-                                                    <input type="radio" id="pc-6" />
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
+                            {products.map(p => 
+                               <div className="col-lg-4 col-md-6 col-sm-6">
+                                    < Product
+                                        {...p}
+                                        key={p.id}
+                                    />
                                 </div>
-                                
+                            )}
+    
                             </div>
                             <div className="row">
                                 <div className="col-lg-12">

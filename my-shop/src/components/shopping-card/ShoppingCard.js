@@ -1,25 +1,14 @@
 import { useState } from "react";
 import { Link, useNavigate, Navigate } from "react-router-dom";
+import { useShoppingCard } from "../../context/ShoppingCardContext";
+import ProductCardItem from "./ProductCardItem";
 import styles from './ShoppingCard.module.css';
 
 export default function ShoppingCard({
     cardId,
 }) {
-    const [counter, setCounter] = useState(1);
+    const { cardItems }= useShoppingCard();
     const navigate = useNavigate();
-
-    const incrementCounterHanlder = () => {
-        setCounter(oldCounter => oldCounter + 1);
-    };
-
-    const decrementCounterHandler = () => {
-        setCounter(oldCounter => oldCounter - 1);
-    };
-
-    const deleteCounter = () => {
-        setCounter(1);
-    };
-
     const onBackPageButtonClick = () => {
         navigate('/shop');
     };
@@ -61,98 +50,18 @@ export default function ShoppingCard({
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td className="product__cart__item">
-                                                <div className="product__cart__item__pic">
-                                                    <img src="img/shopping-cart/cart-1.jpg" alt="" />
-                                                </div>
-                                                <div className="product__cart__item__text">
-                                                    <h6>T-shirt Contrast Pocket</h6>
-                                                    <h5>$98.49</h5>
-                                                </div>
-                                            </td>
-                                            <td className="quantity__item">
-                                                <div className="quantity">
-                                                    <div className={styles["pro-qty-2"]}>
-                                                        {counter > 0 &&
-                                                        <button onClick={decrementCounterHandler}>-</button>
-                                                        }
-                                                        <input type="text" value={counter} className={styles["counter"]} onClick={deleteCounter}/>
-                                                        <button onClick={incrementCounterHanlder}>+</button>    
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className="cart__price">$ 30.00</td>
-                                            <td className="cart__close"><i className="fa fa-close"></i></td>
-                                        </tr>
-                                        <tr>
-                                            <td className="product__cart__item">
-                                                <div className="product__cart__item__pic">
-                                                    <img src="img/shopping-cart/cart-2.jpg" alt="" />
-                                                </div>
-                                                <div className="product__cart__item__text">
-                                                    <h6>Diagonal Textured Cap</h6>
-                                                    <h5>$98.49</h5>
-                                                </div>
-                                            </td>
-                                            <td className="quantity__item">
-                                                <div className="quantity">
-                                                    <div className="pro-qty-2">
-                                                        <input type="text" value="1" />
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className="cart__price">$ 32.50</td>
-                                            <td className="cart__close"><i className="fa fa-close"></i></td>
-                                        </tr>
-                                        <tr>
-                                            <td className="product__cart__item">
-                                                <div className="product__cart__item__pic">
-                                                    <img src="img/shopping-cart/cart-3.jpg" alt="" />
-                                                </div>
-                                                <div className="product__cart__item__text">
-                                                    <h6>Basic Flowing Scarf</h6>
-                                                    <h5>$98.49</h5>
-                                                </div>
-                                            </td>
-                                            <td className="quantity__item">
-                                                <div className="quantity">
-                                                    <div className="pro-qty-2">
-                                                        <input type="text" value="1" />
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className="cart__price">$ 47.00</td>
-                                            <td className="cart__close"><i className="fa fa-close"></i></td>
-                                        </tr>
-                                        <tr>
-                                            <td className="product__cart__item">
-                                                <div className="product__cart__item__pic">
-                                                    <img src="img/shopping-cart/cart-4.jpg" alt="" />
-                                                </div>
-                                                <div className="product__cart__item__text">
-                                                    <h6>Basic Flowing Scarf</h6>
-                                                    <h5>$98.49</h5>
-                                                </div>
-                                            </td>
-                                            <td className="quantity__item">
-                                                <div className="quantity">
-                                                    <div className="pro-qty-2">
-                                                        <input type="text" value="1" />
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className="cart__price">$ 30.00</td>
-                                            <td className="cart__close"><i className="fa fa-close"></i></td>
-                                        </tr>
+                                        {cardItems.map(item => {
+                                            <ProductCardItem key={item.id} {...item}/> 
+                                            })
+                                        }
                                     </tbody>
                                 </table>
                             </div>
                             <div className="row">
                                 <div className="col-lg-6 col-md-6 col-sm-6">
                                     <div className="continue__btn">
-                                        {/* <button onClick={onBackPageButtonClick}>Continue Shopping</button> */}
-                                        <Navigate to="/shop">Continue Shopping</Navigate> 
+                                         <button onClick={onBackPageButtonClick}>Continue Shopping</button> 
+                                         {/* <Navigate to="/shop">Continue Shopping</Navigate>   */}
                                     </div>
                                 </div>
                                 <div className="col-lg-6 col-md-6 col-sm-6">

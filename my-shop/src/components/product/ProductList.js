@@ -60,31 +60,38 @@ export default function ProductList({ products }) {
                 </div>
                 <div className="row product__filter">
                     {isActive.bestActive && productsBest && productsBest.map(p =>
+                    <div key={p._id} className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                         < Product
                             {...p}
-                            key={p._id}
-
+                            
                         />
+                    </div>
                     )}
                     {isActive.newActive && productsNew && productsNew.map(p =>
+                    <div key={p._id} className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                         < Product
                             {...p}
-                            key={p._id}
+                            
                             isNew={isNew}
                         />
+                    </div>
                     )}
                     {isActive.hotActive && productsHotSales && productsHotSales.map(p =>
+                    <div key={p._id} className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                         < Product
                             {...p}
-                            key={p._id}
+                            
                             isBestSale={isBestSale}
                         />
+                    </div>
                     )}
                     {!isActive.bestActive && !isActive.newActive && !isActive.hotActive && products.map(p =>
+                    <div key={p._id} className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                         < Product
                             {...p}
-                            key={p._id}
+                            
                         />
+                    </div>
                     )}
                 </div>
             </div>

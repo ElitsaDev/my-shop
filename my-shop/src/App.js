@@ -26,6 +26,7 @@ import ShopDetails from './components/shop/ShopDetails';
 import BlogCreate from './components/blog/BlogCreate';
 import BlogCatalog from './components/blog/BlogCatalog';
 import BlogDetails from './components/blog/BlogDetails';
+import { ShoppingCardProvider } from './context/ShoppingCardContext';
 function App() {
     const [isLoading, setIsLoading] = useState(true);	
     const [products, setProducts] = useState([]);
@@ -90,6 +91,7 @@ length: 4
             ? <PagePreloader />
             :  
             <>
+            <ShoppingCardProvider>
                 <Offcanvas /> 
                 <Header />
                 <main>
@@ -98,24 +100,29 @@ length: 4
                         <Route path='/index' element={<Home products={Object.values(products)} heroes={Object.values(heroes)}/>} />
                         <Route path='/register' element={<Register />} />
                         <Route path='/login' element={<Login />} />
-                        <Route path='/shop' element={<Shop products={Object.values(products)}/>} />
-                        <Route path='/blog-catalog' element={<BlogCatalog blogs={blogs} />} />
+
                         <Route path='/contact' element={<Contact />} />
-
-                        <Route path='/checkout' element={<Checkout />} />
-                        
-                        <Route path='/shopping-cart' element={<ShoppingCard />} />
                         <Route path='/about' element={<About />} />
-                        <Route path='/instagram' element={<Instagram />} />
+                        
 
-                        <Route path='/shop-details' element={<ShopDetails />} />
+                        <Route path='/blog-catalog' element={<BlogCatalog blogs={blogs} />} />
                         <Route path='/blog-create' element={<BlogCreate onCreateBlogSubmit={onCreateBlogSubmit}/>} />
                         <Route path='/blog-catalog/:blogId' element={<BlogDetails/>} />
                         
+
+                        <Route path='/checkout' element={<Checkout />} />
+                        <Route path='/shop' element={<Shop products={Object.values(products)}/>} />
+                        <Route path='/shopping-cart' element={<ShoppingCard products={Object.values(products)}/>} />
+                        
+
+                        <Route path='/shopping-cart/details' element={<ShopDetails />} />
+                        
+                        {/* <Route path='/instagram' element={<Instagram />} /> */}
                         {/* <Route path='/categories' element={<Categories />} /> */}
                         <Route path='*' element={<h1>Error 404</h1>} />
                     </Routes>
                     </main>
+                </ShoppingCardProvider>    
                 <Footer />
             </>
              } 
