@@ -27,6 +27,8 @@ import BlogCreate from './components/blog/BlogCreate';
 import BlogCatalog from './components/blog/BlogCatalog';
 import BlogDetails from './components/blog/BlogDetails';
 import { ShoppingCardProvider } from './context/ShoppingCardContext';
+import Error404 from './components/error404/Error404';
+
 function App() {
     const [isLoading, setIsLoading] = useState(true);	
     const [products, setProducts] = useState([]);
@@ -119,7 +121,7 @@ length: 4
                         
                         {/* <Route path='/instagram' element={<Instagram />} /> */}
                         {/* <Route path='/categories' element={<Categories />} /> */}
-                        <Route path='*' element={<h1>Error 404</h1>} />
+                        <Route path='*' element={<Error404 />} />
                     </Routes>
                     </main>
                 </ShoppingCardProvider>    

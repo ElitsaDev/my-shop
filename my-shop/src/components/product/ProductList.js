@@ -46,6 +46,7 @@ export default function ProductList({ products }) {
             }
         }
     };
+    
     return (
         <section className="product spad">
             <div className="container">
@@ -59,7 +60,7 @@ export default function ProductList({ products }) {
                     </div>
                 </div>
                 <div className="row product__filter">
-                    {isActive.bestActive && productsBest && productsBest.map(p =>
+                    {isActive.bestActive && productsBest.map(p =>
                     <div key={p._id} className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                         < Product
                             {...p}
@@ -67,7 +68,7 @@ export default function ProductList({ products }) {
                         />
                     </div>
                     )}
-                    {isActive.newActive && productsNew && productsNew.map(p =>
+                    {isActive.newActive && productsNew.map(p =>
                     <div key={p._id} className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                         < Product
                             {...p}
@@ -76,11 +77,10 @@ export default function ProductList({ products }) {
                         />
                     </div>
                     )}
-                    {isActive.hotActive && productsHotSales && productsHotSales.map(p =>
+                    {isActive.hotActive && productsHotSales.map(p =>
                     <div key={p._id} className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                         < Product
                             {...p}
-                            
                             isBestSale={isBestSale}
                         />
                     </div>
