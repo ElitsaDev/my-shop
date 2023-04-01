@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useShoppingCard } from "../../context/ShoppingCardContext";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Header() {
     const { cardQuantity } = useShoppingCard({});
+    const { userEmail, isAuthenticated } = useContext(AuthContext);
     return (
         <header className="header">
             <div className="header__top">
@@ -16,8 +19,18 @@ export default function Header() {
                         <div className="col-lg-6 col-md-5">
                             <div className="header__top__right">
                                 <div className="header__top__links">
-                                    <Link to="/register">Sign up</Link>
-                                    <Link to="/login">Sign in</Link>  
+                                    {!isAuthenticated ? (
+                                        <>
+                                            <Link to="/register">Sign up</Link>
+                                            <Link to="/login">Sign in</Link>
+                                        </> 
+                                    )
+                                    :   <>
+                                            <span style={{color: 'white', paddingRight: '2rem' }}>{userEmail}</span>
+                                            <Link to="#">Logout</Link>
+                                        </>
+                                    }
+                                     
                                     <Link to="#">FAQs</Link>
                                     <Link to="#">$USD</Link>
                                 </div> 

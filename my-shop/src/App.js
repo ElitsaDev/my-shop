@@ -1,5 +1,6 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 import PagePreloader from './components/pagePreloader/PagePreloader';
 import Offcanvas from './components/offcanvas/Offcanvas';
@@ -12,27 +13,28 @@ import Footer from './components/footer/Footer';
 import Contact from './components/contact/Contact';
 import Checkout from './components/checkout/Checkout';
 import ShoppingCard from './components/shopping-card/ShoppingCard';
-
-import { useState, useEffect, Fragment } from 'react';
-
-import Categories from './components/categories/Categories';
-import * as productsService from './services/productsService';
-
-import * as blogService from './services/blogService';
 import About from './components/about/About';
-
 import Instagram from './components/instagram/Instagram';
 import ShopDetails from './components/shop/ShopDetails';
 import BlogCreate from './components/blog/BlogCreate';
 import BlogCatalog from './components/blog/BlogCatalog';
 import BlogDetails from './components/blog/BlogDetails';
-import { ShoppingCardProvider } from './context/ShoppingCardContext';
+import Categories from './components/categories/Categories';
 import Error404 from './components/error404/Error404';
+
+import * as productsService from './services/productsService';
+import * as blogService from './services/blogService';
+import * as authService from './services/authService';
+
+import { ShoppingCardProvider } from './context/ShoppingCardContext';
+import { AuthContext } from './context/AuthContext';
+
 
 function App() {
     const [isLoading, setIsLoading] = useState(true);
     const [products, setProducts] = useState([]);
     const [blogs, setBlogs] = useState([]);
+    const [auth, setAuth] = useState({});
 
     useEffect(() => {
 
@@ -81,7 +83,25 @@ function App() {
         setIsLoading(false);
     }
 
-   
+    const onLoginSubmit = async (data) => {
+        try {
+            const result = await authService.login(data);
+
+            //console.log(result);
+            setAuth(result);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const context = {
+        onLoginSubmit,
+        userId: auth._id,
+        token: auth.accessToken,
+        userEmail: auth.email,
+        isAuthenticated: !!auth.accessToken
+    }
 
     return (
         <div className="App">
@@ -90,38 +110,40 @@ function App() {
                 :
                 <>
                     <ShoppingCardProvider>
-                        <Offcanvas />
-                        <Header />
-                        <main>
-                            <Routes>
-                               
-                                <Route path='/' element={<Home products={Object.values(products)} onStateHandler={onStateHandler} />} />
-                                <Route path='/index' element={<Home products={Object.values(products)} onStateHandler={onStateHandler} />} />
-                            
-                                <Route path='/register' element={<Register />} />
-                                <Route path='/login' element={<Login />} />
+                        <AuthContext.Provider value={context}>
+                            <Offcanvas />
+                            <Header />
+                            <main>
+                                <Routes>
 
-                                <Route path='/contact' element={<Contact />} />
-                                <Route path='/about' element={<About />} />
+                                    <Route path='/' element={<Home products={Object.values(products)} onStateHandler={onStateHandler} />} />
+                                    <Route path='/index' element={<Home products={Object.values(products)} onStateHandler={onStateHandler} />} />
 
+                                    <Route path='/register' element={<Register />} />
+                                    <Route path='/login' element={<Login onLoginSubmit={onLoginSubmit} />} />
 
-                                <Route path='/blog-catalog' element={<BlogCatalog blogs={blogs} />} />
-                                <Route path='/blog-create' element={<BlogCreate onCreateBlogSubmit={onCreateBlogSubmit} />} />
-                                <Route path='/blog-catalog/:blogId' element={<BlogDetails />} />
+                                    <Route path='/contact' element={<Contact />} />
+                                    <Route path='/about' element={<About />} />
 
 
-                                <Route path='/checkout' element={<Checkout />} />
-                                <Route path='/shop' element={<Shop products={Object.values(products)} />} />
-                                <Route path='/shopping-cart' element={<ShoppingCard products={Object.values(products)} />} />
+                                    <Route path='/blog-catalog' element={<BlogCatalog blogs={blogs} />} />
+                                    <Route path='/blog-create' element={<BlogCreate onCreateBlogSubmit={onCreateBlogSubmit} />} />
+                                    <Route path='/blog-catalog/:blogId' element={<BlogDetails />} />
 
 
-                                <Route path='/product-catalog/:productId' element={<ShopDetails />} />
+                                    <Route path='/checkout' element={<Checkout />} />
+                                    <Route path='/shop' element={<Shop products={Object.values(products)} />} />
+                                    <Route path='/shopping-cart' element={<ShoppingCard products={Object.values(products)} />} />
 
-                                {/* <Route path='/instagram' element={<Instagram />} /> */}
-                                {/* <Route path='/categories' element={<Categories />} /> */}
-                                <Route path='*' element={<Error404 />} />
-                            </Routes>
-                        </main>
+
+                                    <Route path='/product-catalog/:productId' element={<ShopDetails />} />
+
+                                    {/* <Route path='/instagram' element={<Instagram />} /> */}
+                                    {/* <Route path='/categories' element={<Categories />} /> */}
+                                    <Route path='*' element={<Error404 />} />
+                                </Routes>
+                            </main>
+                        </AuthContext.Provider>
                     </ShoppingCardProvider>
                     <Footer />
                 </>
