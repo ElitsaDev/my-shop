@@ -5,13 +5,13 @@ import LatestBlog from '../latestBlog/LatestBlog';
 import ProductList from '../product/ProductList';
 import HeroList from '../hero/HeroList';
 
-export default function Home({products, heroes}) {
+export default function Home({products, onStateHandler}) {
     
     return (
         <>
             {/* <!-- Hero Section Begin -->
             <!-- Hero Section End --> */}
-            <HeroList heroes={heroes} />
+            <HeroList  onStateHandler={onStateHandler}/>
 
             {/* <!-- Banner Section Begin -->
             <!-- Banner Section End --> */}

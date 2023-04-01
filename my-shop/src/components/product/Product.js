@@ -13,18 +13,18 @@ export default function Product({
     isNew,
     isBestSale,
 }) {
-    const { getItemQuantity, increaseCardQuantity, decreaseCardQuantity, removeFromCard } = useShoppingCard();
+    const {  increaseCardQuantity } = useShoppingCard();
 
     return (
         
         <div className="product__item">
             <div className="product__item__pic set-bg" data-setbg={imageUrl} >
-                <img src={imageUrl}></img>
+                <img src={imageUrl} alt={name}></img>
                 {isNew && <span className="label">New</span>}
                 {isBestSale && <span className="label">Sale</span>}
                 <ul className="product__hover">
                     <li><Link to="#"><img src="img/icon/heart.png" alt="" /></Link></li>
-                    <li><Link to={`/product-details/${id}`}><img src="img/icon/details_icon.png" alt="" /></Link></li>
+                    <li><Link to={`/product-catalog/${id}`}><img src="img/icon/details_icon.png" alt="" /></Link></li>
                 </ul>
             </div>
             <div className="product__item__text">

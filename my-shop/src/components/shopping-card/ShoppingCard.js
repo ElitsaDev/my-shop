@@ -1,8 +1,7 @@
-import { useState } from "react";
-import { Link, useNavigate, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useShoppingCard } from "../../context/ShoppingCardContext";
 import ProductCardItem from "./ProductCardItem";
-import styles from './ShoppingCard.module.css';
+
 
 export default function ShoppingCard({
     cardId,
@@ -50,9 +49,9 @@ export default function ShoppingCard({
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {cardItems.map(item => {
+                                        {cardItems.map(item => 
                                             <ProductCardItem key={item.id} {...item}/> 
-                                            })
+                                            )
                                         }
                                     </tbody>
                                 </table>

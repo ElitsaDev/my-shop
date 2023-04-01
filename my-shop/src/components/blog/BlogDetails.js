@@ -17,7 +17,7 @@ export default function BlogDetails() {
     }, [blogId]);
 
     let paragraphs = [];
-    if (blog.content != undefined && blog.content != '') {
+    if (blog.content !== undefined && blog.content !== '') {
         paragraphs = (splitBySentence(blog.content));
     }
 

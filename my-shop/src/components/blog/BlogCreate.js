@@ -1,6 +1,6 @@
 import styles from "./BlogCreate.module.css"
-import { useEffect, useState } from "react";
-import { useDate } from "../../hooks/useDate";
+import { useState } from "react";
+
 export default function BlogCreate({
     onCreateBlogSubmit,
 }) {

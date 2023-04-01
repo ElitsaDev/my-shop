@@ -1339,7 +1339,7 @@
                 "branding": "Hermes",
                 "name": "Piqué Biker Jacket",
                 "imageUrl": "img/product/product-1.jpg",
-                "price": 267.24,
+                "price": 450.24,
                 "_createdOn": "2023-03-22T08:29:18.412Z",
                 "description": "some descr",
                 "discount": 0,

@@ -1,8 +1,22 @@
 import { Link } from "react-router-dom";
 import Product from "../product/Product";
+import { useState } from "react";
 
-export default function Shop({products}) {
-console.log(products)
+export default function Shop({ products }) {
+    const [productsSort, setProductsSort] = useState(products);
+
+    const OnChangeHandle = (e) => {
+        const value = e.target.value; //low/high
+        const name = e.target.name; //price
+        if (value === 'low') {
+            setProductsSort(productsSort => [...productsSort].sort((a, b) => (a.price - b.price)));
+        }
+
+        if (value === 'high') {
+            setProductsSort(productsSort => [...productsSort].sort((a, b) => (b.price - a.price)));
+        }
+    }
+
     return (
         <>
             {/* <!-- Breadcrumb Section Begin --> */}
@@ -190,16 +204,16 @@ console.log(products)
                                 <div className="row">
                                     <div className="col-lg-6 col-md-6 col-sm-6">
                                         <div className="shop__product__option__left">
-                                            <p>Showing 1–12 of 126 results</p>
+                                            <p>Showing {products.length} results</p>
                                         </div>
                                     </div>
                                     <div className="col-lg-6 col-md-6 col-sm-6">
                                         <div className="shop__product__option__right">
                                             <p>Sort by Price:</p>
-                                            <select>
-                                                <option value="">Low To High</option>
-                                                <option value="">$0 - $55</option>
-                                                <option value="">$55 - $100</option>
+                                            <select onChange={OnChangeHandle} name="price">
+                                                <option value="-">-</option>
+                                                <option value="low">Low To High</option>
+                                                <option value="high">High to Low</option>
                                             </select>
                                         </div>
                                     </div>
@@ -207,15 +221,22 @@ console.log(products)
                             </div>
                             <div className="row">
 
-                            {products.map(p => 
-                               <div className="col-lg-4 col-md-6 col-sm-6">
-                                    < Product
-                                        {...p}
-                                        key={p.id}
-                                    />
-                                </div>
-                            )}
-    
+                                {productsSort
+                                    ? productsSort.map(p =>
+                                        <div key={p.id} className="col-lg-4 col-md-6 col-sm-6">
+                                            < Product
+                                                {...p}
+
+                                            />
+                                        </div>)
+                                    : products.map(p =>
+                                        <div key={p.id} className="col-lg-4 col-md-6 col-sm-6">
+                                            < Product
+                                                {...p}
+
+                                            />
+                                        </div>
+                                    )}
                             </div>
                             <div className="row">
                                 <div className="col-lg-12">

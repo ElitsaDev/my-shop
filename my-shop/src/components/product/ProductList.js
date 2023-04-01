@@ -28,7 +28,7 @@ export default function ProductList({ products }) {
 
                 let fillteredNewProducts = products.filter(pr => {
                     //console.log( pr.name + Date.parse(pr._createdOn))
-                    return Date.parse(pr._createdOn) > 1603355358412;
+                    return Date.parse(pr._createdOn) > 1503355358412;
                 });
 
                 fillteredNewProducts.sort((a, b) => (a._createdOn - b._createdOn));
@@ -61,7 +61,7 @@ export default function ProductList({ products }) {
                 </div>
                 <div className="row product__filter">
                     {isActive.bestActive && productsBest.map(p =>
-                    <div key={p._id} className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                    <div key={p.id} className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                         < Product
                             {...p}
                             
@@ -69,7 +69,7 @@ export default function ProductList({ products }) {
                     </div>
                     )}
                     {isActive.newActive && productsNew.map(p =>
-                    <div key={p._id} className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                    <div key={p.id} className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                         < Product
                             {...p}
                             
@@ -78,7 +78,7 @@ export default function ProductList({ products }) {
                     </div>
                     )}
                     {isActive.hotActive && productsHotSales.map(p =>
-                    <div key={p._id} className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                    <div key={p.id} className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                         < Product
                             {...p}
                             isBestSale={isBestSale}
@@ -86,7 +86,7 @@ export default function ProductList({ products }) {
                     </div>
                     )}
                     {!isActive.bestActive && !isActive.newActive && !isActive.hotActive && products.map(p =>
-                    <div key={p._id} className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                    <div key={p.id} className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                         < Product
                             {...p}
                             

@@ -47,7 +47,7 @@ export default function Header() {
                                         <li><Link to="/blog-details">Blog Details</Link></li>
                                     </ul>
                                 </li>
-                                <li><Link to="/blog">Blog</Link></li>
+                                <li><Link to="/blog-catalog">Blog</Link></li>
                                 <li><Link to="/contact">Contacts</Link></li>
                             </ul>
                         </nav>
