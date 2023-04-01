@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import PagePreloader from './components/pagePreloader/PagePreloader';
@@ -31,6 +31,7 @@ import { AuthContext } from './context/AuthContext';
 
 
 function App() {
+    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
     const [products, setProducts] = useState([]);
     const [blogs, setBlogs] = useState([]);
@@ -86,9 +87,8 @@ function App() {
     const onLoginSubmit = async (data) => {
         try {
             const result = await authService.login(data);
-
-            //console.log(result);
             setAuth(result);
+            navigate('/');
 
         } catch (error) {
             console.log(error);
