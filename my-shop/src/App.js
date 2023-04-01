@@ -13,7 +13,7 @@ import Contact from './components/contact/Contact';
 import Checkout from './components/checkout/Checkout';
 import ShoppingCard from './components/shopping-card/ShoppingCard';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 
 import Categories from './components/categories/Categories';
 import * as productsService from './services/productsService';
@@ -81,6 +81,8 @@ function App() {
         setIsLoading(false);
     }
 
+   
+
     return (
         <div className="App">
             {isLoading
@@ -92,8 +94,10 @@ function App() {
                         <Header />
                         <main>
                             <Routes>
+                               
                                 <Route path='/' element={<Home products={Object.values(products)} onStateHandler={onStateHandler} />} />
                                 <Route path='/index' element={<Home products={Object.values(products)} onStateHandler={onStateHandler} />} />
+                            
                                 <Route path='/register' element={<Register />} />
                                 <Route path='/login' element={<Login />} />
 
