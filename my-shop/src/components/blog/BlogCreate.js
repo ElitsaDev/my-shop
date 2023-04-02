@@ -42,7 +42,7 @@ export default function BlogCreate({
                                                 <input type="hidden" id="date" placeholder="updated on" name="updated" value={values.updated} onChange={changeHandler} />
                                             </div>
                                             <div className="col-lg-12 col-md-12 text-center">
-                                                <textarea placeholder="Content of blog post" name="content" value={values.content} onChange={changeHandler} />
+                                                <textarea type="text" placeholder="Content of blog post" name="content" value={values.content} onChange={changeHandler} />
                                             </div>
                                             <div className="col-lg-6 col-md-6">
                                                 <input type="text" placeholder="quote" name="quote" value={values.quote} onChange={changeHandler} />
