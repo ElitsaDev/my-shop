@@ -27,7 +27,7 @@ export default function Header() {
                                     )
                                     :   <>
                                             <span style={{color: 'white', paddingRight: '2rem' }}>{userEmail}</span>
-                                            <Link to="#">Logout</Link>
+                                            <Link to="/logout">Logout</Link>
                                         </>
                                     }
                                      
@@ -57,7 +57,7 @@ export default function Header() {
                                         <li><Link to="/shopping-cart/details">Shop Details</Link></li>
                                         <li><Link to="/shopping-cart">Shopping Cart</Link></li>
                                         <li><Link to="/checkout">Check Out</Link></li>
-                                        <li><Link to="/blog-details">Blog Details</Link></li>
+                                        <li><Link to="/blog-create">Blog Create</Link></li>
                                     </ul>
                                 </li>
                                 <li><Link to="/blog-catalog">Blog</Link></li>

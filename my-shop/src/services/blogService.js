@@ -1,5 +1,5 @@
 import * as request from './requester';
-const baseUrl = 'http://localhost:3030/jsonstore/blogs'
+const baseUrl = 'http://localhost:3030/data/blogs'
 
 export const getAll = async () => {
     const result = await request.get(baseUrl);

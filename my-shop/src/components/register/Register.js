@@ -1,31 +1,18 @@
+import { useContext } from 'react';
 import styles from "./Register.module.css"
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from '../../context/AuthContext';
+import { useForm } from '../../hooks/useForm';
+
 export default function Register() {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [repass, setRepass] = useState('');
-
-    const onSubmitHandler = (e) => {
-        e.preventDefault();
-    };
-
-    const onUsernameChange = (e) => {
-        setUsername(e.target.value);
-    };
-
-    const onEmailChange = (e) => {
-        setEmail(e.target.value);
-    };
-
-    const onPasswordChange = (e) => {
-        setPassword(e.target.value);
-    };
-
-    const onRepassChange = (e) => {
-        setRepass(e.target.value);
-    };
+    const { onRegisterSubmit } = useContext(AuthContext);
+    const { values, changeHandler, onSubmit } = useForm({
+        username: '',
+        email: '',
+        password: '',
+        repass: '',
+    }, onRegisterSubmit);
 
     return (
         <>
@@ -36,8 +23,9 @@ export default function Register() {
                     </header>
 
                     <form id="register-form"
+                        method="POST"
                         className={styles["register-form"]}
-                        onSubmit={onSubmitHandler}
+                        onSubmit={onSubmit}
                     >
                         <div className={styles.error}>Email or Password are not valid.</div>
                         <label className={styles.label}>E-mail: </label>
@@ -45,32 +33,32 @@ export default function Register() {
                             type="text"
                             name="email"
                             className={styles.input}
-                            value={email}
-                            onChange={onEmailChange}
+                            value={values.email}
+                            onChange={changeHandler}
                         />
                         <label className={styles.label}>Username: </label>
                         <input
                             type="text"
                             name="username"
                             className={styles.input}
-                            value={username}
-                            onChange={onUsernameChange}
+                            value={values.username}
+                            onChange={changeHandler}
                         />
                         <label className={styles.label}>Password: </label>
                         <input
                             type="password"
                             name="password"
                             className={styles.input}
-                            value={password}
-                            onChange={onPasswordChange}
+                            value={values.password}
+                            onChange={changeHandler}
                         />
                         <label className={styles.label}>Repeat password: </label>
                         <input
                             type="password"
                             name="repass"
                             className={styles.input}
-                            value={repass}
-                            onChange={onRepassChange}
+                            value={values.repass}
+                            onChange={changeHandler}
                         />
                         <input className={styles.btn} type="submit" value="Create Account" />
                     </form>

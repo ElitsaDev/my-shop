@@ -8,6 +8,7 @@ import Header from './components/header/Header';
 import Home from './components/home/Home';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
+import Logout from './components/logout/Logout';
 import Shop from './components/shop/Shop';
 import Footer from './components/footer/Footer';
 import Contact from './components/contact/Contact';
@@ -28,6 +29,7 @@ import * as authService from './services/authService';
 
 import { ShoppingCardProvider } from './context/ShoppingCardContext';
 import { AuthContext } from './context/AuthContext';
+
 
 
 function App() {
@@ -95,12 +97,36 @@ function App() {
         }
     }
 
-    const context = {
+    const onRegisterSubmit = async (data) => {
+        const {repass, ...registerData} = data;
+
+        if(repass !== registerData.password){
+            return;
+        }
+
+        try {
+            const result = await authService.register(registerData);
+            setAuth(result);
+            navigate('/');
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const onLogout =  () => {
+        //TODO authorization logout
+        authService.logout();
+        setAuth({});
+    }
+
+    const contextObject = {
         onLoginSubmit,
+        onRegisterSubmit,
+        onLogout,
         userId: auth._id,
         token: auth.accessToken,
         userEmail: auth.email,
-        isAuthenticated: !!auth.accessToken
+        isAuthenticated: !!auth.accessToken,
     }
 
     return (
@@ -110,7 +136,7 @@ function App() {
                 :
                 <>
                     <ShoppingCardProvider>
-                        <AuthContext.Provider value={context}>
+                        <AuthContext.Provider value={contextObject}>
                             <Offcanvas />
                             <Header />
                             <main>
@@ -120,11 +146,10 @@ function App() {
                                     <Route path='/index' element={<Home products={Object.values(products)} onStateHandler={onStateHandler} />} />
 
                                     <Route path='/register' element={<Register />} />
-                                    <Route path='/login' element={<Login onLoginSubmit={onLoginSubmit} />} />
-
+                                    <Route path='/login' element={<Login />} />
+                                    <Route path='/logout' element={<Logout />} />
                                     <Route path='/contact' element={<Contact />} />
                                     <Route path='/about' element={<About />} />
-
 
                                     <Route path='/blog-catalog' element={<BlogCatalog blogs={blogs} />} />
                                     <Route path='/blog-create' element={<BlogCreate onCreateBlogSubmit={onCreateBlogSubmit} />} />

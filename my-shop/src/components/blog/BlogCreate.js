@@ -1,29 +1,19 @@
 import styles from "./BlogCreate.module.css"
-import { useState } from "react";
+import { useForm } from "../../hooks/useForm";
 
 export default function BlogCreate({
     onCreateBlogSubmit,
 }) {
-    const [values, setValues] = useState({
+    const {values, changeHandler, onSubmit}  = useForm({
         title: '',
         imageUrl: '',
-        published: '',
+        published: new Date(),
         updated: '',
         content: '',
         quote: '',
         quoteAuthor: '',
         comments: [],
-    });
-
-    const onChangeHandler = (e) => {
-        const newDate = new Date();
-        setValues(state => ({ ...state, [e.target.name]: e.target.value, published: newDate }))
-    };
-
-    const onSubmit = (e) => {
-        e.preventDefault();
-        onCreateBlogSubmit(values);
-    };
+    }, onCreateBlogSubmit);
 
     return (
         <>
@@ -34,28 +24,30 @@ export default function BlogCreate({
                             <div className="blog__content">
                                 <div className="blog__content__create">
                                     <h1>Create Blog</h1>
-                                    <form id="blog-create" onSubmit={onSubmit}>
+                                    <form id="blog-create" 
+                                            method="POST"
+                                            onSubmit={onSubmit}>
                                         <div className="row">
                                             <div className="col-lg-6 col-md-6">
-                                                <input type="text" placeholder="title" name="title" value={values.title} onChange={onChangeHandler} />
+                                                <input type="text" placeholder="title" name="title" value={values.title} onChange={changeHandler} />
                                             </div>
                                             <div className="col-lg-6 col-md-6">
-                                                <input type="text" placeholder="image" name="imageUrl" value={values.imageUrl} onChange={onChangeHandler} />
+                                                <input type="text" placeholder="image" name="imageUrl" value={values.imageUrl} onChange={changeHandler} />
                                             </div>
                                             <div className="col-lg-6 col-md-6">
-                                                <input type="hidden" id="date" placeholder="published on" name="published" value={values.published} onChange={onChangeHandler} />
+                                                <input type="hidden" id="date" placeholder="published on" name="published" value={values.published} onChange={changeHandler} />
                                             </div>
                                             <div className="col-lg-6 col-md-6">
-                                                <input type="hidden" id="date" placeholder="updated on" name="updated" value={values.updated} onChange={onChangeHandler} />
+                                                <input type="hidden" id="date" placeholder="updated on" name="updated" value={values.updated} onChange={changeHandler} />
                                             </div>
                                             <div className="col-lg-12 col-md-12 text-center">
-                                                <textarea placeholder="Content of blog post" name="content" value={values.content} onChange={onChangeHandler} />
+                                                <textarea placeholder="Content of blog post" name="content" value={values.content} onChange={changeHandler} />
                                             </div>
                                             <div className="col-lg-6 col-md-6">
-                                                <input type="text" placeholder="quote" name="quote" value={values.quote} onChange={onChangeHandler} />
+                                                <input type="text" placeholder="quote" name="quote" value={values.quote} onChange={changeHandler} />
                                             </div>
                                             <div className="col-lg-6 col-md-6">
-                                                <input type="text" placeholder=" author of quote" name="quoteAuthor" value={values.quoteAuthor} onChange={onChangeHandler} />
+                                                <input type="text" placeholder=" author of quote" name="quoteAuthor" value={values.quoteAuthor} onChange={changeHandler} />
                                             </div>
                                             <div className="col-lg-12 col-md-12" >
                                                 <button type="submit" className={styles.btn}>Create Blog </button>
