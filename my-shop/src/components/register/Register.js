@@ -1,7 +1,6 @@
 import { useContext } from 'react';
-import styles from "./Register.module.css"
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import styles from "./Register.module.css"
 import { AuthContext } from '../../context/AuthContext';
 import { useForm } from '../../hooks/useForm';
 

@@ -13,15 +13,25 @@
     box-shadow: 0px 0px 5px 0px #5a6b7c, -5px -5px 20px #53575e;     
 }
 
-input[type="text"] {
+.blog-form input[type="text"] {   
     width: 100%; 
     margin: 5px 0px 12px 0;  
     padding: 8px;   
     display: inline-block;   
-    border: 2px solid #22252c;   
+    border: 1px solid #e1e1e1;   
     border-radius: 7px;
-    box-sizing: border-box; 
-}
+    box-sizing: border-box;   
+} 
+
+.blog-form input[type="text"]:hover {   
+    width: 100%; 
+    margin: 5px 0px 12px 0;  
+    padding: 8px;   
+    display: inline-block;   
+    border: 2px solid #696969;   
+    border-radius: 7px;
+    box-sizing: border-box;    
+} 
 
 textarea {
     width: 100%; 

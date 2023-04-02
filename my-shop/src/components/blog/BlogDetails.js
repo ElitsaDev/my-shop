@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import * as blogService from '../../services/blogService';
+import { blogServiceFactory } from '../../services/blogService';
 import { formatDate } from '../../utils/dateFormater';
 import { splitBySentence } from '../../utils/splitTextIntoFourParagraphs';
+import { useService } from '../../hooks/useService';
 
 export default function BlogDetails() {
     const { blogId } = useParams();
     const [blog, setBlog] = useState({});
+    const blogService = useService(blogServiceFactory);
 
     useEffect(() => {
         blogService.getOne(blogId)

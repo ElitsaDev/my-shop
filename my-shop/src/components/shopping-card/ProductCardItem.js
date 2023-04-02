@@ -2,8 +2,9 @@ import { useShoppingCard } from "../../context/ShoppingCardContext";
 import { Link } from "react-router-dom";
 import styles from './ShoppingCard.module.css';
 import { formatCurrency } from "../../utils/currencyFormater";
-import * as productsService from '../../services/productsService';
+import { productServiceFactory } from '../../services/productsService';
 import { useState, useEffect } from 'react';
+import { useService } from "../../hooks/useService";
 
 export default function ProductCardItem({
     id,
@@ -14,7 +15,7 @@ export default function ProductCardItem({
 }) {
     const { getItemQuantity, increaseCardQuantity, decreaseCardQuantity, removeFromCard } = useShoppingCard();
     const [ product, setProduct] = useState();
-
+    const productsService = useService(productServiceFactory);
     useEffect(() => {
          productsService.getAll()
             .then(products => {
@@ -25,7 +26,7 @@ export default function ProductCardItem({
                 console.log("Error" + error);
             });
 
-    }, [id]);
+    }, [id, productsService]);
 
     const quantity = getItemQuantity(id);
 

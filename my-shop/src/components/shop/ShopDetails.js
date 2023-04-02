@@ -1,10 +1,12 @@
 import { useParams, Link } from 'react-router-dom';
-import * as productService from '../../services/productsService';
+import { productServiceFactory } from '../../services/productsService';
 import { useState, useEffect } from 'react';
+import { useService } from '../../hooks/useService';
 
 export default function ShopDetails() {
     const { productId } = useParams();
     const [product, setProduct] = useState({});
+    const productService = useService(productServiceFactory);
 
     useEffect(() => {
         productService.getOne(productId)

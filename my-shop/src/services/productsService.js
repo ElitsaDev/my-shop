@@ -1,14 +1,23 @@
-import * as request from './requester';
-const baseUrl = "http://localhost:3030/jsonstore/products";
+import { requestFactory } from './requester';
+const baseUrl = "http://localhost:3030/data/products";
 
-export const getAll = async () => {
-    const response = await fetch(baseUrl);
-    const result = await response.json();
-    return result;
-};
+export const productServiceFactory = (token) => {
 
-export const getOne = async (productId) => {
-    const result = await request.get(`${baseUrl}/${productId}`);
+    const request = requestFactory(token);
 
-    return result;
-};
+    const getAll = async () => {
+        const response = await fetch(baseUrl);
+        const result = await response.json();
+        return result;
+    };
+
+    const getOne = async (productId) => {
+        const result = await request.get(`${baseUrl}/${productId}`);
+        return result;
+    };
+
+    return {
+        getAll,
+        getOne,
+    }
+}

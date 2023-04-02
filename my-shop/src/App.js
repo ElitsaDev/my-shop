@@ -1,6 +1,6 @@
-import './App.css';
-import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { Routes, Route} from 'react-router-dom';
+import './App.css';
 
 import PagePreloader from './components/pagePreloader/PagePreloader';
 import Offcanvas from './components/offcanvas/Offcanvas';
@@ -23,21 +23,27 @@ import BlogDetails from './components/blog/BlogDetails';
 import Categories from './components/categories/Categories';
 import Error404 from './components/error404/Error404';
 
-import * as productsService from './services/productsService';
-import * as blogService from './services/blogService';
-import * as authService from './services/authService';
+import { authServiceFactory } from './services/authService';
+import { productServiceFactory } from './services/productsService';
+import { blogServiceFactory } from './services/blogService';
+import { contactServiceFactory } from './services/contactService';
 
 import { ShoppingCardProvider } from './context/ShoppingCardContext';
-import { AuthContext } from './context/AuthContext';
+import { AuthProvider } from './context/AuthContext';
 
 
-
-function App() {
-    const navigate = useNavigate();
+function App() {   
     const [isLoading, setIsLoading] = useState(true);
+    const [auth, setAuth] = useState({});
     const [products, setProducts] = useState([]);
     const [blogs, setBlogs] = useState([]);
-    const [auth, setAuth] = useState({});
+    const [contacts, setContacts] = useState([]);
+
+    const productsService = productServiceFactory(auth.accessToken);
+    const authService = authServiceFactory(auth.accessToken);
+    const blogService = blogServiceFactory(auth.accessToken);
+    const contactService = contactServiceFactory(auth.accessToken);
+
 
     useEffect(() => {
 
@@ -86,47 +92,12 @@ function App() {
         setIsLoading(false);
     }
 
-    const onLoginSubmit = async (data) => {
-        try {
-            const result = await authService.login(data);
-            setAuth(result);
-            navigate('/');
-
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    const onRegisterSubmit = async (data) => {
-        const {repass, ...registerData} = data;
-
-        if(repass !== registerData.password){
-            return;
-        }
-
-        try {
-            const result = await authService.register(registerData);
-            setAuth(result);
-            navigate('/');
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    const onLogout =  () => {
-        //TODO authorization logout
-        authService.logout();
-        setAuth({});
-    }
-
-    const contextObject = {
-        onLoginSubmit,
-        onRegisterSubmit,
-        onLogout,
-        userId: auth._id,
-        token: auth.accessToken,
-        userEmail: auth.email,
-        isAuthenticated: !!auth.accessToken,
+    const onCreateContactSubmit = async (data) => {
+        const newContact = await contactService.create(data)
+            .catch(error => {
+                console.log("Error" + error);
+            });
+        setContacts(state => [...state, newContact]);
     }
 
     return (
@@ -136,7 +107,7 @@ function App() {
                 :
                 <>
                     <ShoppingCardProvider>
-                        <AuthContext.Provider value={contextObject}>
+                        <AuthProvider>
                             <Offcanvas />
                             <Header />
                             <main>
@@ -148,7 +119,7 @@ function App() {
                                     <Route path='/register' element={<Register />} />
                                     <Route path='/login' element={<Login />} />
                                     <Route path='/logout' element={<Logout />} />
-                                    <Route path='/contact' element={<Contact />} />
+                                    <Route path='/contact' element={<Contact onCreateContactSubmit={onCreateContactSubmit} />} />
                                     <Route path='/about' element={<About />} />
 
                                     <Route path='/blog-catalog' element={<BlogCatalog blogs={blogs} />} />
@@ -168,7 +139,7 @@ function App() {
                                     <Route path='*' element={<Error404 />} />
                                 </Routes>
                             </main>
-                        </AuthContext.Provider>
+                        </AuthProvider>
                     </ShoppingCardProvider>
                     <Footer />
                 </>

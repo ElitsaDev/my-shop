@@ -1,29 +1,41 @@
-import * as request from './requester';
+import { requestFactory } from './requester';
 const baseUrl = 'http://localhost:3030/data/blogs'
 
-export const getAll = async () => {
-    const result = await request.get(baseUrl);
-    const blogs = Object.values(result);
+export const blogServiceFactory = (token) => {
 
-    return blogs;
-};
+    const request = requestFactory(token);
 
-export const getOne = async (blogId) => {
-    const result = await request.get(`${baseUrl}/${blogId}`);
+    const getAll = async () => {
+        const result = await request.get(baseUrl);
+        const blogs = Object.values(result);
 
-    return result;
-};
+        return blogs;
+    };
 
-export const create = async (blogData) => {
-    const result = await request.post(baseUrl, blogData);
+    const getOne = async (blogId) => {
+        const result = await request.get(`${baseUrl}/${blogId}`);
 
-    console.log(result);
+        return result;
+    };
 
-    return result;
-};
+    const create = async (blogData) => {
+        const result = await request.post(baseUrl, blogData);
 
-export const addComment = async (blogId, data) => {
-    const result = await request.post(`${baseUrl}/${blogId}/comments`, data);
+        console.log(result);
 
-    return result;
-};
+        return result;
+    };
+
+    const addComment = async (blogId, data) => {
+        const result = await request.post(`${baseUrl}/${blogId}/comments`, data);
+
+        return result;
+    };
+
+    return {
+        getAll,
+        getOne,
+        create,
+        addComment
+    }
+}

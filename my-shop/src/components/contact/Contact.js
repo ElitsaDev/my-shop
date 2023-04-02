@@ -1,27 +1,14 @@
-import { useState } from 'react';
 import styles from "./Contact.module.css";
+import { useForm } from '../../hooks/useForm';
 
-export default function Contact(){
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [message, setMessage] = useState('');
-
-    const onSubmitHandler = (e) => {
-        e.preventDefault(); 
-    };
-
-    const onNameChange = (e) => {
-        setName(e.target.value);
-    }
-
-    const onEmailChange = (e) => {
-        setEmail(e.target.value);
-    }
-
-    const onMessageChange = (e) => {
-        setMessage(e.target.value);
-    }
-
+export default function Contact({onCreateContactSubmit}){
+   
+    const {  values, changeHandler, onSubmit } = useForm({
+        name: '',
+        email: '',
+        message: '',
+    }, onCreateContactSubmit);
+    
     return (
         <>
          {/* <!-- Map Begin --> */}
@@ -57,32 +44,33 @@ export default function Contact(){
                 </div>
                 <div className="col-lg-6 col-md-6">
                     <div className="contact__form">
-                        <form onSubmit={onSubmitHandler}
-                            className={styles["contact-form"]}
+                        <form onSubmit={onSubmit}
+                                method="POST"
+                                className={styles["contact-form"]}
                         >
                             <div className="row">
                                 <div className="col-lg-6">
                                     <input type="text" 
                                             id="name" 
                                             placeholder="Name" 
-                                            value={name}
-                                            onChange={onNameChange}
+                                            value={values.name}
+                                            onChange={changeHandler}
                                     />
                                 </div>
                                 <div className="col-lg-6">
                                     <input type="text" 
                                             id="email" 
                                             placeholder="Email"
-                                            value={email}
-                                            onChange={onEmailChange}
+                                            value={values.email}
+                                            onChange={changeHandler}
                                     />
                                 </div>
                                 <div className="col-lg-12">
                                     <textarea name="message" className={styles.message}
                                                 type="text"
                                                 id="message" 
-                                                value={message} 
-                                                onChange={onMessageChange} 
+                                                value={values.message} 
+                                                onChange={changeHandler} 
                                                 placeholder="Message"
                                     />
                                     <button type="submit" className="site-btn">Send Message</button>

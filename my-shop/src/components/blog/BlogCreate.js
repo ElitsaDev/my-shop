@@ -26,6 +26,7 @@ export default function BlogCreate({
                                     <h1>Create Blog</h1>
                                     <form id="blog-create" 
                                             method="POST"
+                                            className={styles["blog-form"]}
                                             onSubmit={onSubmit}>
                                         <div className="row">
                                             <div className="col-lg-6 col-md-6">
