@@ -1,14 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { blogServiceFactory } from '../../services/blogService';
 import { formatDate } from '../../utils/dateFormater';
 import { splitBySentence } from '../../utils/splitTextIntoFourParagraphs';
 import { useService } from '../../hooks/useService';
+import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import styles from './BlogDetails.module.css';
 
 export default function BlogDetails() {
     const { blogId } = useParams();
-    const [blog, setBlog] = useState({});
+    const [blog, setBlog] = useState([]);
     const blogService = useService(blogServiceFactory);
+    const auth = useContext(AuthContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         blogService.getOne(blogId)
@@ -23,6 +28,21 @@ export default function BlogDetails() {
         paragraphs = (splitBySentence(blog.content));
     }
 
+    const isOwner = blog._ownerId === auth.userId;
+
+    const onDeleteClick = async (blogId) => {
+        // eslint-disable-next-line no-restricted-globals
+        const result = confirm(`Are you sure you want to delete ${blog.title}`);
+
+        if (result) {
+            await blogService.deleteBlog(blog._id);
+
+            setBlog(state => state.filter(blog => blog._id !== blogId));
+
+            navigate('/blog-catalog');
+        }
+    };
+
     return (
         <>
             <section className="blog-hero spad">
@@ -36,6 +56,12 @@ export default function BlogDetails() {
                                     <li>{formatDate(blog.published)}</li>
                                     <li>{blog.comments?.length || 0} Comments</li>
                                 </ul>
+                                {isOwner && (
+                                    <div className="buttons">
+                                        <Link to={`/blog-catalog/${blog._id}/edit`} type="button" className={styles.linkAsButton}>Edit Blog</Link>
+                                        <button className={styles.linkAsButton} onClick={onDeleteClick}>Delete Blog</button>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -47,7 +73,7 @@ export default function BlogDetails() {
                     <div className="row d-flex justify-content-center">
                         <div className="col-lg-12">
                             <div className="blog__details__pic">
-                                <img src={blog.imageUrl} alt="" />
+                                <img src={`/${blog.imageUrl}`} alt={blog.title} />
                             </div>
                         </div>
                         <div className="col-lg-8">
@@ -81,7 +107,7 @@ export default function BlogDetails() {
                                         <div className="col-lg-6 col-md-6 col-sm-6">
                                             <div className="blog__details__author">
                                                 <div className="blog__details__author__pic">
-                                                    <img src="img/blog/details/blog-author.jpg" alt="" />
+                                                    <img src="/img/blog/details/blog-author.jpg" alt="" />
                                                 </div>
                                                 <div className="blog__details__author__text">
                                                     <h5>Aiden Blair</h5>

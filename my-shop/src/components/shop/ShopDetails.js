@@ -34,29 +34,29 @@ export default function ShopDetails() {
                             <div className="col-lg-3 col-md-3">
                                 <ul className="nav nav-tabs" role="tablist">
                                     <li className="nav-item">
-                                        <a className="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">
+                                        <Link className="nav-link active" data-toggle="tab" to="#tabs-1" role="tab">
                                             <div className="product__thumb__pic set-bg" data-setbg="img/shop-details/thumb-1.png">
                                             </div>
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link" data-toggle="tab" href="#tabs-2" role="tab">
+                                        <Link className="nav-link" data-toggle="tab" to="#tabs-2" role="tab">
                                             <div className="product__thumb__pic set-bg" data-setbg="img/shop-details/thumb-2.png">
                                             </div>
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link" data-toggle="tab" href="#tabs-3" role="tab">
+                                        <Link className="nav-link" data-toggle="tab" to="#tabs-3" role="tab">
                                             <div className="product__thumb__pic set-bg" data-setbg="img/shop-details/thumb-3.png">
                                             </div>
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link" data-toggle="tab" href="#tabs-4" role="tab">
+                                        <Link className="nav-link" data-toggle="tab" to="#tabs-4" role="tab">
                                             <div className="product__thumb__pic set-bg" data-setbg="img/shop-details/thumb-4.png">
                                                 <i className="fa fa-play"></i>
                                             </div>
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
@@ -80,7 +80,7 @@ export default function ShopDetails() {
                                     <div className="tab-pane" id="tabs-4" role="tabpanel">
                                         <div className="product__details__pic__item">
                                             <img src="img/shop-details/product-big-4.png" alt="" />
-                                            <a href="https://www.youtube.com/watch?v=8PJ3_p7VqHw&list=RD8PJ3_p7VqHw&start_radio=1" className="video-popup"><i className="fa fa-play"></i></a>
+                                            <Link to="https://www.youtube.com/watch?v=8PJ3_p7VqHw&list=RD8PJ3_p7VqHw&start_radio=1" className="video-popup"><i className="fa fa-play"></i></Link>
                                         </div>
                                     </div>
                                 </div>
@@ -143,10 +143,10 @@ export default function ShopDetails() {
                                     </div>
                                     <div className="product__details__cart__option">
                                         
-                                        <a href="#" className="primary-btn">add to cart</a>
+                                        <Link to="#" className="primary-btn">add to cart</Link>
                                     </div>
                                     <div className="product__details__btns__option">
-                                        <a href="#"><i className="fa fa-heart"></i> add to wishlist</a>
+                                        <Link to="#"><i className="fa fa-heart"></i> add to wishlist</Link>
             
                                     </div>
                                     <div className="product__details__last__option">
@@ -165,16 +165,16 @@ export default function ShopDetails() {
                                 <div className="product__details__tab">
                                     <ul className="nav nav-tabs" role="tablist">
                                         <li className="nav-item">
-                                            <a className="nav-link active" data-toggle="tab" href="#tabs-5"
-                                                role="tab">Description</a>
+                                            <Link className="nav-link active" data-toggle="tab" to="#tabs-5"
+                                                role="tab">Description</Link>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" data-toggle="tab" href="#tabs-6" role="tab">Customer
-                                                Previews(5)</a>
+                                            <Link className="nav-link" data-toggle="tab" to="#tabs-6" role="tab">Customer
+                                                Previews(5)</Link>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" data-toggle="tab" href="#tabs-7" role="tab">Additional
-                                                information</a>
+                                            <Link className="nav-link" data-toggle="tab" to="#tabs-7" role="tab">Additional
+                                                information</Link>
                                         </li>
                                     </ul>
                                     <div className="tab-content">

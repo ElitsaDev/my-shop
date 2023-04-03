@@ -19,6 +19,7 @@ export const blogServiceFactory = (token) => {
     };
 
     const create = async (blogData) => {
+
         const result = await request.post(baseUrl, blogData);
 
         console.log(result);
@@ -26,16 +27,15 @@ export const blogServiceFactory = (token) => {
         return result;
     };
 
-    const addComment = async (blogId, data) => {
-        const result = await request.post(`${baseUrl}/${blogId}/comments`, data);
+    const edit = (blogId, blogData) => request.put(`${baseUrl}/${blogId}`, blogData);
 
-        return result;
-    };
+    const deleteBlog = (blogId) => request.delete(`${baseUrl}/${blogId}`);
 
     return {
         getAll,
         getOne,
         create,
-        addComment
+        edit,
+        deleteBlog,
     }
 }

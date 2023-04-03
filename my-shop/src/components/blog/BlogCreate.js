@@ -11,8 +11,7 @@ export default function BlogCreate({
         updated: '',
         content: '',
         quote: '',
-        quoteAuthor: '',
-        comments: [],
+        quoteAuthor: '',  
     }, onCreateBlogSubmit);
 
     return (
@@ -51,7 +50,7 @@ export default function BlogCreate({
                                                 <input type="text" placeholder=" author of quote" name="quoteAuthor" value={values.quoteAuthor} onChange={changeHandler} />
                                             </div>
                                             <div className="col-lg-12 col-md-12" >
-                                                <button type="submit" className={styles.btn}>Create Blog </button>
+                                                <button type="submit" className={styles.btn} >Create Blog</button>
                                             </div>
                                         </div>
                                     </form>

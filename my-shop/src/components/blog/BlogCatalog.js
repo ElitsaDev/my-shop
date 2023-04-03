@@ -9,7 +9,7 @@ export default function BlogCatalog({
 
         <>
             {/* <!-- Breadcrumb Section Begin --> */}
-            <section className="breadcrumb-blog set-bg" data-setbg="img/breadcrumb-bg.jpg">
+            <section className="breadcrumb-blog set-bg" data-setbg="img/breadcrumb-bg.jpg"  >
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12">

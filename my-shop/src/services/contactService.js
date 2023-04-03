@@ -17,3 +17,16 @@ export const contactServiceFactory = (token) => {
         create,
     }
 }
+
+/*
+[
+    {
+        "_ownerId": "21426b35-50d0-4115-bcc6-6403120aaeef",
+        "name": "sgdgv",
+        "email": "gvvvv",
+        "message": "vvvvvv",
+        "_createdOn": 1680510793372,
+        "_id": "ce310517-4a56-4df4-87de-16103b0b530f"
+    }
+]
+*/

@@ -68,3 +68,40 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+### Step 1. Install dependencies
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+In the project directory, you can run: 
+#### npm start
+### Step 2. Run server
+In the server directory, you can run: 
+#### node server.js
+
+Server started on port 3030. You can make requests to http://localhost:3030/
+
+
+
+### 1.1 Public Part (Accessible without authentication)
+      Access to Sing up (register form), Sing in (login form), Home, Shop, Blog (blog-catalog, blog-details), Contact (contact form), and About page. 
+
+### 1.2 Private Part 
+   Registered users after successful login have a personal area:  
+   A logged-in user can see the Discount code on the shopping cart and can comment on every blog on the details page.
+   A logged-in user, which is an author of the blog/comment can see Edit/Delete blog/comment buttons and use their functionality.
+   A guest user can only read blogs and details pages, without putting comments.  
+
+   Only two users are Admins who can see Create blog page - they are pre-populated in the server system.
+       User 1:  email: "peter@abv.bg"  and password: 123456
+       User 2:  email: "john@abv.bg"  and password: 123456 
+
+### Architecture
+    In src folder: commponents, context, hooks, services, utils 
+    
+### 2 Components
+   All application is divided into components. If specific styling is applied there is module.css for this component in the same folder. 
+   In the project there are stateless (for example - Hero) and state-full components (for example - CountdownTimer).
+
+   Controlled component - forms in the application.
+
+image.png
