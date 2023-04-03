@@ -1,5 +1,6 @@
 import styles from "./Contact.module.css";
 import { useForm } from '../../hooks/useForm';
+import { useState } from "react";
 
 export default function Contact({ onCreateContactSubmit }) {
 
@@ -8,6 +9,20 @@ export default function Contact({ onCreateContactSubmit }) {
         email: '',
         message: '',
     }, onCreateContactSubmit);
+
+    const [errors, setErrors] = useState({});
+
+    const isEmail = (e) => {
+        let email = e.target.value;
+        console.log(email)
+        const EMAIL_PATTERN = /^([a-zA-Z]+)@([a-zA-Z]+)\.([a-zA-Z]+)$/;
+        let regExpresion = new RegExp(EMAIL_PATTERN);
+        
+        setErrors(state => ({
+            ...state,
+            [e.target.name]: !regExpresion.test(email),
+        }));
+    }
 
     return (
         <>
@@ -48,7 +63,11 @@ export default function Contact({ onCreateContactSubmit }) {
                                     method="POST"
                                     className={styles["contact-form"]}
                                 >
+                                    {errors.email &&
+                                        <div className={styles.error}>Email is not in the right format.</div>
+                                    }
                                     <div className="row">
+                                            
                                         <div className="col-lg-6">
                                             <input type="text"
                                                 id="name"
@@ -58,6 +77,7 @@ export default function Contact({ onCreateContactSubmit }) {
                                                 onChange={changeHandler}
                                             />
                                         </div>
+
                                         <div className="col-lg-6">
                                             <input type="text"
                                                 id="email"
@@ -65,7 +85,9 @@ export default function Contact({ onCreateContactSubmit }) {
                                                 placeholder="Email"
                                                 value={values.email}
                                                 onChange={changeHandler}
+                                                onBlur={(e) => isEmail(e)}
                                             />
+                                            
                                         </div>
                                         <div className="col-lg-12">
                                             <textarea type="text" className={styles.message}

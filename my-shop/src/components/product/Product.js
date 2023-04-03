@@ -3,7 +3,7 @@ import { useShoppingCard } from "../../context/ShoppingCardContext";
 import { formatCurrency } from "../../utils/currencyFormater";
 
 export default function Product({
-    id,
+    _id,
     branding,
     categories,
     color,
@@ -24,12 +24,12 @@ export default function Product({
                 {isBestSale && <span className="label">Sale</span>}
                 <ul className="product__hover">
                     <li><Link to="#"><img src="img/icon/heart.png" alt="" /></Link></li>
-                    <li><Link to={`/product-catalog/${id}`}><img src="img/icon/details_icon.png" alt="" /></Link></li>
+                    <li><Link to={`/product-catalog/${_id}`}><img src="img/icon/details_icon.png" alt="" /></Link></li>
                 </ul>
             </div>
             <div className="product__item__text">
                 <h6>{name}</h6>
-                <Link to="#" className="add-cart" onClick={() => increaseCardQuantity(id)}>+ Add To Cart</Link>
+                <Link to="#" className="add-cart" onClick={() => increaseCardQuantity(_id)}>+ Add To Cart</Link>
                 <div className="rating">
                     <i className="fa fa-star-o"></i>
                     <i className="fa fa-star-o"></i>

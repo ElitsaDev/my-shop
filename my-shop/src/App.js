@@ -30,6 +30,7 @@ import { contactServiceFactory } from './services/contactService';
 
 import { ShoppingCardProvider } from './context/ShoppingCardContext';
 import { AuthProvider } from './context/AuthContext';
+import BlogEdit from './components/blog/BlogEdit';
 
 
 function App() {   
@@ -44,6 +45,7 @@ function App() {
     const blogService = blogServiceFactory(auth.accessToken);
     const contactService = contactServiceFactory(auth.accessToken);
 
+    
 
     useEffect(() => {
 
@@ -125,6 +127,7 @@ function App() {
                                     <Route path='/blog-catalog' element={<BlogCatalog blogs={blogs} />} />
                                     <Route path='/blog-create' element={<BlogCreate onCreateBlogSubmit={onCreateBlogSubmit} />} />
                                     <Route path='/blog-catalog/:blogId' element={<BlogDetails />} />
+                                    <Route path='/blog-catalog/:blogId/edit' element={<BlogEdit />} />
 
 
                                     <Route path='/checkout' element={<Checkout />} />

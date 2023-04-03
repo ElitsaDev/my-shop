@@ -1337,7 +1337,7 @@
                 "_id": "ff436770-76c5-40e2-b231-77409eda7a61",
                 "categories": "clothing",
                 "branding": "Hermes",
-                "name": "Piqué Biker Jacket",
+                "name": "Ankle Boots",
                 "imageUrl": "img/product/product-1.jpg",
                 "price": 450.24,
                 "_createdOn": "2023-03-22T08:29:18.412Z",
@@ -1358,7 +1358,7 @@
                 "_id": "1840a313-225c-416a-817a-9954d4609f7c",
                 "categories": "shoes",
                 "branding": "Louis Vuitton",
-                "name": "Ankle Boots",
+                "name": "Piqué Biker Jacket",
                 "imageUrl": "img/product/product-2.jpg",
                 "price": 150.15,
                 "_createdOn": "2022-10-22T08:29:18.412Z",
@@ -1379,7 +1379,7 @@
                 "_id": "126777f5-3277-42ad-b874-76d043b069cb",
                 "categories": "clothing",
                 "branding": "Chanel",
-                "name": "Velvet loose sweatshirt",
+                "name": "Basic Runners",
                 "imageUrl": "img/product/product-3.jpg",
                 "price": 70.15,
                 "_createdOn": "2020-10-22T08:29:18.412Z",
@@ -1401,7 +1401,7 @@
                 "_id": "126777f5-3277-42ad-b874-76d043b069cd",
                 "categories": "accessories",
                 "branding": "Hermes",
-                "name": "Basic Flowing Scarf",
+                "name": "Velvet loose sweatshirt",
                 "imageUrl": "img/product/product-4.jpg",
                 "price": 25,
                 "_createdOn": "2021-10-22T08:29:18.412Z",
@@ -1436,6 +1436,31 @@
         comments: {
 
         },
+        blogs: [
+            {
+                "_id": "87743e5d-5852-4e13-aa71-e141a3ece7ab",
+                "title": "Are you one of the thousands of Iphone owners who has no idea",
+                "imageUrl": "img/blog/details/blog-details-1.jpg",
+                "published": "2022-07-28T19:19:57.740Z",
+                "updated": "2022-07-28T21:29:42.015Z",
+                "author": "By Deercreative",
+                "content": "On your iPhone, you can now tap a button that says, “Ask app not to track.” But behind the scenes, some apps keep snooping anyway. Say you open the app “Subway Surfers,” listed as one of the App Store’s “must-play” games. It asks if you’re okay with the app “tracking” you, a question iPhones started displaying in April as part of a privacy crackdown by Apple. Saying no is supposed to stop apps such as “Subway Surfers” and Facebook from learning about what you do in other apps and websites. But something curious happens after you ask not to be tracked, according to an investigation by researchers at privacy software maker Lockdown and The Washington Post. “Subway Surfers” starts sending an outside ad company called Chartboost 29 very specific data points about your iPhone, including your Internet address, your free storage, your current volume level (to 3 decimal points) and even your battery level (to 15 decimal points). It’s the kind of unique data that could be used by advertisers to identify your iPhone, possibly letting them know what other apps you use or how to target you.In other words, it’s sidestepping your request to be left alone. You can’t stop it. And your privacy is worse off for it.",
+                "quote": "“As a company, we do not track users for advertising purposes without their consent.”",
+                "quoteAuthor": "David Paul Morris/Bloomberg"
+                
+            },
+            {
+                "_id": "87743e5d-5852-4e13-aa71-e141a3ece7e4",
+                "title": "What Curling Irons Are The Best Ones",
+                "imageUrl": "img/blog/details/blog-details-2.jpg",
+                "published": "2022-07-28T19:19:57.740Z",
+                "updated": "2022-07-28T21:29:42.015Z",
+                "author": "By Deercreative",
+                "content": "There's no way to create perfect beach waves or cascading curls without a great curling iron; one that's easy to use and maneuver, heats up quickly to curl your hair fast and reaches a high enough temperature to set curls without damaging your hair — and fits in your budget. But choices can vary greatly depending on the texture of the hair and the type of curl you are looking for, says Eugene Toye, stylist at Rita Hazan Salon in New York City. With so many options on the market, from titanium to ceramic, tourmaline and even clamp-less curling wands, hair rollers and heat-free hair curlers, it can be difficult to know where to begin to find the best curling iron for you. That's why we tested curling irons in the Good Housekeeping Institute Beauty Lab to find the ones that are actually worth your money. Our Beauty Lab pros evaluate features like preheat time, temperature range, overall settings and ease of use. We also had a panel of at-home testers try the irons at home and report on factors such as the lasting power of the resulting curls and ease of use. All said, our scientists and beauty pros parsed through over 103 measurements and 836 survey answers to find the only curling irons worth your money. For more information on what to keep in mind as you shop for the best curling irons (including material, barrel size, temperature and more), scroll to the bottom of this article. In the meantime, these are the best curling irons you can buy.",
+                "quote": "“There was a wonderful unfinished quality about the curls, and my hair was so voluminous”",
+                "quoteAuthor": "Meg Adams",
+            }
+        ]
     };
     var rules$1 = {
         users: {

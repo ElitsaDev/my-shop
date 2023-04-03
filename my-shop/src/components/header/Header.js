@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 export default function Header() {
     const { cardQuantity } = useShoppingCard({});
-    const { userEmail, isAuthenticated } = useContext(AuthContext);
+    const { userEmail, isAuthenticated, isAdmin } = useContext(AuthContext);
     return (
         <header className="header">
             <div className="header__top">
@@ -57,7 +57,9 @@ export default function Header() {
                                         <li><Link to="/shopping-cart/details">Shop Details</Link></li>
                                         <li><Link to="/shopping-cart">Shopping Cart</Link></li>
                                         <li><Link to="/checkout">Check Out</Link></li>
+                                        {isAdmin && 
                                         <li><Link to="/blog-create">Blog Create</Link></li>
+                                        }
                                     </ul>
                                 </li>
                                 <li><Link to="/blog-catalog">Blog</Link></li>

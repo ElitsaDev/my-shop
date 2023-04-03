@@ -11,9 +11,11 @@ export default function HeroList() {
 
     useEffect(() => {
         heroService.getAll()
-            .then(data => {     
-                setHeroes(Object.values(data));
+            .then(data => {    
+               // console.log(data) 
                 onStateHandler(false);
+                setHeroes(Object.values(data));
+                
             })
             .catch(error => {
                 console.log("Error" + error);

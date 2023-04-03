@@ -21,7 +21,7 @@ export default function ProductList({ products }) {
                 let fillteredBestProducts = products.filter(pr => {
                     return pr.featured === true;
                 });
-                //console.log(fillteredProducts)
+                //console.log(fillteredBestProducts)
                 setProductsBest(fillteredBestProducts);
                 setIsActive({ bestActive: true, newActive: false, hotActive: false });
             } else if (e.target.innerText === "New Arrivals") {
@@ -61,16 +61,16 @@ export default function ProductList({ products }) {
                 </div>
                 <div className="row product__filter">
                     {isActive.bestActive && productsBest.map(p =>
-                    <div key={p.id} className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                        < Product
+                    <div key={p._id} className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                        < Product 
                             {...p}
                             
                         />
                     </div>
                     )}
                     {isActive.newActive && productsNew.map(p =>
-                    <div key={p.id} className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                        < Product
+                    <div key={p._id} className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                        < Product 
                             {...p}
                             
                             isNew={isNew}
@@ -78,16 +78,16 @@ export default function ProductList({ products }) {
                     </div>
                     )}
                     {isActive.hotActive && productsHotSales.map(p =>
-                    <div key={p.id} className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                        < Product
+                    <div key={p._id} className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                        < Product 
                             {...p}
                             isBestSale={isBestSale}
                         />
                     </div>
                     )}
                     {!isActive.bestActive && !isActive.newActive && !isActive.hotActive && products.map(p =>
-                    <div key={p.id} className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                        < Product
+                    <div key={p._id} className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                        < Product 
                             {...p}
                             
                         />

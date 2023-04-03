@@ -12,7 +12,7 @@ export default function BlogDetails() {
     const { blogId } = useParams();
     const [blog, setBlog] = useState([]);
     const blogService = useService(blogServiceFactory);
-    const auth = useContext(AuthContext);
+    const { isAuthenticated, userId } = useContext(AuthContext);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -27,8 +27,8 @@ export default function BlogDetails() {
     if (blog.content !== undefined && blog.content !== '') {
         paragraphs = (splitBySentence(blog.content));
     }
-
-    const isOwner = blog._ownerId === auth.userId;
+    
+    const isOwner = blog._ownerId === userId;
 
     const onDeleteClick = async (blogId) => {
         // eslint-disable-next-line no-restricted-globals
@@ -56,7 +56,7 @@ export default function BlogDetails() {
                                     <li>{formatDate(blog.published)}</li>
                                     <li>{blog.comments?.length || 0} Comments</li>
                                 </ul>
-                                {isOwner && (
+                                {isAuthenticated && isOwner && (
                                     <div className="buttons">
                                         <Link to={`/blog-catalog/${blog._id}/edit`} type="button" className={styles.linkAsButton}>Edit Blog</Link>
                                         <button className={styles.linkAsButton} onClick={onDeleteClick}>Delete Blog</button>
@@ -151,6 +151,8 @@ export default function BlogDetails() {
                                             </div>
                                         </div>
                                     </div>
+                                    {isAuthenticated && !isOwner &&
+                                    <>
                                     <h4>Leave A Comment</h4>
                                     <form action="#">
                                         <div className="row">
@@ -168,6 +170,7 @@ export default function BlogDetails() {
                                             <button type="submit" className="site-btn">Post Comment</button>
                                         </div>
                                     </form>
+                                    </>}
                                 </div>
                             </div>
                         </div>

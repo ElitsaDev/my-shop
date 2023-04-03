@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { authServiceFactory } from '../services/authService';
 import { useLocalStorage } from '../hooks/useLocalStorage';
-import { useService } from '../hooks/useService';
 
 export const AuthContext = createContext();
 
@@ -47,6 +46,12 @@ export const AuthProvider = ({
         setAuth({});
     }
 
+    if(auth.email === 'peter@abv.bg' || auth.email === 'john@abv.bg'){
+            auth.isAdministr = true;
+    }    
+        
+   
+
     const contextObject = {
         onLoginSubmit,
         onRegisterSubmit,
@@ -55,6 +60,7 @@ export const AuthProvider = ({
         token: auth.accessToken,
         userEmail: auth.email,
         isAuthenticated: !!auth.accessToken,
+        isAdmin:  auth.isAdministr,
     }
 
     return (

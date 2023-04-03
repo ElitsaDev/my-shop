@@ -7,7 +7,7 @@ export default function Error404() {
             <div className={styles.content}>
                   <h2 className={styles.title}>Oh no, you're found our junior Web developer homepage </h2>
                   <h5>Despite sleepping on the couch most of the day, she still finds time to do some coding...</h5>
-                    <Link to={"/"}>Back to Home page <i class="fa fa-angle-right inc qtybtn" ></i></Link>
+                    <Link to={"/"}>Back to Home page <i className="fa fa-angle-right inc qtybtn" ></i></Link>
                 </div>
             </div>       
         </section>

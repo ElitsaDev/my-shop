@@ -223,14 +223,14 @@ export default function Shop({ products }) {
 
                                 {productsSort
                                     ? productsSort.map(p =>
-                                        <div key={p.id} className="col-lg-4 col-md-6 col-sm-6">
+                                        <div key={p._id} className="col-lg-4 col-md-6 col-sm-6">
                                             < Product
                                                 {...p}
 
                                             />
                                         </div>)
                                     : products.map(p =>
-                                        <div key={p.id} className="col-lg-4 col-md-6 col-sm-6">
+                                        <div key={p._id} className="col-lg-4 col-md-6 col-sm-6">
                                             < Product
                                                 {...p}
 
