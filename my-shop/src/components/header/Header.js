@@ -1,11 +1,19 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useShoppingCard } from "../../context/ShoppingCardContext";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function Header() {
     const { cardQuantity } = useShoppingCard({});
     const { userEmail, isAuthenticated, isAdmin } = useContext(AuthContext);
+
+    const location = useLocation();
+
+    const btn1 = location.pathname === "/" ? "active" : "";
+    const btn2 = location.pathname === "/shop" ? "active" : "";
+    const btn3 = location.pathname === "/blog-catalog" ? "active" : "";
+    const btn4 = location.pathname === "/contact" ? "active" : "";
+    
     return (
         <header className="header">
             <div className="header__top">
@@ -23,17 +31,17 @@ export default function Header() {
                                         <>
                                             <Link to="/register">Sign up</Link>
                                             <Link to="/login">Sign in</Link>
-                                        </> 
+                                        </>
                                     )
-                                    :   <>
-                                            <span style={{color: 'white', paddingRight: '2rem' }}>{userEmail}</span>
+                                        : <>
+                                            <span style={{ color: 'white', paddingRight: '2rem' }}>{userEmail}</span>
                                             <Link to="/logout">Logout</Link>
                                         </>
                                     }
-                                     
+
                                     <Link to="#">FAQs</Link>
                                     <Link to="#">$USD</Link>
-                                </div> 
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -49,35 +57,35 @@ export default function Header() {
                     <div className="col-lg-6 col-md-6">
                         <nav className="header__menu mobile-menu">
                             <ul>
-                                <li className="active"><Link to="/">Home</Link></li>
-                                <li><Link to="/shop">Shop</Link></li>
+                                <li variant={btn1} className={btn1}><Link to="/">Home</Link></li>
+                                <li variant={btn2} className={btn2}><Link to="/shop" >Shop</Link></li>
                                 <li><Link to="#">Pages</Link>
                                     <ul className="dropdown">
                                         <li><Link to="/about">About Us</Link></li>
                                         <li><Link to="/shopping-cart/details">Shop Details</Link></li>
                                         <li><Link to="/shopping-cart">Shopping Cart</Link></li>
                                         <li><Link to="/checkout">Check Out</Link></li>
-                                        {isAdmin && 
-                                        <li><Link to="/blog-create">Blog Create</Link></li>
+                                        {isAdmin &&
+                                            <li><Link to="/blog-create">Blog Create</Link></li>
                                         }
                                     </ul>
                                 </li>
-                                <li><Link to="/blog-catalog">Blog</Link></li>
-                                <li><Link to="/contact">Contacts</Link></li>
+                                <li variant={btn3} className={btn3}><Link to="/blog-catalog">Blog</Link></li>
+                                <li variant={btn4} className={btn4}><Link to="/contact">Contacts</Link></li>
                             </ul>
                         </nav>
                     </div>
                     <div className="col-lg-3 col-md-3">
                         <div className="header__nav__option">
-                            <Link to="/shopping-cart"><img src="img/icon/cart.png" alt="" style={{width: "1.2rem", height: "1.2rem", position: "relative"}}/> <span>0</span></Link>
-                            <div className="rounded-circle bg-danger d-flex justify-content-center align-items-center" 
+                            <Link to="/shopping-cart"><img src="img/icon/cart.png" alt="" style={{ width: "1.2rem", height: "1.2rem", position: "relative" }} /> <span>0</span></Link>
+                            <div className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
                                 style={{
-                                    color: "white", 
-                                    width: "1.5rem", 
-                                    height: "1.5rem", 
-                                    position: "absolute", 
-                                    bottom: 0, 
-                                    right: 0, 
+                                    color: "white",
+                                    width: "1.5rem",
+                                    height: "1.5rem",
+                                    position: "absolute",
+                                    bottom: 0,
+                                    right: 0,
                                     fontSize: "0.8rem",
                                     transform: "translate(-95%, -65%)",
                                 }}>{cardQuantity}</div>

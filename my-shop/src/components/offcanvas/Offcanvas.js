@@ -4,6 +4,8 @@ import { useShoppingCard } from "../../context/ShoppingCardContext";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function Offcanvas() {
+    const { cardQuantity } = useShoppingCard({});
+    const { userEmail, isAuthenticated, isAdmin } = useContext(AuthContext);
     return (
         <>
             <div className="offcanvas-menu-overlay"></div>
@@ -32,10 +34,21 @@ export default function Offcanvas() {
                     </div>
                 </div>
                 <div className="offcanvas__nav__option">
-                    <Link to="#" className="search-switch"><img src="img/icon/search.png" alt="" /></Link>
-                    <Link to="#"><img src="img/icon/heart.png" alt="" /></Link>
-                    <Link to="#"><img src="img/icon/cart.png" alt="" /> <span>0</span></Link>
-                    <div className="price">$0.00</div>
+                    <ul>
+                        <li className="active"><Link to="/">Home</Link></li>
+                        <li><Link to="/shop">Shop</Link></li>
+
+                        <li><Link to="/about">About Us</Link></li>
+
+                        <li><Link to="/shopping-cart">Shopping Cart</Link></li>
+                        <li><Link to="/checkout">Check Out</Link></li>
+                        {isAdmin &&
+                            <li><Link to="/blog-create">Blog Create</Link></li>
+                        }
+
+                        <li><Link to="/blog-catalog">Blog</Link></li>
+                        <li><Link to="/contact">Contacts</Link></li>
+                    </ul>
                 </div>
                 <div id="mobile-menu-wrap"></div>
                 <div className="offcanvas__text">

@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 export default function BlogEdit({
     onEditBlogSubmit,
 }) {
-    const {values, changeHandler, onSubmit, changeValues}  = useForm({
+    const { values, changeHandler, onSubmit, changeValues } = useForm({
         _id: '',
         title: '',
         imageUrl: '',
@@ -17,7 +17,7 @@ export default function BlogEdit({
         updated: '',
         content: '',
         quote: '',
-        quoteAuthor: '',  
+        quoteAuthor: '',
     }, onEditBlogSubmit);
 
     const blogService = useService(blogServiceFactory);
@@ -27,12 +27,12 @@ export default function BlogEdit({
 
     useEffect(() => {
         blogService.getOne(blogId)
-        .then(result => {
-            changeValues(result);
-        });
+            .then(result => {
+                changeValues(result);
+            });
     }, []);
 
-     onEditBlogSubmit = async (values) => {
+    onEditBlogSubmit = async (values) => {
         const result = await blogService.edit(values._id, values);
 
         setBlogs(state => state.map(x => x._id === values._id ? result : x))
@@ -49,10 +49,10 @@ export default function BlogEdit({
                             <div className="blog__content">
                                 <div className="blog__content__edit">
                                     <h1>Edit Blog</h1>
-                                    <form id="blog-edit" 
-                                            method="POST"
-                                            className={styles["blog-form"]}
-                                            onSubmit={onSubmit}>
+                                    <form id="blog-edit"
+                                        method="POST"
+                                        className={styles["blog-form"]}
+                                        onSubmit={onSubmit}>
                                         <div className="row">
                                             <div className="col-lg-6 col-md-6">
                                                 <input type="text" placeholder="title" name="title" value={values.title} onChange={changeHandler} />
@@ -89,3 +89,21 @@ export default function BlogEdit({
         </>
     );
 }
+
+
+/*
+{
+  _ownerId: '35c62d76-8152-4626-8712-eeb96381bea8',
+  title: 'new travel here',
+  imageUrl: 'img/blog/details/blog-details-6.jpg',
+  published: '2023-04-04T10:12:15.486Z',
+  updated: '',
+  content: 'A beautiful image is a visual representation of something. It can be two-dimensional, three-dimensional, or somehow otherwise feed into the visual system to convey information. An image can 
+be an artifact, such as a photograph or other two-dimensional picture, that resembles a subject.',   
+  quote: 'new quote 2',
+  quoteAuthor: 'peter2',
+  _createdOn: 1680603196621,
+  _id: 'e7e779ed-3f46-4af6-8677-1000c16d9631',
+  _updatedOn: 1680604291198
+}
+*/

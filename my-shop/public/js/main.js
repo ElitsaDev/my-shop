@@ -57,15 +57,16 @@
     /*------------------
         Navigation
     --------------------*/
+    $(window).on('load', function () {
     $(".mobile-menu").slicknav({
         prependTo: '#mobile-menu-wrap',
         allowParentLinks: true
     });
-
+})
     /*------------------
         Accordin Active
     --------------------*/
-    $(window).on('load', function () {
+
         $('.collapse').on('shown.bs.collapse', function () {
             $(this).prev().addClass('active');
         });
@@ -73,7 +74,7 @@
         $('.collapse').on('hidden.bs.collapse', function () {
             $(this).prev().removeClass('active');
         });
-    })
+    
     //Canvas Menu
    
         $(".canvas__open").on('click', function () {
