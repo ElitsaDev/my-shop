@@ -98,3 +98,8 @@
     background-size: 4px 4px;
 }
 
+@media screen and (max-width: 600px) {
+    h1 {
+      font-size: 50px;
+    }
+} 

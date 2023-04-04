@@ -40,18 +40,15 @@ export const AuthProvider = ({
         }
     }
 
-    const onLogout =  () => {
-        //TODO authorization logout
-        authService.logout();
+    const onLogout =  async () => {
+       await authService.logout();
         setAuth({});
     }
 
     if(auth.email === 'peter@abv.bg' || auth.email === 'john@abv.bg'){
             auth.isAdministr = true;
     }    
-        
-   
-
+ 
     const contextObject = {
         onLoginSubmit,
         onRegisterSubmit,
