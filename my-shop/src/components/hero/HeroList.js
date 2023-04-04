@@ -13,9 +13,9 @@ export default function HeroList() {
         heroService.getAll()
             .then(data => {    
                // console.log(data) 
-                onStateHandler(false);
-                setHeroes(Object.values(data));
                 
+                setHeroes(Object.values(data));
+                onStateHandler(false);
             })
             .catch(error => {
                 console.log("Error" + error);

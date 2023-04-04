@@ -13,7 +13,7 @@ export default function Product({
     isNew,
     isBestSale,
 }) {
-    const {  increaseCardQuantity } = useShoppingCard();
+    const { increaseCardQuantity } = useShoppingCard();
 
     return (
         

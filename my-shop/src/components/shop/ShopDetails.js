@@ -2,11 +2,14 @@ import { useParams, Link } from 'react-router-dom';
 import { productServiceFactory } from '../../services/productsService';
 import { useState, useEffect } from 'react';
 import { useService } from '../../hooks/useService';
+import { useShoppingCard } from "../../context/ShoppingCardContext";
 
 export default function ShopDetails() {
     const { productId } = useParams();
     const [product, setProduct] = useState({});
     const productService = useService(productServiceFactory);
+
+    const { increaseCardQuantity } = useShoppingCard();
 
     useEffect(() => {
         productService.getOne(productId)
@@ -143,7 +146,7 @@ export default function ShopDetails() {
                                     </div>
                                     <div className="product__details__cart__option">
                                         
-                                        <Link to="#" className="primary-btn">add to cart</Link>
+                                        <Link to="#" className="primary-btn" onClick={() => increaseCardQuantity(productId)} >add to cart</Link>
                                     </div>
                                     <div className="product__details__btns__option">
                                         <Link to="#"><i className="fa fa-heart"></i> add to wishlist</Link>

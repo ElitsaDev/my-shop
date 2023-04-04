@@ -24,23 +24,24 @@ import Error404 from './components/error404/Error404';
 
 import { authServiceFactory } from './services/authService';
 import { productServiceFactory } from './services/productsService';
-import { blogServiceFactory } from './services/blogService';
+
 import { contactServiceFactory } from './services/contactService';
 import { commentServiceFactory } from './services/commentService';
 
 import { ShoppingCardProvider } from './context/ShoppingCardContext';
 import { AuthProvider } from './context/AuthContext';
+import { BlogProvider } from './context/BlogContext';
 
 function App() {
     const [isLoading, setIsLoading] = useState(true);
     const [auth, setAuth] = useState({});
     const [products, setProducts] = useState([]);
-    const [blogs, setBlogs] = useState([]);
+    
     const [contacts, setContacts] = useState([]);
     const [comments, setComments] = useState([]);
     const productsService = productServiceFactory(auth.accessToken);
     //const authService = authServiceFactory(auth.accessToken);
-    const blogService = blogServiceFactory(auth.accessToken);
+    
     const contactService = contactServiceFactory(auth.accessToken);
     const commentService = commentServiceFactory(auth.accessToken);
 
@@ -66,33 +67,6 @@ function App() {
                 console.log("Error" + error);
             });
     }, []);
-
-    useEffect(() => {
-        blogService.getAll()
-            .then(result => {
-                //console.log(result);
-                setBlogs(result);
-            })
-            .catch(error => {
-                console.log("Error" + error);
-            });
-    }, []);
-
-    const onCreateBlogSubmit = async (data) => {
-        const newBlog = await blogService.create(data)
-            .catch(error => {
-                console.log("Error" + error);
-            });
-        setBlogs(state => [...state, newBlog]);
-    };
-
-    const onEditBlogSubmit = async (data) => {
-        const editBlog = await blogService.edit(data._id, data)
-            .catch(error => {
-                console.log("Error" + error);
-            });
-        setBlogs(state => state.map(blog => blog._id === data._id ? editBlog : blog))
-    };
 
     const onStateHandler = () => {
         setIsLoading(false);
@@ -125,32 +99,34 @@ function App() {
                             <Offcanvas />
                             <Header />
                             <main>
-                                <Routes>
+                                <BlogProvider>
+                                    <Routes>
 
-                                    <Route path='/' element={<Home products={Object.values(products)} onStateHandler={onStateHandler} />} />
-                                    <Route path='/index' element={<Home products={Object.values(products)} onStateHandler={onStateHandler} />} />
+                                        <Route path='/' element={<Home products={Object.values(products)} onStateHandler={onStateHandler} />} />
+                                        <Route path='/index' element={<Home products={Object.values(products)} onStateHandler={onStateHandler} />} />
 
-                                    <Route path='/register' element={<Register />} />
-                                    <Route path='/login' element={<Login />} />
-                                    <Route path='/logout' element={<Logout />} />
-                                    <Route path='/contact' element={<Contact onCreateContactSubmit={onCreateContactSubmit} />} />
-                                    <Route path='/about' element={<About />} />
+                                        <Route path='/register' element={<Register />} />
+                                        <Route path='/login' element={<Login />} />
+                                        <Route path='/logout' element={<Logout />} />
+                                        <Route path='/contact' element={<Contact onCreateContactSubmit={onCreateContactSubmit} />} />
+                                        <Route path='/about' element={<About />} />
 
-                                    <Route path='/blog-catalog' element={<BlogCatalog blogs={blogs} />} />
-                                    <Route path='/blog-create' element={<BlogCreate onCreateBlogSubmit={onCreateBlogSubmit} />} />
-                                    <Route path='/blog-catalog/:blogId' element={<BlogDetails onCreateCommentSubmit={onCreateCommentSubmit} />} />
-                                    <Route path='/blog-catalog/:blogId/edit' element={<BlogEdit onEditBlogSubmit={onEditBlogSubmit} />} />
-
-
-                                    <Route path='/checkout' element={<Checkout />} />
-                                    <Route path='/shop' element={<Shop products={Object.values(products)} />} />
-                                    <Route path='/shopping-cart' element={<ShoppingCard products={Object.values(products)} />} />
+                                        <Route path='/blog-catalog' element={<BlogCatalog />} />
+                                        <Route path='/blog-create' element={<BlogCreate />} />
+                                        <Route path='/blog-catalog/:blogId' element={<BlogDetails onCreateCommentSubmit={onCreateCommentSubmit} />} />
+                                        <Route path='/blog-catalog/:blogId/edit' element={<BlogEdit />} />
 
 
-                                    <Route path='/product-catalog/:productId' element={<ShopDetails />} />
+                                        <Route path='/checkout' element={<Checkout />} />
+                                        <Route path='/shop' element={<Shop products={Object.values(products)} />} />
+                                        <Route path='/shopping-cart' element={<ShoppingCard products={Object.values(products)} />} />
 
-                                    <Route path='*' element={<Error404 />} />
-                                </Routes>
+
+                                        <Route path='/product-catalog/:productId' element={<ShopDetails />} />
+
+                                        <Route path='*' element={<Error404 />} />
+                                    </Routes>
+                                </BlogProvider>
                             </main>
                         </AuthProvider>
                     </ShoppingCardProvider>

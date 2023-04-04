@@ -1,12 +1,11 @@
+import { useContext } from "react";
 import BlogItem from "./BlogItem";
+import { BlogContext } from "../../context/BlogContext";
 
-export default function BlogCatalog({
-    blogs,
-}) {
-
+export default function BlogCatalog() {
+    const { blogs } = useContext(BlogContext);
 
     return (
-
         <>
             {/* <!-- Breadcrumb Section Begin --> */}
             <section className="breadcrumb-blog set-bg" data-setbg="img/breadcrumb-bg.jpg"  >
@@ -24,7 +23,7 @@ export default function BlogCatalog({
             <section className="blog spad">
                 <div className="container">
                     <div className="row">
-                        {blogs && blogs.map(blog =>   
+                        {blogs && blogs.map(blog =>
                             <BlogItem key={blog._id} {...blog} />
                         )}
                     </div>

@@ -1,9 +1,10 @@
+import { useContext } from "react";
 import styles from "./BlogCreate.module.css"
 import { useForm } from "../../../hooks/useForm";
+import { BlogContext } from "../../../context/BlogContext";
 
-export default function BlogCreate({
-    onCreateBlogSubmit,
-}) {
+export default function BlogCreate() {
+    const { onCreateBlogSubmit } = useContext(BlogContext);
     const {values, changeHandler, onSubmit}  = useForm({
         title: '',
         imageUrl: '',

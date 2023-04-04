@@ -1,19 +1,24 @@
 import { useContext, useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { blogServiceFactory } from '../../../services/blogService';
+import { useParams, Link, useNavigate  } from 'react-router-dom';
+import styles from './BlogDetails.module.css';
+import { useService } from '../../../hooks/useService';
+import { useForm } from '../../../hooks/useForm';
+
 import { formatDate } from '../../../utils/dateFormater';
 import { splitBySentence } from '../../../utils/splitTextIntoFourParagraphs';
-import { useService } from '../../../hooks/useService';
+import { blogServiceFactory } from '../../../services/blogService';
+
 import { AuthContext } from '../../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
-import { useForm } from '../../../hooks/useForm';
-import styles from './BlogDetails.module.css';
+import { BlogContext } from '../../../context/BlogContext';
 
 export default function BlogDetails({onCreateCommentSubmit}) {
-    const { blogId } = useParams();
+    const { blogId } = useParams();  
+    const { isAuthenticated, userId } = useContext(AuthContext);
+
+    const { blogs } = useContext(BlogContext);
     const [blog, setBlog] = useState([]);
     const blogService = useService(blogServiceFactory);
-    const { isAuthenticated, userId } = useContext(AuthContext);
+    
     const navigate = useNavigate();
     const [errors, setErrors] = useState({});
 

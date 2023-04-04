@@ -4,11 +4,11 @@ import styles from "./BlogEdit.module.css"
 import { useForm } from "../../../hooks/useForm";
 import { useService } from '../../../hooks/useService';
 import { blogServiceFactory } from "../../../services/blogService";
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { BlogContext } from "../../../context/BlogContext";
 
-export default function BlogEdit({
-    onEditBlogSubmit,
-}) {
+export default function BlogEdit() {
+    const { onEditBlogSubmit } = useContext(BlogContext);
     const { values, changeHandler, onSubmit, changeValues } = useForm({
         _id: '',
         title: '',
@@ -22,23 +22,13 @@ export default function BlogEdit({
 
     const blogService = useService(blogServiceFactory);
     const { blogId } = useParams();
-    const [blogs, setBlogs] = useState([]);
-    const navigate = useNavigate();
 
     useEffect(() => {
         blogService.getOne(blogId)
             .then(result => {
                 changeValues(result);
             });
-    }, []);
-
-    onEditBlogSubmit = async (values) => {
-        const result = await blogService.edit(values._id, values);
-
-        setBlogs(state => state.map(x => x._id === values._id ? result : x))
-
-        navigate(`/blog-catalog/${values._id}`);
-    };
+    }, [blogId]);
 
     return (
         <>
