@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
 import PagePreloader from './components/pagePreloader/PagePreloader';
@@ -15,40 +15,37 @@ import Contact from './components/contact/Contact';
 import Checkout from './components/checkout/Checkout';
 import ShoppingCard from './components/shopping-card/ShoppingCard';
 import About from './components/about/About';
-import Instagram from './components/instagram/Instagram';
 import ShopDetails from './components/shop/ShopDetails';
-import BlogCreate from './components/blog/BlogCreate';
+import BlogCreate from './components/blog/blog-create/BlogCreate';
+import BlogEdit from './components/blog/blog-edit/BlogEdit';
 import BlogCatalog from './components/blog/BlogCatalog';
-import BlogDetails from './components/blog/BlogDetails';
-import Categories from './components/categories/Categories';
+import BlogDetails from './components/blog/blog-details/BlogDetails';
 import Error404 from './components/error404/Error404';
 
 import { authServiceFactory } from './services/authService';
 import { productServiceFactory } from './services/productsService';
 import { blogServiceFactory } from './services/blogService';
 import { contactServiceFactory } from './services/contactService';
+import { commentServiceFactory } from './services/commentService';
 
 import { ShoppingCardProvider } from './context/ShoppingCardContext';
 import { AuthProvider } from './context/AuthContext';
-import BlogEdit from './components/blog/BlogEdit';
 
-
-function App() {   
+function App() {
     const [isLoading, setIsLoading] = useState(true);
     const [auth, setAuth] = useState({});
     const [products, setProducts] = useState([]);
     const [blogs, setBlogs] = useState([]);
     const [contacts, setContacts] = useState([]);
-
+    const [comments, setComments] = useState([]);
     const productsService = productServiceFactory(auth.accessToken);
-    const authService = authServiceFactory(auth.accessToken);
+    //const authService = authServiceFactory(auth.accessToken);
     const blogService = blogServiceFactory(auth.accessToken);
     const contactService = contactServiceFactory(auth.accessToken);
+    const commentService = commentServiceFactory(auth.accessToken);
 
-    
 
     useEffect(() => {
-
         productsService.getAll()
             .then(data => {
                 /* Object.values(data)
@@ -68,7 +65,6 @@ function App() {
             .catch(error => {
                 console.log("Error" + error);
             });
-
     }, []);
 
     useEffect(() => {
@@ -88,11 +84,19 @@ function App() {
                 console.log("Error" + error);
             });
         setBlogs(state => [...state, newBlog]);
-    }
+    };
+
+    const onEditBlogSubmit = async (data) => {
+        const editBlog = await blogService.edit(data._id, data)
+            .catch(error => {
+                console.log("Error" + error);
+            });
+        setBlogs(state => state.map(blog => blog._id === data._id ? editBlog : blog))
+    };
 
     const onStateHandler = () => {
         setIsLoading(false);
-    }
+    };
 
     const onCreateContactSubmit = async (data) => {
         const newContact = await contactService.create(data)
@@ -100,7 +104,15 @@ function App() {
                 console.log("Error" + error);
             });
         setContacts(state => [...state, newContact]);
-    }
+    };
+
+    const onCreateCommentSubmit = async (data) => {
+        const newComment = await commentService.create(data)
+            .catch(error => {
+                console.log("Error" + error);
+            });
+        setComments(state => [...state, newComment]);
+    };
 
     return (
         <div className="App">
@@ -126,8 +138,8 @@ function App() {
 
                                     <Route path='/blog-catalog' element={<BlogCatalog blogs={blogs} />} />
                                     <Route path='/blog-create' element={<BlogCreate onCreateBlogSubmit={onCreateBlogSubmit} />} />
-                                    <Route path='/blog-catalog/:blogId' element={<BlogDetails />} />
-                                    <Route path='/blog-catalog/:blogId/edit' element={<BlogEdit />} />
+                                    <Route path='/blog-catalog/:blogId' element={<BlogDetails onCreateCommentSubmit={onCreateCommentSubmit} />} />
+                                    <Route path='/blog-catalog/:blogId/edit' element={<BlogEdit onEditBlogSubmit={onEditBlogSubmit} />} />
 
 
                                     <Route path='/checkout' element={<Checkout />} />
@@ -137,8 +149,6 @@ function App() {
 
                                     <Route path='/product-catalog/:productId' element={<ShopDetails />} />
 
-                                    {/* <Route path='/instagram' element={<Instagram />} /> */}
-                                    {/* <Route path='/categories' element={<Categories />} /> */}
                                     <Route path='*' element={<Error404 />} />
                                 </Routes>
                             </main>

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import styles from "./BlogCreate.module.css"
-import { useForm } from "../../hooks/useForm";
-import { useService } from '../../hooks/useService';
-import { blogServiceFactory } from "../../services/blogService";
+import styles from "./BlogEdit.module.css"
+import { useForm } from "../../../hooks/useForm";
+import { useService } from '../../../hooks/useService';
+import { blogServiceFactory } from "../../../services/blogService";
 import { useNavigate } from "react-router-dom";
 
 export default function BlogEdit({

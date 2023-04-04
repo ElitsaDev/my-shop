@@ -1,20 +1,27 @@
 import { requestFactory } from './requester';
-
 const baseUrl = 'http://localhost:3030/data/comments';
-const request = requestFactory();
 
-export const getAll = async (blogId) => {
-    const searchQuery = encodeURIComponent(`blogId="${blogId}"`);
-    const relationQuery = encodeURIComponent(`author=_ownerId:users`);
+export const commentServiceFactory = (token) => {
 
-    const result = await request.get(`${baseUrl}?where=${searchQuery}&load=${relationQuery}`);
-    const comments = Object.values(result);
+    const request = requestFactory(token);
 
-    return comments;
-};
+    const getAll = async (blogId) => {
+        const searchQuery = encodeURIComponent(`blogId="${blogId}"`);
+        const relationQuery = encodeURIComponent(`author=_ownerId:users`);
 
-export const create = async (blogId, comment) => {
-    const result = await request.post(baseUrl, { blogId, comment });
+        const result = await request.get(`${baseUrl}?where=${searchQuery}&load=${relationQuery}`);
+        const comments = Object.values(result);
 
-    return result;
-};
+        return comments;
+    };
+
+    const create = async (blogId, comment) => {
+        const result = await request.post(baseUrl, { blogId, comment });
+
+        return result;
+    };
+    return {
+        getAll,
+        create,
+    }
+}

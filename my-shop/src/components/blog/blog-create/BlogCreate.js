@@ -1,5 +1,5 @@
 import styles from "./BlogCreate.module.css"
-import { useForm } from "../../hooks/useForm";
+import { useForm } from "../../../hooks/useForm";
 
 export default function BlogCreate({
     onCreateBlogSubmit,

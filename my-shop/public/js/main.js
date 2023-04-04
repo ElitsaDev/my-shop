@@ -34,28 +34,29 @@
     /*------------------
         Background Set
     --------------------*/
-    $(window).on('load',function(){
+    $(window).on('load', function () {
         $('.set-bg').each(function () {
             var bg = $(this).data('setbg');
             $(this).css('background-image', 'url(' + bg + ')');
         });
     })
-    
+
 
     //Search Switch
-    $('.search-switch').on('click', function () {
-        $('.search-model').fadeIn(400);
-    });
-
-    $('.search-close-switch').on('click', function () {
-        $('.search-model').fadeOut(400, function () {
-            $('#search-input').val('');
+    $(window).on('load', function () {
+        $('.search-switch').on('click', function () {
+            $('.search-model').fadeIn(400);
         });
-    });
 
+        $('.search-close-switch').on('click', function () {
+            $('.search-model').fadeOut(400, function () {
+                $('#search-input').val('');
+            });
+        });
+    })
     /*------------------
-		Navigation
-	--------------------*/
+        Navigation
+    --------------------*/
     $(".mobile-menu").slicknav({
         prependTo: '#mobile-menu-wrap',
         allowParentLinks: true
@@ -64,31 +65,31 @@
     /*------------------
         Accordin Active
     --------------------*/
-    
-    $('.collapse').on('shown.bs.collapse', function () {
-        $(this).prev().addClass('active');
-    });
+    $(window).on('load', function () {
+        $('.collapse').on('shown.bs.collapse', function () {
+            $(this).prev().addClass('active');
+        });
 
-    $('.collapse').on('hidden.bs.collapse', function () {
-        $(this).prev().removeClass('active');
-    });
-
+        $('.collapse').on('hidden.bs.collapse', function () {
+            $(this).prev().removeClass('active');
+        });
+    })
     //Canvas Menu
-    $(window).on('load',function(){
-    $(".canvas__open").on('click', function () {
-        $(".offcanvas-menu-wrapper").addClass("active");
-        $(".offcanvas-menu-overlay").addClass("active");
-    });
    
-    $(".offcanvas-menu-overlay").on('click', function () {
-        $(".offcanvas-menu-wrapper").removeClass("active");
-        $(".offcanvas-menu-overlay").removeClass("active");
-    });
-    });
+        $(".canvas__open").on('click', function () {
+            $(".offcanvas-menu-wrapper").addClass("active");
+            $(".offcanvas-menu-overlay").addClass("active");
+        });
+
+        $(".offcanvas-menu-overlay").on('click', function () {
+            $(".offcanvas-menu-wrapper").removeClass("active");
+            $(".offcanvas-menu-overlay").removeClass("active");
+        });
+    
     /*-----------------------
         Hero Slider
     ------------------------*/
-    $(window).on('load',function(){
+    $(window).on('load', function () {
         $(".hero__slider").owlCarousel({
             loop: true,
             margin: 0,
@@ -109,16 +110,16 @@
     $("select").niceSelect();
 
     /*-------------------
-		Radio Btn
-	--------------------- */
+        Radio Btn
+    --------------------- */
     $(".product__color__select label, .shop__sidebar__size label, .product__details__option__size label").on('click', function () {
         $(".product__color__select label, .shop__sidebar__size label, .product__details__option__size label").removeClass('active');
         $(this).addClass('active');
     });
 
     /*-------------------
-		Scroll
-	--------------------- */
+        Scroll
+    --------------------- */
     $(".nice-scroll").niceScroll({
         cursorcolor: "#0d0d0d",
         cursorwidth: "5px",
@@ -137,7 +138,7 @@
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
 
-    if(mm == 12) {
+    if (mm == 12) {
         mm = '01';
         yyyy = yyyy + 1;
     } else {
@@ -157,15 +158,15 @@
     });
 
     /*------------------
-		Magnific
-	--------------------*/
+        Magnific
+    --------------------*/
     $('.video-popup').magnificPopup({
         type: 'iframe'
     });
 
     /*-------------------
-		Quantity change
-	--------------------- */
+        Quantity change
+    --------------------- */
     var proQty = $('.pro-qty');
     proQty.prepend('<span class="fa fa-angle-up dec qtybtn"></span>');
     proQty.append('<span class="fa fa-angle-down inc qtybtn"></span>');

@@ -24,11 +24,11 @@ export default function BlogCatalog({
             <section className="blog spad">
                 <div className="container">
                     <div className="row">
-                        {blogs.map(blog =>   
+                        {blogs && blogs.map(blog =>   
                             <BlogItem key={blog._id} {...blog} />
                         )}
                     </div>
-                    {blogs.length === 0 && <h1>No blog posts yet</h1>}
+                    {blogs?.length === 0 && <h1>No blog posts yet</h1>}
                 </div>
             </section>
             {/* <!-- Blog Section End --> */}

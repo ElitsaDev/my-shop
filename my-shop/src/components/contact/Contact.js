@@ -1,6 +1,6 @@
+import { useState } from "react";
 import styles from "./Contact.module.css";
 import { useForm } from '../../hooks/useForm';
-import { useState } from "react";
 
 export default function Contact({ onCreateContactSubmit }) {
 
@@ -23,6 +23,8 @@ export default function Contact({ onCreateContactSubmit }) {
             [e.target.name]: !regExpresion.test(email),
         }));
     }
+
+    const isFormValid = !Object.values(errors).some(x => x);
 
     return (
         <>
@@ -66,8 +68,7 @@ export default function Contact({ onCreateContactSubmit }) {
                                     {errors.email &&
                                         <div className={styles.error}>Email is not in the right format.</div>
                                     }
-                                    <div className="row">
-                                            
+                                    <div className="row">         
                                         <div className="col-lg-6">
                                             <input type="text"
                                                 id="name"
@@ -96,8 +97,9 @@ export default function Contact({ onCreateContactSubmit }) {
                                                 placeholder="Message"
                                                 value={values.message}
                                                 onChange={changeHandler}
+                                                required
                                             />
-                                            <button type="submit" className="site-btn">Send Message</button>
+                                            <button type="submit" disabled={!isFormValid} className="site-btn">Send Message</button>
                                         </div>
                                     </div>
                                 </form>
