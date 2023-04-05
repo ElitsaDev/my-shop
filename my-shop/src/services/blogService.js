@@ -19,9 +19,7 @@ export const blogServiceFactory = (token) => {
     };
 
     const create = async (blogData) => {
-
         const result = await request.post(baseUrl, blogData);
-
         console.log(result);
 
         return result;

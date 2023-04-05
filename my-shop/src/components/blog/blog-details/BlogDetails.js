@@ -14,8 +14,7 @@ import { BlogContext } from '../../../context/BlogContext';
 export default function BlogDetails({onCreateCommentSubmit}) {
     const { blogId } = useParams();  
     const { isAuthenticated, userId } = useContext(AuthContext);
-
-    const { blogs } = useContext(BlogContext);
+    const { deleteBlog } = useContext(BlogContext);
     const [blog, setBlog] = useState([]);
     const blogService = useService(blogServiceFactory);
     
@@ -50,7 +49,7 @@ export default function BlogDetails({onCreateCommentSubmit}) {
         if (result) {
             await blogService.deleteBlog(blog._id);
 
-            setBlog(state => state.filter(blog => blog._id !== blogId));
+            deleteBlog(blog._id);
 
             navigate('/blog-catalog');
         }

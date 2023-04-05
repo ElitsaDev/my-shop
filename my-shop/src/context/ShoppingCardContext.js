@@ -1,4 +1,6 @@
 import { createContext, useContext, useState } from "react"
+import { useLocalStorage } from '../hooks/useLocalStorage';
+
 //todo change id to real value
 const ShoppingCardContext = createContext({
     getItemQuantity(id){},
@@ -59,17 +61,17 @@ export function ShoppingCardProvider({ children }){
         setCardItems(currentItems => {return currentItems.filter(item => item.id !== id)});
     }
 
-    return (
-        <ShoppingCardContext.Provider 
-            value = {{getItemQuantity, 
+    const contextObject = {
+            getItemQuantity, 
             increaseCardQuantity, 
             decreaseCardQuantity, 
             removeFromCard,
             cardItems,
-            cardQuantity,
-            
-            }}
-        >
+           // cardQuantity,
+    }
+
+    return (
+        <ShoppingCardContext.Provider value={contextObject}>
             {children}
         </ShoppingCardContext.Provider>
     );

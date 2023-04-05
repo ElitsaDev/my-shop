@@ -42,11 +42,15 @@ export function BlogProvider({ children }){
     };
 
 
+    const deleteBlog = (blogId) => {
+        setBlogs(state => state.filter(blog => blog._id !== blogId));
+    };
 
     const contextValues = {
         blogs,
         onCreateBlogSubmit,
-        onEditBlogSubmit,    
+        onEditBlogSubmit,   
+        deleteBlog, 
     };
 
 return (
