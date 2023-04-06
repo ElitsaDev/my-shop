@@ -1,0 +1,16 @@
+ul.slicknav_menu {
+    list-style-type: none; 
+}
+
+ul.slicknav_menu li {
+   text-align: left;
+}
+
+.slicknav_menu a {
+    padding: 7px 0;
+    margin: 0;
+    color: #111111;
+    font-weight: 600;
+}
+
+

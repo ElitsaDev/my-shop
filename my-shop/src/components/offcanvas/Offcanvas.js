@@ -2,14 +2,15 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useShoppingCard } from "../../context/ShoppingCardContext";
 import { AuthContext } from "../../context/AuthContext";
+import styles from './Offcanvas.module.css';
 
-export default function Offcanvas({open}) {
+export default function Offcanvas({ open }) {
     const { cardQuantity } = useShoppingCard({});
     const { userEmail, isAuthenticated, isAdmin } = useContext(AuthContext);
-    
+
     let styleActive = '';
-    open === true ? styleActive="offcanvas-menu-wrapper active" : styleActive="offcanvas-menu-wrapper"
-    
+    open === true ? styleActive = "offcanvas-menu-wrapper active" : styleActive = "offcanvas-menu-wrapper"
+
     return (
         <>
             <div className="offcanvas-menu-overlay"></div>
@@ -29,16 +30,22 @@ export default function Offcanvas({open}) {
                         }
                     </div>
                     <div className="offcanvas__top__hover">
-                        <span>Usd <i className="arrow_carrot-down"></i></span>
-                        <ul>
-                            <li>USD</li>
-                            <li>EUR</li>
-                            <li>USD</li>
-                        </ul>
+                        <Link to="#">$USD</Link>
                     </div>
                 </div>
                 <div className="offcanvas__nav__option">
-                    <ul>
+                    <Link to="/shopping-cart"><img src="img/icon/cart.png" alt="" style={{ width: "1.2rem", height: "1.2rem", position: "relative" }} /> <span>0</span></Link>
+                    <div className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
+                        style={{
+                            color: "white",
+                            width: "1.5rem",
+                            height: "1.5rem",
+                            position: "absolute",
+                            right: 130,
+                            fontSize: "0.8rem",
+                            transform: "translate(0%, -15%)",
+                        }}>{cardQuantity}</div>
+                    <ul className={styles.slicknav_menu}>
                         <li className="active"><Link to="/">Home</Link></li>
                         <li><Link to="/shop">Shop</Link></li>
 
