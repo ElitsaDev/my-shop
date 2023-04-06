@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Hero from './Hero';
 import * as heroService from '../../services/heroService';
-
-import { useContext } from 'react';
 import { HeroesContext } from '../../context/HeroesContext';
+
 export default function HeroList() {
     const [heroes, setHeroes] = useState([]);
    
@@ -19,7 +18,7 @@ export default function HeroList() {
             })
             .catch(error => {
                 console.log("Error" + error);
-            })  
+            });  
     }, [onStateHandler]);
 
     return (

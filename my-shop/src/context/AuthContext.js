@@ -41,10 +41,17 @@ export const AuthProvider = ({
     }
 
     const onLogout =  async () => {
-       await authService.logout();
-       console.log(localStorage)
+       try{
+        const result = await authService.logout();
+        console.log(result);
+        
+       }catch(error){
+        console.log(error);
+       }
+       
+        
        localStorage.removeItem('cart');
-        setAuth({});
+       setAuth({});
     }
 
     if(auth.email === 'peter@abv.bg' || auth.email === 'john@abv.bg'){
