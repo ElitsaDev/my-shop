@@ -3,9 +3,10 @@ import { Link, useLocation } from "react-router-dom";
 import { useShoppingCard } from "../../context/ShoppingCardContext";
 import { AuthContext } from "../../context/AuthContext";
 
-export default function Header() {
+export default function Header({open, setOpen}) {
     const { cardQuantity } = useShoppingCard({});
     const { userEmail, isAuthenticated, isAdmin } = useContext(AuthContext);
+    
 
     const location = useLocation();
 
@@ -13,7 +14,7 @@ export default function Header() {
     const btn2 = location.pathname === "/shop" ? "active" : "";
     const btn3 = location.pathname === "/blog-catalog" ? "active" : "";
     const btn4 = location.pathname === "/contact" ? "active" : "";
-    
+  
     return (
         <header className="header">
             <div className="header__top">
@@ -92,7 +93,9 @@ export default function Header() {
                         </div>
                     </div>
                 </div>
-                <div className="canvas__open"><i className="fa fa-bars"></i></div>
+                
+                <div className="canvas__open" onClick={() => setOpen(!open)}><i className="fa fa-bars"></i></div>
+                
             </div>
         </header>
     );

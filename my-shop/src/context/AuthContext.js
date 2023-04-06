@@ -11,7 +11,7 @@ export const AuthProvider = ({
 }) => {
     const [auth, setAuth] = useLocalStorage('auth', {});
     const navigate = useNavigate();
-    const authService = authServiceFactory( auth.accessToken );
+    const authService = authServiceFactory(auth.accessToken);
 
     const onLoginSubmit = async (data) => {
         try {
@@ -25,9 +25,9 @@ export const AuthProvider = ({
     }
 
     const onRegisterSubmit = async (data) => {
-        const {repass, ...registerData} = data;
+        const { repass, ...registerData } = data;
 
-        if(repass !== registerData.password){
+        if (repass !== registerData.password) {
             return;
         }
 
@@ -40,24 +40,24 @@ export const AuthProvider = ({
         }
     }
 
-    const onLogout =  async () => {
-       try{
-        const result = await authService.logout();
-        console.log(result);
-        
-       }catch(error){
-        console.log(error);
-       }
-       
-        
-       localStorage.removeItem('cart');
-       setAuth({});
+    const onLogout = async () => {
+        try {
+            const result = await authService.logout();
+            console.log(result);
+
+        } catch (error) {
+            console.log(error);
+        }
+
+
+        localStorage.removeItem('cart');
+        setAuth({});
     }
 
-    if(auth.email === 'peter@abv.bg' || auth.email === 'john@abv.bg'){
-            auth.isAdministr = true;
-    }    
- 
+    if (auth.email === 'peter@abv.bg' || auth.email === 'john@abv.bg') {
+        auth.isAdministr = true;
+    }
+
     const contextObject = {
         onLoginSubmit,
         onRegisterSubmit,
@@ -66,7 +66,7 @@ export const AuthProvider = ({
         token: auth.accessToken,
         userEmail: auth.email,
         isAuthenticated: !!auth.accessToken,
-        isAdmin:  auth.isAdministr,
+        isAdmin: auth.isAdministr,
     }
 
     return (

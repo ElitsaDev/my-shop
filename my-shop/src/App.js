@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
@@ -25,11 +25,10 @@ import RouteGuardAdmin from './components/route-guards/RouteGuardAdmin';
 import RouteGuardAuth from './components/route-guards/RouteGuardAuth';
 import RouteGuardGuest from './components/route-guards/RouteGuardGuest';
 
-import { authServiceFactory } from './services/authService';
 import { productServiceFactory } from './services/productsService';
 import { contactServiceFactory } from './services/contactService';
 import { commentServiceFactory } from './services/commentService';
-
+import { useOnClickOutside } from './hooks/useOnClickOutside';
 import { ShoppingCardProvider } from './context/ShoppingCardContext';
 import { AuthProvider } from './context/AuthContext';
 import { BlogProvider } from './context/BlogContext';
@@ -41,9 +40,12 @@ function App() {
 
     const [contacts, setContacts] = useState([]);
     const [comments, setComments] = useState([]);
-    const productsService = productServiceFactory(auth.accessToken);
-    //const authService = authServiceFactory(auth.accessToken);
+    const [open, setOpen] = useState(false);
+    const node = useRef(); 
 
+    useOnClickOutside(node, () => setOpen(false));
+    
+    const productsService = productServiceFactory(auth.accessToken);
     const contactService = contactServiceFactory(auth.accessToken);
     const commentService = commentServiceFactory(auth.accessToken);
 
@@ -73,6 +75,8 @@ function App() {
         setIsLoading(false);
     };
 
+    
+
     const onCreateContactSubmit = async (data) => {
         const newContact = await contactService.create(data)
             .catch(error => {
@@ -97,9 +101,11 @@ function App() {
                 <>
                     <ShoppingCardProvider>
                         <AuthProvider>
-                            <Offcanvas />
-                            <Header />
-                            <main>
+                            <div ref={node}>
+                                <Offcanvas setOpen={setOpen} open={open}/> 
+                                <Header setOpen={setOpen} open={open}/> 
+                            </div>
+                           <main>
                                 <BlogProvider>
                                     <Routes>
                                         <Route element={<RouteGuardAdmin />} >
@@ -132,7 +138,7 @@ function App() {
                                         <Route path='*' element={<Error404 />} />
                                     </Routes>
                                 </BlogProvider>
-                            </main>
+                            </main>  
                         </AuthProvider>
                     </ShoppingCardProvider>
                     <Footer />

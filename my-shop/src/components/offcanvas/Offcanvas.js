@@ -3,13 +3,17 @@ import { Link } from "react-router-dom";
 import { useShoppingCard } from "../../context/ShoppingCardContext";
 import { AuthContext } from "../../context/AuthContext";
 
-export default function Offcanvas() {
+export default function Offcanvas({open}) {
     const { cardQuantity } = useShoppingCard({});
     const { userEmail, isAuthenticated, isAdmin } = useContext(AuthContext);
+    
+    let styleActive = '';
+    open === true ? styleActive="offcanvas-menu-wrapper active" : styleActive="offcanvas-menu-wrapper"
+    
     return (
         <>
             <div className="offcanvas-menu-overlay"></div>
-            <div className="offcanvas-menu-wrapper">
+            <div className={styleActive}>
                 <div className="offcanvas__option">
                     <div className="offcanvas__links">
                         {!isAuthenticated ? (
