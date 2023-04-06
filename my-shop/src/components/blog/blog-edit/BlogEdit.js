@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import styles from "./BlogEdit.module.css"
 import { useForm } from "../../../hooks/useForm";
 import { useService } from '../../../hooks/useService';
 import { blogServiceFactory } from "../../../services/blogService";
 import { useContext } from "react";
 import { BlogContext } from "../../../context/BlogContext";
+import { useOnClickOutside } from "../../../hooks/useOnClickOutside";
 
 export default function BlogEdit() {
     const { onEditBlogSubmit } = useContext(BlogContext);
@@ -22,6 +23,10 @@ export default function BlogEdit() {
 
     const blogService = useService(blogServiceFactory);
     const { blogId } = useParams();
+    const navigate = useNavigate();
+    const box = useRef(); 
+    
+    useOnClickOutside(box, () => navigate("/blog-catalog"));
 
     useEffect(() => {
         blogService.getOne(blogId)
@@ -33,7 +38,7 @@ export default function BlogEdit() {
     return (
         <>
             <section className="blog-edit">
-                <div className={styles.container}>
+                <div className={styles.container} ref={box}>
                     <div className="row d-flex justify-content-center">
                         <div className="col-lg-12">
                             <div className="blog__content">

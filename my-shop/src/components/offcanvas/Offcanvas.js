@@ -24,12 +24,12 @@ export default function Offcanvas({ open }) {
                             </>
                         )
                             : <>
-                                <span style={{ color: 'white', paddingRight: '2rem' }}>{userEmail}</span>
+                                <span style={{ color: 'black', paddingRight: '2rem' }}>{userEmail}</span>
                                 <Link to="/logout">Logout</Link>
                             </>
                         }
                     </div>
-                    <div className="offcanvas__top__hover">
+                    <div className="offcanvas__links">
                         <Link to="#">$USD</Link>
                     </div>
                 </div>

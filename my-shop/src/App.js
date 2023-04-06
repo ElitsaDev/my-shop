@@ -109,7 +109,7 @@ function App() {
                                 <BlogProvider>
                                     <Routes>
                                         <Route element={<RouteGuardAdmin />} >
-                                            <Route path='/blog-create' element={<BlogCreate />} />
+                                            <Route path='/blog-create' element={<BlogCreate/>} />
                                             <Route path='/blog-catalog/:blogId/edit' element={<BlogEdit />} />
                                         </Route>
                                         <Route element={<RouteGuardAuth />} >

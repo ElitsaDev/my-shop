@@ -1,7 +1,9 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import styles from "./BlogCreate.module.css"
 import { useForm } from "../../../hooks/useForm";
 import { BlogContext } from "../../../context/BlogContext";
+import { useNavigate } from "react-router-dom";
+import { useOnClickOutside } from "../../../hooks/useOnClickOutside";
 
 export default function BlogCreate() {
     const { onCreateBlogSubmit } = useContext(BlogContext);
@@ -14,11 +16,15 @@ export default function BlogCreate() {
         quote: '',
         quoteAuthor: '',  
     }, onCreateBlogSubmit);
-
+    const navigate = useNavigate();
+    const box = useRef(); 
+    
+    useOnClickOutside(box, () => navigate("/blog-catalog"));
+   
     return (
-        <>
+        <div>
             <section className="blog-create">
-                <div className={styles.container}>
+                <div className={styles.container} ref={box}>
                     <div className="row d-flex justify-content-center">
                         <div className="col-lg-12">
                             <div className="blog__content">
@@ -27,7 +33,9 @@ export default function BlogCreate() {
                                     <form id="blog-create" 
                                             method="POST"
                                             className={styles["blog-form"]}
-                                            onSubmit={onSubmit}>
+                                            onSubmit={onSubmit}
+
+                                    >
                                         <div className="row">
                                             <div className="col-lg-6 col-md-6">
                                                 <input type="text" placeholder="title" name="title" value={values.title} onChange={changeHandler} />
@@ -61,6 +69,6 @@ export default function BlogCreate() {
                     </div>
                 </div>
             </section>
-        </>
+        </div>
     );
 }
