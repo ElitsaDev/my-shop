@@ -21,10 +21,12 @@ import BlogEdit from './components/blog/blog-edit/BlogEdit';
 import BlogCatalog from './components/blog/BlogCatalog';
 import BlogDetails from './components/blog/blog-details/BlogDetails';
 import Error404 from './components/error404/Error404';
+import RouteGuardAdmin from './components/route-guards/RouteGuardAdmin';
+import RouteGuardAuth from './components/route-guards/RouteGuardAuth';
+import RouteGuardGuest from './components/route-guards/RouteGuardGuest';
 
 import { authServiceFactory } from './services/authService';
 import { productServiceFactory } from './services/productsService';
-
 import { contactServiceFactory } from './services/contactService';
 import { commentServiceFactory } from './services/commentService';
 
@@ -36,18 +38,14 @@ function App() {
     const [isLoading, setIsLoading] = useState(true);
     const [auth, setAuth] = useState({});
     const [products, setProducts] = useState([]);
-    
+
     const [contacts, setContacts] = useState([]);
     const [comments, setComments] = useState([]);
     const productsService = productServiceFactory(auth.accessToken);
     //const authService = authServiceFactory(auth.accessToken);
-    
+
     const contactService = contactServiceFactory(auth.accessToken);
     const commentService = commentServiceFactory(auth.accessToken);
-
-   
-
-
 
     useEffect(() => {
         productsService.getAll()
@@ -104,26 +102,30 @@ function App() {
                             <main>
                                 <BlogProvider>
                                     <Routes>
+                                        <Route element={<RouteGuardAdmin />} >
+                                            <Route path='/blog-create' element={<BlogCreate />} />
+                                            <Route path='/blog-catalog/:blogId/edit' element={<BlogEdit />} />
+                                        </Route>
+                                        <Route element={<RouteGuardAuth />} >
+                                            <Route path='/logout' element={<Logout />} />
+                                        </Route>
+                                        <Route element={<RouteGuardGuest />} >
+                                            <Route path='/register' element={<Register />} />
+                                            <Route path='/login' element={<Login />} />
+                                        </Route>
 
                                         <Route path='/' element={<Home products={Object.values(products)} onStateHandler={onStateHandler} />} />
                                         <Route path='/index' element={<Home products={Object.values(products)} onStateHandler={onStateHandler} />} />
 
-                                        <Route path='/register' element={<Register />} />
-                                        <Route path='/login' element={<Login />} />
-                                        <Route path='/logout' element={<Logout />} />
                                         <Route path='/contact' element={<Contact onCreateContactSubmit={onCreateContactSubmit} />} />
                                         <Route path='/about' element={<About />} />
 
                                         <Route path='/blog-catalog' element={<BlogCatalog />} />
-                                        <Route path='/blog-create' element={<BlogCreate />} />
                                         <Route path='/blog-catalog/:blogId' element={<BlogDetails onCreateCommentSubmit={onCreateCommentSubmit} />} />
-                                        <Route path='/blog-catalog/:blogId/edit' element={<BlogEdit />} />
-
 
                                         <Route path='/checkout' element={<Checkout />} />
                                         <Route path='/shop' element={<Shop products={Object.values(products)} />} />
                                         <Route path='/shopping-cart' element={<ShoppingCard products={Object.values(products)} />} />
-
 
                                         <Route path='/product-catalog/:productId' element={<ShopDetails />} />
 

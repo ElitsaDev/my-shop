@@ -1,35 +1,37 @@
 import { useContext, useEffect, useState } from 'react';
-import { useParams, Link, useNavigate  } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import styles from './BlogDetails.module.css';
 import { useService } from '../../../hooks/useService';
-import { useForm } from '../../../hooks/useForm';
 
 import { formatDate } from '../../../utils/dateFormater';
 import { splitBySentence } from '../../../utils/splitTextIntoFourParagraphs';
 import { blogServiceFactory } from '../../../services/blogService';
+import { commentServiceFactory } from '../../../services/commentService';
 
 import { AuthContext } from '../../../context/AuthContext';
 import { BlogContext } from '../../../context/BlogContext';
+import AddComment from './AddComment';
 
-export default function BlogDetails({onCreateCommentSubmit}) {
-    const { blogId } = useParams();  
+export default function BlogDetails() {
+    const { blogId } = useParams();
     const { isAuthenticated, userId } = useContext(AuthContext);
     const { deleteBlog } = useContext(BlogContext);
     const [blog, setBlog] = useState([]);
     const blogService = useService(blogServiceFactory);
-    
+    const commentService = useService(commentServiceFactory);
     const navigate = useNavigate();
-    const [errors, setErrors] = useState({});
 
-    const { values, changeHandler, onSubmit } = useForm({
-        name: '', 
-        email: '',
-        comment: '',
-    }, onCreateCommentSubmit);
-    
     useEffect(() => {
-        blogService.getOne(blogId)
-            .then(result => setBlog(result))
+        Promise.all([
+            blogService.getOne(blogId),
+            commentService.getAll(blogId)
+        ])
+            .then(([blogData, comments]) => {
+                setBlog({
+                    ...blogData,
+                    comments,
+                });
+            })
             .catch(error => {
                 console.log("Error " + error);
             })
@@ -39,7 +41,7 @@ export default function BlogDetails({onCreateCommentSubmit}) {
     if (blog.content !== undefined && blog.content !== '') {
         paragraphs = (splitBySentence(blog.content));
     }
-    
+
     const isOwner = blog._ownerId === userId;
 
     const onDeleteClick = async (blogId) => {
@@ -55,26 +57,31 @@ export default function BlogDetails({onCreateCommentSubmit}) {
         }
     };
 
-    const minLength = (e, bound) => {
-        setErrors(state => ({
+    const onCreateCommentSubmit = async (values) => {
+
+        const response = await commentService.create(blogId, values.comment);
+
+        setBlog(state => ({
             ...state,
-            [e.target.name]: values[e.target.name].length < bound,
+            comments: [...state.comments, response]
         }));
     };
 
-    const isEmail = (e) => {
-        let email = e.target.value;
-        console.log(email)
-        const EMAIL_PATTERN = /^([a-zA-Z]+)@([a-zA-Z]+)\.([a-zA-Z]+)$/;
-        let regExpresion = new RegExp(EMAIL_PATTERN);
-        
-        setErrors(state => ({
-            ...state,
-            [e.target.name]: !regExpresion.test(email),
-        }));
-    };
+    const onDeleteCommentClick = async (commentId) => {
+        // eslint-disable-next-line no-restricted-globals
+        const result = confirm(`Are you sure you want to delete your comment`);
+        if (result) {
+            await commentService.deleteComment(commentId);
 
-    const isFormValid = !Object.values(errors).some(x => x);
+
+            navigate('/blog-catalog');
+        }
+    }
+
+    const onEditCommentClick = () => {
+
+    }
+    console.log(blog);
 
     return (
         <>
@@ -174,61 +181,29 @@ export default function BlogDetails({onCreateCommentSubmit}) {
                                 </div>
                                 <div className="blog__details__comment">
                                     <div className="row">
-                                        <div className="col-lg-6 col-md-6 col-sm-6">
-                                            <div className="comment__item__card" >
-                                                {blog.comments &&
-                                                    blog.comments.length > 0 &&
-                                                    blog.comments.map((c, index) =>
-                                                        <div key={index} className="comments-list">Comment, {formatDate(c.createdOn)}: {c.comment}</div>
-                                                    )}
-                                            </div>
+                                        <div className="col-lg-12 col-md-12 col-sm-6">
+
+                                            {blog.comments &&
+                                                blog.comments.map(c =>
+                                                    <div key={c._id} className="blog__details__btns__item" >
+                                                        <p className={styles["comments-list"]}> Comment from {c.author?.username || c.author?.email}</p>
+                                                        <h5>{formatDate(c._createdOn)}: {c.comment}</h5>
+                                                        {c._ownerId === userId &&
+                                                            <>
+                                                                <div className="buttons">
+                                                                    <span><button className={styles.linkAsButton} onClick={onEditCommentClick}>Edit</button></span>
+                                                                    <span><button className={styles.linkAsButton} onClick={onDeleteCommentClick}>Delete</button></span>
+                                                                </div>
+                                                            </>
+                                                        }
+                                                    </div>
+                                                )
+                                            }
+
                                         </div>
                                     </div>
                                     {isAuthenticated && !isOwner &&
-                                    <>
-                                    <h4>Leave A Comment</h4>
-                                    <form action="POST" onSubmit={onSubmit}>
-                                        <div className="row">
-                                            <div className="col-lg-4 col-md-4">
-                                                {errors.name &&
-                                                    <div className={styles.error}>Name must be min 3 character long.</div>
-                                                }
-                                                <input type="text" 
-                                                    placeholder="Name"
-                                                    name="name"
-                                                    value={values.name}
-                                                    onChange={changeHandler}
-                                                    onBlur={(e) => minLength(e, 3)}
-                                                />
-                                                {errors.email &&
-                                                    <div className={styles.error}>Email is not in the right format.</div>
-                                                }
-                                                <input type="text" 
-                                                    placeholder="Email"
-                                                    name="email" 
-                                                    value={values.email}
-                                                    onChange={changeHandler}
-                                                    onBlur={(e) => isEmail(e)}
-                                                />
-                                                
-                                            </div>
-
-                                            <div className="col-lg-6 text-center">
-                                                <textarea 
-                                                    placeholder="Comment" 
-                                                    required 
-                                                    name="comment"
-                                                    value={values.comment}
-                                                    onChange={changeHandler}
-                                                />
-
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-12 col-md-12">
-                                            <button type="submit" disabled={!isFormValid} className="site-btn" >Post Comment</button>
-                                        </div>
-                                    </form>
-                                    </>}
+                                        <AddComment onCreateCommentSubmit={onCreateCommentSubmit} />}
                                 </div>
                             </div>
                         </div>

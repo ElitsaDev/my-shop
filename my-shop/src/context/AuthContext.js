@@ -42,6 +42,7 @@ export const AuthProvider = ({
 
     const onLogout =  async () => {
        await authService.logout();
+       console.log(localStorage)
        localStorage.removeItem('cart');
         setAuth({});
     }

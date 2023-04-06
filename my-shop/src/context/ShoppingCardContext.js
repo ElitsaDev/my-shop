@@ -67,7 +67,7 @@ export function ShoppingCardProvider({ children }){
             decreaseCardQuantity, 
             removeFromCard,
             cardItems,
-           // cardQuantity,
+            cardQuantity,
     }
 
     return (

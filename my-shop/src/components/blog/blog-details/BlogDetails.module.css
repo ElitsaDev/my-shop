@@ -44,3 +44,8 @@ background-size: 4px 4px;
 .error{
     color: #e63334; 
 }
+
+.comments-list {
+    color: #e63334;
+    background-color:#807e7d ;
+}

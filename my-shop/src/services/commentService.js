@@ -20,7 +20,7 @@ export const commentServiceFactory = (token) => {
 
         return result;
     };
-    
+
     return {
         getAll,
         create,
