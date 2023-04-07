@@ -5,8 +5,9 @@ import { useState, useEffect } from "react";
 
 export const BlogContext = createContext();
 
-export function BlogProvider({ children }){
+export function BlogProvider({ children }) {
     const [blogs, setBlogs] = useState([]);
+    const [latestBlogs, setLatesBlogs] = useState([]);
     const blogService = blogServiceFactory(); //auth.accessToken
     const navigate = useNavigate();
 
@@ -18,6 +19,17 @@ export function BlogProvider({ children }){
             })
             .catch(error => {
                 console.log("Error" + error);
+            });
+    }, []);
+
+    useEffect(() => {
+        blogService.getLatestBlogs()
+            .then(result => {
+                //console.log(result);
+                setLatesBlogs(result);
+            })
+            .catch(error => {
+                console.log("Error Latest blogs" + error);
             });
     }, []);
 
@@ -38,9 +50,10 @@ export function BlogProvider({ children }){
 
         setBlogs(state => state.map(blog => blog._id === data._id ? editBlog : blog));
 
-        navigate(`/blog-catalog/${data._id}`);      
+        navigate(`/blog-catalog/${data._id}`);
     };
 
+    
 
     const deleteBlog = (blogId) => {
         setBlogs(state => state.filter(blog => blog._id !== blogId));
@@ -48,12 +61,13 @@ export function BlogProvider({ children }){
 
     const contextValues = {
         blogs,
+        latestBlogs,
         onCreateBlogSubmit,
-        onEditBlogSubmit,   
-        deleteBlog, 
+        onEditBlogSubmit,
+        deleteBlog,
     };
 
-return (
+    return (
         <BlogContext.Provider value={contextValues}>
             {children}
         </BlogContext.Provider>

@@ -1438,27 +1438,40 @@
         },
         blogs: [
             {
-                "_id": "87743e5d-5852-4e13-aa71-e141a3ece7ab",
+                "_id": "27b6593f-09f3-4f15-b65e-fe090ddeb8ea",
+                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
                 "title": "Are you one of the thousands of Iphone owners who has no idea",
                 "imageUrl": "img/blog/details/blog-details-1.jpg",
-                "published": "2022-07-28T19:19:57.740Z",
-                "updated": "2022-07-28T21:29:42.015Z",
-                "author": "By Deercreative",
-                "content": "On your iPhone, you can now tap a button that says, “Ask app not to track.” But behind the scenes, some apps keep snooping anyway. Say you open the app “Subway Surfers,” listed as one of the App Store’s “must-play” games. It asks if you’re okay with the app “tracking” you, a question iPhones started displaying in April as part of a privacy crackdown by Apple. Saying no is supposed to stop apps such as “Subway Surfers” and Facebook from learning about what you do in other apps and websites. But something curious happens after you ask not to be tracked, according to an investigation by researchers at privacy software maker Lockdown and The Washington Post. “Subway Surfers” starts sending an outside ad company called Chartboost 29 very specific data points about your iPhone, including your Internet address, your free storage, your current volume level (to 3 decimal points) and even your battery level (to 15 decimal points). It’s the kind of unique data that could be used by advertisers to identify your iPhone, possibly letting them know what other apps you use or how to target you.In other words, it’s sidestepping your request to be left alone. You can’t stop it. And your privacy is worse off for it.",
+                "published": "2023-04-07T10:35:57.495Z",
+                "updated": "",
+                "content": "On your iPhone, you can now tap a button that says, “Ask app not to track.” But behind the scenes, some apps keep snooping anyway. Say you open the app “Subway Surfers,” listed as one of the App Store’s “must-play” games. It asks if you’re okay with the app “tracking” you, a question iPhones started displaying in April as part of a privacy crackdown by Apple. Saying no is supposed to stop apps such as “Subway Surfers” and Facebook from learning about what you do in other apps and websites. But something curious happens after you ask not to be tracked, according to an investigation by researchers at privacy software maker Lockdown and The Washington Post. “Subway Surfers” starts sending an outside ad company called Chartboost 29 very specific data points about your iPhone, including your Internet address, your free storage, your current volume level (to 3 decimal points) and even your battery level (to 15 decimal points). It’s the kind of unique data that could be used by advertisers to identify your iPhone, possibly letting them know what other apps you use or how to target you.In other words, it’s sidestepping your request to be left alone. You can’t stop it. And your privacy is worse off for it.\n",
                 "quote": "“As a company, we do not track users for advertising purposes without their consent.”",
-                "quoteAuthor": "David Paul Morris/Bloomberg"
-                
+                "quoteAuthor": "David Paul Morris/Bloomberg",
+                "_createdOn": 1680843820735 
             },
             {
-                "_id": "87743e5d-5852-4e13-aa71-e141a3ece7e4",
+                "_id": "4e6e58e6-0040-4745-a308-eaea80acbfdd",
+                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
                 "title": "What Curling Irons Are The Best Ones",
                 "imageUrl": "img/blog/details/blog-details-2.jpg",
-                "published": "2022-07-28T19:19:57.740Z",
-                "updated": "2022-07-28T21:29:42.015Z",
-                "author": "By Deercreative",
-                "content": "There's no way to create perfect beach waves or cascading curls without a great curling iron; one that's easy to use and maneuver, heats up quickly to curl your hair fast and reaches a high enough temperature to set curls without damaging your hair — and fits in your budget. But choices can vary greatly depending on the texture of the hair and the type of curl you are looking for, says Eugene Toye, stylist at Rita Hazan Salon in New York City. With so many options on the market, from titanium to ceramic, tourmaline and even clamp-less curling wands, hair rollers and heat-free hair curlers, it can be difficult to know where to begin to find the best curling iron for you. That's why we tested curling irons in the Good Housekeeping Institute Beauty Lab to find the ones that are actually worth your money. Our Beauty Lab pros evaluate features like preheat time, temperature range, overall settings and ease of use. We also had a panel of at-home testers try the irons at home and report on factors such as the lasting power of the resulting curls and ease of use. All said, our scientists and beauty pros parsed through over 103 measurements and 836 survey answers to find the only curling irons worth your money. For more information on what to keep in mind as you shop for the best curling irons (including material, barrel size, temperature and more), scroll to the bottom of this article. In the meantime, these are the best curling irons you can buy.",
+                "published": "2023-04-07T10:36:58.119Z",
+                "updated": "",
+                "content": "There's no way to create perfect beach waves or cascading curls without a great curling iron; one that's easy to use and maneuver, heats up quickly to curl your hair fast and reaches a high enough temperature to set curls without damaging your hair — and fits in your budget. But choices can vary greatly depending on the texture of the hair and the type of curl you are looking for, says Eugene Toye, stylist at Rita Hazan Salon in New York City. With so many options on the market, from titanium to ceramic, tourmaline and even clamp-less curling wands, hair rollers and heat-free hair curlers, it can be difficult to know where to begin to find the best curling iron for you. That's why we tested curling irons in the Good Housekeeping Institute Beauty Lab to find the ones that are actually worth your money. Our Beauty Lab pros evaluate features like preheat time, temperature range, overall settings and ease of use. We also had a panel of at-home testers try the irons at home and report on factors such as the lasting power of the resulting curls and ease of use. All said, our scientists and beauty pros parsed through over 103 measurements and 836 survey answers to find the only curling irons worth your money. For more information on what to keep in mind as you shop for the best curling irons (including material, barrel size, temperature and more), scroll to the bottom of this article. In the meantime, these are the best curling irons you can buy.\n",
                 "quote": "“There was a wonderful unfinished quality about the curls, and my hair was so voluminous”",
                 "quoteAuthor": "Meg Adams",
+                "_createdOn": 1680817079096 
+            },
+            {
+                "_id": "070255e8-d901-48a1-ad02-6030ce3aaddd",
+                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+                "title": "Eternity Bands Do Last Forever",
+                "imageUrl": "img/blog/details/blog-details-3.jpg",
+                "published": "2023-04-07T10:37:57.660Z",
+                "updated": "",
+                "content": "Eternity bands are covered in diamonds. Traditional examples - such as the Domed Paved Band - have channel- or pave-set gems that surround the entirety of the ring. The idea is that there is no end in this ring of diamonds, just like there is no end to your love for your fiance. Half eternity bands have gems around most of the circumference of the ring, but the diamonds do stop at some point. Both half and full eternity rings create intense sparkle because no matter which direction she moves her hand, her ring will catch the light. Furthermore, when you put several small gems together, they appear larger than they actually are. This happens because of the way they bounce light off one another. The beauty created by the light reflecting off an eternity band is something to marvel at. However, the stunning amount of diamonds that sit in these rings aren't the only reason they are popular. The idea is that the gems wrap around her finger ceaselessly. A ring has no end, and neither does your love as a couple. You can present her with an eternity engagement ring or choose one as a wedding band. Either way, the message of eternal love will come through.\n",
+                "quote": "“Eternity bands symbolize love that lasts forever”",
+                "quoteAuthor": "Eli Andreeva",
+                "_createdOn": 1680863925694  
             }
         ]
     };

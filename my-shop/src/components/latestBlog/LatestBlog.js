@@ -1,5 +1,13 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { BlogContext } from "../../context/BlogContext";
+import { formatDate } from "../../utils/dateFormater";
+
 export default function LatestBlog(){
+    const { latestBlogs } = useContext(BlogContext);
+    if(latestBlogs.length > 3){
+        latestBlogs.splice(0,3);
+    }
     return (
         <section className="latest spad">
         <div className="container">
@@ -12,36 +20,18 @@ export default function LatestBlog(){
                 </div>
             </div>
             <div className="row">
-                <div className="col-lg-4 col-md-6 col-sm-6">
+                {latestBlogs.map(blog => (
+                <div key={blog._id} className="col-lg-4 col-md-6 col-sm-6">
                     <div className="blog__item">
-                        <div className="blog__item__pic set-bg" data-setbg="img/blog/blog-1.jpg"></div>
+                        <div className="blog__item__pic set-bg" data-setbg={blog.imageUrl}></div>
                         <div className="blog__item__text">
-                            <span><img src="img/icon/calendar.png" alt=""/> 16 February 2020</span>
-                            <h5>What Curling Irons Are The Best Ones</h5>
-                            <Link to="#">Read More</Link>
+                            <span><img src="img/icon/calendar.png" alt=""/> {formatDate(blog.published)}</span>
+                            <h5>{blog.title}</h5>
+                            <Link to={`/blog-catalog/${blog._id}`}>Read More</Link>
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-4 col-md-6 col-sm-6">
-                    <div className="blog__item">
-                        <div className="blog__item__pic set-bg" data-setbg="img/blog/blog-2.jpg"></div>
-                        <div className="blog__item__text">
-                            <span><img src="img/icon/calendar.png" alt=""/> 21 February 2020</span>
-                            <h5>Eternity Bands Do Last Forever</h5>
-                            <Link to="#">Read More</Link>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-lg-4 col-md-6 col-sm-6">
-                    <div className="blog__item">
-                        <div className="blog__item__pic set-bg" data-setbg="img/blog/blog-3.jpg"></div>
-                        <div className="blog__item__text">
-                            <span><img src="img/icon/calendar.png" alt=""/> 28 February 2020</span>
-                            <h5>The Health Benefits Of Sunglasses</h5>
-                            <Link to="#">Read More</Link>
-                        </div>
-                    </div>
-                </div>
+                ))}
             </div>
         </div>
     </section>
