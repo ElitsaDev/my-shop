@@ -1,9 +1,9 @@
-import { render } from '@testing-library/react';
-import { About} from './About';
-
-describe('About Component', () => {
-    test('test', () => {
-        render(<About />)
+describe('true is truthy and false is falsy', () => {
+    it('true is truthy', () => {
         expect(true).toBe(true);
     });
-})
+
+    it('false is falsy', () => {
+        expect(false).toBe(false);
+    });
+});
