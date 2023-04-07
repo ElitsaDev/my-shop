@@ -31,7 +31,7 @@ export const blogServiceFactory = (token) => {
 
     const getLatestBlogs = async() => {
         const sortQuery = encodeURIComponent(`_createdOn desc`);
-        const result = await request.get(`${baseUrl}?sortBy=_createdOn%20desc`);
+        const result = await request.get(`${baseUrl}?sortBy=${sortQuery}`);
 
         const blogs = Object.values(result);
 

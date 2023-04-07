@@ -17,6 +17,7 @@ export default function BlogDetails() {
     const { isAuthenticated, userId } = useContext(AuthContext);
     const { deleteBlog } = useContext(BlogContext);
     const [blog, setBlog] = useState([]);
+    const [comments, setComments] = useState([]);
     const blogService = useService(blogServiceFactory);
     const commentService = useService(commentServiceFactory);
     const navigate = useNavigate();
@@ -31,6 +32,7 @@ export default function BlogDetails() {
                     ...blogData,
                     comments,
                 });
+                setComments(comments);
             })
             .catch(error => {
                 console.log("Error " + error);
@@ -65,23 +67,32 @@ export default function BlogDetails() {
             ...state,
             comments: [...state.comments, response]
         }));
+        setComments(...comments, response);
     };
 
     const onDeleteCommentClick = async (commentId) => {
         // eslint-disable-next-line no-restricted-globals
         const result = confirm(`Are you sure you want to delete your comment`);
         if (result) {
-            await commentService.deleteComment(commentId);
-
-
-            navigate('/blog-catalog');
+           
+           await commentService.deleteComment(commentId);   
+       
+            setBlog(state => ({
+                ...state,
+                comments: [state.comments.filter(c => c._id !== commentId) || []]
+            }));
+            setComments( state => state.filter(c => c._id !== commentId))
+            navigate(`/blog-catalog`);
         }
     }
 
-    const onEditCommentClick = () => {
-
+   /* TODO feature:  make modal to show data
+    const onEditCommentClick = async(commentId, commentData) => {
+        console.log(commentData)   
     }
-    console.log(blog);
+    */
+
+    //console.log(blog);
 
     return (
         <>
@@ -191,8 +202,8 @@ export default function BlogDetails() {
                                                         {c._ownerId === userId &&
                                                             <>
                                                                 <div className="buttons">
-                                                                    <span><button className={styles.linkAsButton} onClick={onEditCommentClick}>Edit</button></span>
-                                                                    <span><button className={styles.linkAsButton} onClick={onDeleteCommentClick}>Delete</button></span>
+                                                                    {/* <span><button className={styles.linkAsButton} onClick={() => onEditCommentClick(c._id, c)}>Edit</button></span> */}
+                                                                    <span><button className={styles.linkAsButton} onClick={() => onDeleteCommentClick(c._id)} >Delete</button></span>
                                                                 </div>
                                                             </>
                                                         }

@@ -21,8 +21,14 @@ export const commentServiceFactory = (token) => {
         return result;
     };
 
+    const editComment = (commentId, comment) => request.put(`${baseUrl}/${commentId}`, comment);
+
+    const deleteComment = (commentId) => request.delete(`${baseUrl}/${commentId}`);
+
     return {
         getAll,
         create,
+        editComment,
+        deleteComment,
     }
 }
