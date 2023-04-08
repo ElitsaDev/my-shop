@@ -63,7 +63,6 @@ export default function Header({open, setOpen}) {
                                 <li><Link to="#">Pages</Link>
                                     <ul className="dropdown">
                                         <li><Link to="/about">About Us</Link></li>
-                                        <li><Link to="/shopping-cart/details">Shop Details</Link></li>
                                         <li><Link to="/shopping-cart">Shopping Cart</Link></li>
                                         <li><Link to="/checkout">Check Out</Link></li>
                                         {isAdmin &&
