@@ -1,10 +1,12 @@
-import { useShoppingCard } from "../../context/ShoppingCardContext";
+import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import styles from './ShoppingCard.module.css';
-import { formatCurrency } from "../../utils/currencyFormater";
+
 import { productServiceFactory } from '../../services/productsService';
-import { useState, useEffect } from 'react';
 import { useService } from "../../hooks/useService";
+import { useShoppingCard } from "../../context/ShoppingCardContext";
+
+import { formatCurrency } from "../../utils/currencyFormater";
 
 export default function ProductCardItem({
     id,
@@ -14,13 +16,13 @@ export default function ProductCardItem({
     discount,
 }) {
     const { getItemQuantity, increaseCardQuantity, decreaseCardQuantity, removeFromCard } = useShoppingCard();
-    const [ product, setProduct] = useState();
+    const [product, setProduct] = useState();
     const productsService = useService(productServiceFactory);
     useEffect(() => {
-         productsService.getAll()
+        productsService.getAll()
             .then(products => {
-             setProduct(Object.values(Object.values(products)).find(p => p._id === id));   
-              
+                setProduct(Object.values(Object.values(products)).find(p => p._id === id));
+
             })
             .catch(error => {
                 console.log("Error" + error);
@@ -55,7 +57,7 @@ export default function ProductCardItem({
                 </div>
             </td>
             <td className="cart__price">{(discount && formatCurrency(price * (1 - discount / 100) * quantity)) || formatCurrency(price * quantity)}</td>
-            <td className="cart__close"><i  onClick={() => removeFromCard(id)}  className="fa fa-close"></i></td>
+            <td className="cart__close"><i onClick={() => removeFromCard(id)} className="fa fa-close"></i></td>
         </tr>
     );
 }

@@ -1,10 +1,9 @@
 import { render, screen, waitFor } from '@testing-library/react';
-import { MemoryRouter, Routes, Route } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { MemoryRouter, BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+
 import Shop from '../shop/Shop';
 import Banner from './Banner';
 import { BlogContext } from '../../context/BlogContext';
-import { BrowserRouter } from "react-router-dom";
 
 describe('Banner Component', () => {
     test('renders react link Shop', () => {

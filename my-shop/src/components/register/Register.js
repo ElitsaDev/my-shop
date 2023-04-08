@@ -1,9 +1,10 @@
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from "react-router-dom";
 import styles from "./Register.module.css"
+
 import { AuthContext } from '../../context/AuthContext';
 import { useForm } from '../../hooks/useForm';
-import { useState } from 'react';
+
 export default function Register() {
     const { onRegisterSubmit } = useContext(AuthContext);
     const { values, changeHandler, onSubmit } = useForm({
@@ -20,18 +21,19 @@ export default function Register() {
             ...state,
             [e.target.name]: values[e.target.name].length < bound,
         }));
-    }
+    };
+
     const isEmail = (e) => {
         let email = e.target.value;
         console.log(email)
         const EMAIL_PATTERN = /^([a-zA-Z]+)@([a-zA-Z]+)\.([a-zA-Z]+)$/;
         let regExpresion = new RegExp(EMAIL_PATTERN);
-        
+
         setErrors(state => ({
             ...state,
             [e.target.name]: !regExpresion.test(email),
         }));
-    }
+    };
 
     const isFormValid = !Object.values(errors).some(x => x);
 
@@ -61,7 +63,7 @@ export default function Register() {
                             onChange={changeHandler}
                             onBlur={(e) => isEmail(e)}
                         />
-                        
+
                         <label className={styles.label}>Username: </label>
                         {errors.username &&
                             <span className={styles.error}>Username must be at least 3 characters long!</span>

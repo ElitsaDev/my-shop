@@ -26,8 +26,7 @@ const request = async (method, url, data) => {
     }
 
     try {
-        const response = await fetch(url, options); //requester.js:29   GET http://localhost:3030/users/logout 403 (Forbidden)
-
+        const response = await fetch(url, options);
 
         if (response.status === 204) {
             return response;
@@ -36,7 +35,7 @@ const request = async (method, url, data) => {
         const result = await response.json();
 
         if (!response.ok) {
-            throw new Error(result.message);  //requester.js:39 Uncaught (in promise) Error: Invalid access token at request (requester.js:39:1) at async onLogout (AuthContext.js:44:1)
+            throw new Error(result.message);
         }
 
         return result;

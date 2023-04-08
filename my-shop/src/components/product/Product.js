@@ -16,7 +16,7 @@ export default function Product({
     const { increaseCardQuantity } = useShoppingCard();
 
     return (
-        
+
         <div className="product__item">
             <div className="product__item__pic set-bg" data-setbg={imageUrl} >
                 <img src={imageUrl} alt={name}></img>
@@ -51,6 +51,5 @@ export default function Product({
                 </div>
             </div>
         </div>
-
     );
 }

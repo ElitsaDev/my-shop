@@ -22,7 +22,7 @@ export const AuthProvider = ({
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     const onRegisterSubmit = async (data) => {
         const { repass, ...registerData } = data;
@@ -38,7 +38,7 @@ export const AuthProvider = ({
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     const onLogout = async () => {
         try {
@@ -52,7 +52,7 @@ export const AuthProvider = ({
 
         localStorage.removeItem('cart');
         setAuth({});
-    }
+    };
 
     if (auth.email === 'peter@abv.bg' || auth.email === 'john@abv.bg') {
         auth.isAdministr = true;

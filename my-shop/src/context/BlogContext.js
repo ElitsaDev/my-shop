@@ -1,7 +1,6 @@
-import { createContext } from "react";
+import {useState, useEffect, createContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import { blogServiceFactory } from "../services/blogService";
-import { useState, useEffect } from "react";
 
 export const BlogContext = createContext();
 
@@ -52,8 +51,6 @@ export function BlogProvider({ children }) {
 
         navigate(`/blog-catalog/${data._id}`);
     };
-
-    
 
     const deleteBlog = (blogId) => {
         setBlogs(state => state.filter(blog => blog._id !== blogId));

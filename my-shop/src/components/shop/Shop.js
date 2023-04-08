@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
-import Product from "../product/Product";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
+import Product from "../product/Product";
 
 export default function Shop({ products }) {
+
     const [productsSort, setProductsSort] = useState(products);
 
     const OnChangeHandle = (e) => {
@@ -15,7 +17,7 @@ export default function Shop({ products }) {
         if (value === 'high') {
             setProductsSort(productsSort => [...productsSort].sort((a, b) => (b.price - a.price)));
         }
-    }
+    };
 
     return (
         <>

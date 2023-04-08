@@ -41,13 +41,13 @@ export default function Checkout() {
     const onCreateAccountHandler = (e) => {
         console.log(`${e.target.value}=${e.target.checked}`);
         setAccount(state => ({ ...state, [e.target.value]: e.target.checked }));
-    }
+    };
 
     const onCreateNodeHandler = (e) => {
         console.log(`${e.target.value}=${e.target.checked}`);
         setAccount(state => ({ ...state, [e.target.value]: e.target.checked }));
-    }
-    //TODO validate form
+    };
+    
     const formValidate = (e) => {
         console.log('asdasd');
         const value = e.target.value;

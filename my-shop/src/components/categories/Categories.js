@@ -7,7 +7,7 @@ const NOW_IN_MS = new Date().getTime();
 
 const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
 
-export default function Categories() {  
+export default function Categories() {
     return (
         <section className="categories spad">
             <div className="container">

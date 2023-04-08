@@ -17,7 +17,7 @@ export default function Contact({ onCreateContactSubmit }) {
         console.log(email)
         const EMAIL_PATTERN = /^([a-zA-Z]+)@([a-zA-Z]+)\.([a-zA-Z]+)$/;
         let regExpresion = new RegExp(EMAIL_PATTERN);
-        
+
         setErrors(state => ({
             ...state,
             [e.target.name]: !regExpresion.test(email),
@@ -68,7 +68,7 @@ export default function Contact({ onCreateContactSubmit }) {
                                     {errors.email &&
                                         <div className={styles.error}>Email is not in the right format.</div>
                                     }
-                                    <div className="row">         
+                                    <div className="row">
                                         <div className="col-lg-6">
                                             <input type="text"
                                                 id="name"
@@ -88,7 +88,7 @@ export default function Contact({ onCreateContactSubmit }) {
                                                 onChange={changeHandler}
                                                 onBlur={(e) => isEmail(e)}
                                             />
-                                            
+
                                         </div>
                                         <div className="col-lg-12">
                                             <textarea type="text" className={styles.message}

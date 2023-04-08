@@ -1,13 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useShoppingCard } from "../../context/ShoppingCardContext";
-import ProductCardItem from "./ProductCardItem";
 
+import ProductCardItem from "./ProductCardItem";
+import { useShoppingCard } from "../../context/ShoppingCardContext";
 
 export default function ShoppingCard({
     cardId,
 }) {
-    const { cardItems }= useShoppingCard();
+    const { cardItems } = useShoppingCard();
     const navigate = useNavigate();
+
     const onBackPageButtonClick = () => {
         navigate('/shop');
     };
@@ -49,9 +50,9 @@ export default function ShoppingCard({
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {cardItems.map(item => 
-                                            <ProductCardItem key={item.id} {...item}/> 
-                                            )
+                                        {cardItems.map(item =>
+                                            <ProductCardItem key={item.id} {...item} />
+                                        )
                                         }
                                     </tbody>
                                 </table>
@@ -59,8 +60,8 @@ export default function ShoppingCard({
                             <div className="row">
                                 <div className="col-lg-6 col-md-6 col-sm-6">
                                     <div className="continue__btn">
-                                         <button onClick={onBackPageButtonClick}>Continue Shopping</button> 
-                                         {/* <Navigate to="/shop">Continue Shopping</Navigate>   */}
+                                        <button onClick={onBackPageButtonClick}>Continue Shopping</button>
+                                        {/* <Navigate to="/shop">Continue Shopping</Navigate>   */}
                                     </div>
                                 </div>
                                 <div className="col-lg-6 col-md-6 col-sm-6">

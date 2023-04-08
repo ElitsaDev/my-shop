@@ -3,37 +3,36 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 
 //todo change id to real value
 const ShoppingCardContext = createContext({
-    getItemQuantity(id){},
-    increaseCardQuantity(id){},
-    decreaseCardQuantity(id){},
-    removeFromCard(id){},
+    getItemQuantity(id) { },
+    increaseCardQuantity(id) { },
+    decreaseCardQuantity(id) { },
+    removeFromCard(id) { },
     cardQuantity: 0,
     cardItems: [],
-    
 });
 
-export function useShoppingCard(){
+export function useShoppingCard() {
     return useContext(ShoppingCardContext);
 }
 
-export function ShoppingCardProvider({ children }){
-    
+export function ShoppingCardProvider({ children }) {
+
     const [cardItems, setCardItems] = useState([]);
     const cardQuantity = cardItems.reduce((quantity, item) => item.quantity + quantity, 0);
-   
-    function getItemQuantity(id){
+
+    function getItemQuantity(id) {
         return cardItems.find(item => item.id === id)?.quantity || 0;
     }
 
-    function increaseCardQuantity(id){
+    function increaseCardQuantity(id) {
         setCardItems(currentItems => {
-            if(currentItems.find(item => item.id === id) == null){
-                return [...currentItems, {id, quantity: 1}]
-            }else {
+            if (currentItems.find(item => item.id === id) == null) {
+                return [...currentItems, { id, quantity: 1 }]
+            } else {
                 return currentItems.map(item => {
-                    if(item.id === id){
-                        return {...item, quantity: item.quantity + 1}
-                    }else {
+                    if (item.id === id) {
+                        return { ...item, quantity: item.quantity + 1 }
+                    } else {
                         return item;
                     }
                 });
@@ -41,15 +40,15 @@ export function ShoppingCardProvider({ children }){
         });
     }
 
-    function decreaseCardQuantity(id){
+    function decreaseCardQuantity(id) {
         setCardItems(currentItems => {
-            if(currentItems.find(item => item.id === id) === 1){
+            if (currentItems.find(item => item.id === id) === 1) {
                 return currentItems.filter(item => item.id !== id)
-            }else {
+            } else {
                 return currentItems.map(item => {
-                    if(item.id === id){
-                        return {...item, quantity: item.quantity - 1}
-                    }else {
+                    if (item.id === id) {
+                        return { ...item, quantity: item.quantity - 1 }
+                    } else {
                         return item;
                     }
                 });
@@ -57,17 +56,17 @@ export function ShoppingCardProvider({ children }){
         });
     }
 
-    function removeFromCard(id){
-        setCardItems(currentItems => {return currentItems.filter(item => item.id !== id)});
+    function removeFromCard(id) {
+        setCardItems(currentItems => { return currentItems.filter(item => item.id !== id) });
     }
 
     const contextObject = {
-            getItemQuantity, 
-            increaseCardQuantity, 
-            decreaseCardQuantity, 
-            removeFromCard,
-            cardItems,
-            cardQuantity,
+        getItemQuantity,
+        increaseCardQuantity,
+        decreaseCardQuantity,
+        removeFromCard,
+        cardItems,
+        cardQuantity,
     }
 
     return (

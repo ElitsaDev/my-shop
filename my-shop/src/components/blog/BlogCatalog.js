@@ -3,6 +3,7 @@ import BlogItem from "./BlogItem";
 import { BlogContext } from "../../context/BlogContext";
 
 export default function BlogCatalog() {
+
     const { blogs } = useContext(BlogContext);
 
     return (

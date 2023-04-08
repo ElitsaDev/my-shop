@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import styles from './Offcanvas.module.css';
+
 import { useShoppingCard } from "../../context/ShoppingCardContext";
 import { AuthContext } from "../../context/AuthContext";
-import styles from './Offcanvas.module.css';
 
 export default function Offcanvas({ open }) {
     const { cardQuantity } = useShoppingCard({});

@@ -1,9 +1,9 @@
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Login.module.css';
+
 import { AuthContext } from '../../context/AuthContext';
 import { useForm } from '../../hooks/useForm';
-import { useState } from 'react';
 
 export default function Login() {
 
@@ -26,7 +26,7 @@ export default function Login() {
         console.log(email)
         const EMAIL_PATTERN = /^([a-zA-Z]+)@([a-zA-Z]+)\.([a-zA-Z]+)$/;
         let regExpresion = new RegExp(EMAIL_PATTERN);
-        
+
         setErrors(state => ({
             ...state,
             [e.target.name]: !regExpresion.test(email),
@@ -48,9 +48,9 @@ export default function Login() {
                     onSubmit={onSubmit}
                 >
                     {(errors.email || errors.password) &&
-                            <div className={styles.error}>Email or Password are not valid.</div>
+                        <div className={styles.error}>Email or Password are not valid.</div>
                     }
-                    
+
                     <label className={styles.label}>E-mail: </label>
                     <input type="text"
                         name="email"

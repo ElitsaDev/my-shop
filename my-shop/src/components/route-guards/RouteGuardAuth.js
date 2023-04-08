@@ -8,7 +8,7 @@ export default function RouteGuardAuth() {
     if (!isAuthenticated) {
         return <Navigate to={"/login"} />
     }
-    
+
     return (
         <Outlet />
     );

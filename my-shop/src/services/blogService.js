@@ -29,7 +29,7 @@ export const blogServiceFactory = (token) => {
 
     const deleteBlog = (blogId) => request.delete(`${baseUrl}/${blogId}`);
 
-    const getLatestBlogs = async() => {
+    const getLatestBlogs = async () => {
         const sortQuery = encodeURIComponent(`_createdOn desc`);
         const result = await request.get(`${baseUrl}?sortBy=${sortQuery}`);
 

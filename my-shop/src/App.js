@@ -41,10 +41,10 @@ function App() {
     const [contacts, setContacts] = useState([]);
     const [comments, setComments] = useState([]);
     const [open, setOpen] = useState(false);
-    const node = useRef(); 
+    const node = useRef();
 
     useOnClickOutside(node, () => setOpen(false));
-    
+
     const productsService = productServiceFactory(auth.accessToken);
     const contactService = contactServiceFactory(auth.accessToken);
     const commentService = commentServiceFactory(auth.accessToken);
@@ -75,8 +75,6 @@ function App() {
         setIsLoading(false);
     };
 
-    
-
     const onCreateContactSubmit = async (data) => {
         const newContact = await contactService.create(data)
             .catch(error => {
@@ -102,14 +100,14 @@ function App() {
                     <ShoppingCardProvider>
                         <AuthProvider>
                             <div ref={node}>
-                                <Offcanvas setOpen={setOpen} open={open}/> 
-                                <Header setOpen={setOpen} open={open}/> 
+                                <Offcanvas setOpen={setOpen} open={open} />
+                                <Header setOpen={setOpen} open={open} />
                             </div>
-                           <main>
+                            <main>
                                 <BlogProvider>
                                     <Routes>
                                         <Route element={<RouteGuardAdmin />} >
-                                            <Route path='/blog-create' element={<BlogCreate/>} />
+                                            <Route path='/blog-create' element={<BlogCreate />} />
                                             <Route path='/blog-catalog/:blogId/edit' element={<BlogEdit />} />
                                         </Route>
                                         <Route element={<RouteGuardAuth />} >
@@ -138,7 +136,7 @@ function App() {
                                         <Route path='*' element={<Error404 />} />
                                     </Routes>
                                 </BlogProvider>
-                            </main>  
+                            </main>
                         </AuthProvider>
                     </ShoppingCardProvider>
                     <Footer />

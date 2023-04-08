@@ -1,6 +1,8 @@
 import { BrowserRouter } from "react-router-dom";
+
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from '@testing-library/user-event'
+
 import BlogCreate from "./BlogCreate";
 import { BlogContext } from "../../../context/BlogContext";
 
@@ -46,14 +48,14 @@ describe('BlogCreate Component', () => {
                 </BlogContext.Provider>
             </BrowserRouter>
         );
-       
+
         userEvent.type(screen.getByPlaceholderText(/title/i), 'Test Title')
         userEvent.type(screen.getByPlaceholderText(/image/i), 'img')
         userEvent.type(screen.getByPlaceholderText(/Content of blog post/i), 'Content of blog post')
 
-        userEvent.click(screen.getByRole('button',/submit/i))
-      
-         waitFor(() =>
+        userEvent.click(screen.getByRole('button', /submit/i))
+
+        waitFor(() =>
             expect(handleSubmit).toHaveBeenCalledWith({
                 title: 'Test Title',
                 imageUrl: 'img',

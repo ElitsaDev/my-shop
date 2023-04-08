@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { useCountdown } from "../../hooks/useCountdown";
 import { Link } from "react-router-dom";
+import { useCountdown } from "../../hooks/useCountdown";
+
 export default function CountdownTimer({
     targetDate,
 }) {
@@ -12,7 +13,7 @@ export default function CountdownTimer({
             if (days + hours + minutes + seconds <= 0) {
                 setDisabled(true);
             }
-        }   
+        }
     }, [days, hours, minutes, seconds]);
 
     return (disabled

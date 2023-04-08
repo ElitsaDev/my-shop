@@ -1,6 +1,7 @@
-import { useParams, Link } from 'react-router-dom';
-import { productServiceFactory } from '../../services/productsService';
 import { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+
+import { productServiceFactory } from '../../services/productsService';
 import { useService } from '../../hooks/useService';
 import { useShoppingCard } from "../../context/ShoppingCardContext";
 
@@ -145,12 +146,12 @@ export default function ShopDetails() {
                                         </div>
                                     </div>
                                     <div className="product__details__cart__option">
-                                        
+
                                         <Link to="#" className="primary-btn" onClick={() => increaseCardQuantity(productId)} >add to cart</Link>
                                     </div>
                                     <div className="product__details__btns__option">
                                         <Link to="#"><i className="fa fa-heart"></i> add to wishlist</Link>
-            
+
                                     </div>
                                     <div className="product__details__last__option">
                                         <h5><span>Guaranteed Safe Checkout</span></h5>
