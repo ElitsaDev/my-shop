@@ -12,7 +12,7 @@ export default function Banner(){
                         </div>
                         <div className="banner__item__text">
                             <h2>Clothing Collections 2030</h2>
-                            <Link to="/shop">Shop now</Link>
+                            <Link to="/shop" data-testid="shop-link">Shop now</Link>
                         </div>
                     </div>
                 </div>

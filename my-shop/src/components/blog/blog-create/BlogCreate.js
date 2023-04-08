@@ -34,29 +34,74 @@ export default function BlogCreate() {
                                             method="POST"
                                             className={styles["blog-form"]}
                                             onSubmit={onSubmit}
-
+                                            data-testid="blog-create"
+                                           
                                     >
                                         <div className="row">
                                             <div className="col-lg-6 col-md-6">
-                                                <input type="text" placeholder="title" name="title" value={values.title} onChange={changeHandler} />
+                                                <input type="text" 
+                                                    placeholder="title" 
+                                                    name="title" 
+                                                    value={values.title} 
+                                                    onChange={changeHandler} 
+                                                    data-testid="title-input"
+                                                />
                                             </div>
                                             <div className="col-lg-6 col-md-6">
-                                                <input type="text" placeholder="image" name="imageUrl" value={values.imageUrl} onChange={changeHandler} />
+                                                <input type="text" 
+                                                    placeholder="image" 
+                                                    name="imageUrl" 
+                                                    value={values.imageUrl} 
+                                                    onChange={changeHandler} 
+                                                    data-testid="imageUrl-input"
+                                                />
                                             </div>
                                             <div className="col-lg-6 col-md-6">
-                                                <input type="hidden" id="date" placeholder="published on" name="published" value={values.published} onChange={changeHandler} />
+                                                <input type="hidden" 
+                                                    id="date" 
+                                                    placeholder="published on" 
+                                                    name="published" 
+                                                    value={values.published} 
+                                                    onChange={changeHandler} 
+                                                    data-testid="published-input"
+                                                />
                                             </div>
                                             <div className="col-lg-6 col-md-6">
-                                                <input type="hidden" id="date" placeholder="updated on" name="updated" value={values.updated} onChange={changeHandler} />
+                                                <input type="hidden" 
+                                                    id="date" 
+                                                    placeholder="updated on" 
+                                                    name="updated" 
+                                                    value={values.updated} 
+                                                    onChange={changeHandler} 
+                                                    data-testid="updated-input"
+                                                />
                                             </div>
                                             <div className="col-lg-12 col-md-12 text-center">
-                                                <textarea type="text" placeholder="Content of blog post" name="content" value={values.content} onChange={changeHandler} />
+                                                <textarea type="text" 
+                                                    placeholder="Content of blog post" 
+                                                    name="content" 
+                                                    value={values.content} 
+                                                    onChange={changeHandler} 
+                                                    data-testid="content-input"
+                                                />
                                             </div>
                                             <div className="col-lg-6 col-md-6">
-                                                <input type="text" placeholder="quote" name="quote" value={values.quote} onChange={changeHandler} />
+                                                <input type="text" 
+                                                    placeholder="quote" 
+                                                    name="quote" 
+                                                    value={values.quote} 
+                                                    onChange={changeHandler} 
+                                                    data-testid="quote-input"
+                                                />
                                             </div>
                                             <div className="col-lg-6 col-md-6">
-                                                <input type="text" placeholder=" author of quote" name="quoteAuthor" value={values.quoteAuthor} onChange={changeHandler} />
+                                                <input type="text" 
+                                                    placeholder=" author of quote" 
+                                                    name="quoteAuthor" 
+                                                    value={values.quoteAuthor} 
+                                                    onChange={changeHandler} 
+                                                    data-testid="quoteAuthor-input"
+                                                />
                                             </div>
                                             <div className="col-lg-12 col-md-12" >
                                                 <button type="submit" className={styles.btn} >Create Blog</button>
