@@ -1,5 +1,6 @@
 import { requestFactory } from './requester';
-const baseUrl = "http://localhost:3030/users";
+import { url } from '../config';
+const baseUrl = `${url}/users`;
 
 export const authServiceFactory = (token) => {
 

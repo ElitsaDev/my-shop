@@ -1,5 +1,6 @@
 import { requestFactory } from './requester';
-const baseUrl = 'http://localhost:3030/data/blogs'
+import { url } from '../config';
+const baseUrl = `${url}/data/blogs`;
 
 export const blogServiceFactory = (token) => {
 

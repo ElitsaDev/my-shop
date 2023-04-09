@@ -18,6 +18,7 @@ export default function BlogCreate() {
         quote: '',
         quoteAuthor: '',
     }, onCreateBlogSubmit);
+    
     const navigate = useNavigate();
     const box = useRef();
 
@@ -37,7 +38,6 @@ export default function BlogCreate() {
                                         className={styles["blog-form"]}
                                         onSubmit={onSubmit}
                                         data-testid="blog-create"
-
                                     >
                                         <div className="row">
                                             <div className="col-lg-6 col-md-6">

@@ -1,4 +1,5 @@
-const baseUrl = "http://localhost:3030/data/heroes";
+import { url } from '../config';
+const baseUrl = `${url}/data/heroes`;
 
 export const getAll = async () => {
     const response = await fetch(baseUrl);
