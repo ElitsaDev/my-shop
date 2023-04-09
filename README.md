@@ -138,3 +138,8 @@ Server started on port 3030. You can make requests to http://localhost:3030/
    Controlled component - forms in the application.
 
 image.png
+
+## Hosted
+
+https://react-male-fashion.web.app/
+
