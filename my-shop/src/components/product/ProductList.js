@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Product from "./Product";
+import { ProductContext } from "../../context/ProductContext";
 
-export default function ProductList({ products }) {
-
+export default function ProductList() {
+    const { products } = useContext (ProductContext);
     const [isActive, setIsActive] = useState({
         bestActive: false,
         newActive: false,

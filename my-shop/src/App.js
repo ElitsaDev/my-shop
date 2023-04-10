@@ -25,45 +25,32 @@ import RouteGuardAdmin from './components/route-guards/RouteGuardAdmin';
 import RouteGuardAuth from './components/route-guards/RouteGuardAuth';
 import RouteGuardGuest from './components/route-guards/RouteGuardGuest';
 
-import { productServiceFactory } from './services/productsService';
 import { contactServiceFactory } from './services/contactService';
 import { commentServiceFactory } from './services/commentService';
+import { heroServiceFactory } from './services/heroService';
 import { useOnClickOutside } from './hooks/useOnClickOutside';
+
 import { ShoppingCardProvider } from './context/ShoppingCardContext';
 import { AuthProvider } from './context/AuthContext';
 import { BlogProvider } from './context/BlogContext';
+import { ProductProvider } from './context/ProductContext';
+import { HeroProvider } from './context/HeroContext';
 
 function App() {
     const [isLoading, setIsLoading] = useState(true);
     const [auth, setAuth] = useState({});
-    const [products, setProducts] = useState([]);
-
+    const [heroes, setHeroes] = useState([]);
     const [contacts, setContacts] = useState([]);
     const [comments, setComments] = useState([]);
     const [open, setOpen] = useState(false);
     const node = useRef();
 
-    useOnClickOutside(node, () => setOpen(false));
-
-    const productsService = productServiceFactory(auth.accessToken);
-    const contactService = contactServiceFactory(auth.accessToken);
-    const commentService = commentServiceFactory(auth.accessToken);
+    const heroService = heroServiceFactory();
 
     useEffect(() => {
-        productsService.getAll()
+        heroService.getAll()
             .then(data => {
-                /* Object.values(data)
-                0: {_id: '0', 
-                    categories: 'clothing', 
-                    branding: 'Hermes', 
-                    name: 'Piqué Biker Jacket', 
-                    imageUrl: 'img/product/product-1.jpg', …}
-                1: {_id: '1', categories: 'shoes', branding: 'Louis Vuitton', name: 'Ankle Boots', imageUrl: 'img/product/product-2.jpg', …}
-                2: {_id: '2', categories: 'clothing', branding: 'Chanel', name: 'Velvet loose sweatshirt', imageUrl: 'img/product/product-3.jpg', …}
-                3: {_id: '3', categories: 'accessories', branding: 'Hermes', name: 'Basic Flowing Scarf', imageUrl: 'img/product/product-4.jpg', …}
-                length: 4
-                 */
-                setProducts(Object.values(Object.values(data)));
+                setHeroes(Object.values(data));
                 setIsLoading(false);
             })
             .catch(error => {
@@ -71,9 +58,10 @@ function App() {
             });
     }, []);
 
-    const onStateHandler = () => {
-        setIsLoading(false);
-    };
+    useOnClickOutside(node, () => setOpen(false));
+
+    const contactService = contactServiceFactory(auth.accessToken);
+    const commentService = commentServiceFactory(auth.accessToken);
 
     const onCreateContactSubmit = async (data) => {
         const newContact = await contactService.create(data)
@@ -105,36 +93,40 @@ function App() {
                             </div>
                             <main>
                                 <BlogProvider>
-                                    <Routes>
-                                        <Route element={<RouteGuardAdmin />} >
-                                            <Route path='/blog-create' element={<BlogCreate />} />
-                                            <Route path='/blog-catalog/:blogId/edit' element={<BlogEdit />} />
-                                        </Route>
-                                        <Route element={<RouteGuardAuth />} >
-                                            <Route path='/logout' element={<Logout />} />
-                                        </Route>
-                                        <Route element={<RouteGuardGuest />} >
-                                            <Route path='/register' element={<Register />} />
-                                            <Route path='/login' element={<Login />} />
-                                        </Route>
+                                    <ProductProvider>
+                                        <HeroProvider >
+                                            <Routes>
+                                                <Route element={<RouteGuardAdmin />} >
+                                                    <Route path='/blog-create' element={<BlogCreate />} />
+                                                    <Route path='/blog-catalog/:blogId/edit' element={<BlogEdit />} />
+                                                </Route>
+                                                <Route element={<RouteGuardAuth />} >
+                                                    <Route path='/logout' element={<Logout />} />
+                                                </Route>
+                                                <Route element={<RouteGuardGuest />} >
+                                                    <Route path='/register' element={<Register />} />
+                                                    <Route path='/login' element={<Login />} />
+                                                </Route>
 
-                                        <Route path='/' element={<Home products={Object.values(products)} onStateHandler={onStateHandler} />} />
-                                        <Route path='/index' element={<Home products={Object.values(products)} onStateHandler={onStateHandler} />} />
+                                                <Route path='/' element={<Home />} />
+                                                <Route path='/index' element={<Home />} />
 
-                                        <Route path='/contact' element={<Contact onCreateContactSubmit={onCreateContactSubmit} />} />
-                                        <Route path='/about' element={<About />} />
+                                                <Route path='/contact' element={<Contact onCreateContactSubmit={onCreateContactSubmit} />} />
+                                                <Route path='/about' element={<About />} />
 
-                                        <Route path='/blog-catalog' element={<BlogCatalog />} />
-                                        <Route path='/blog-catalog/:blogId' element={<BlogDetails onCreateCommentSubmit={onCreateCommentSubmit} />} />
+                                                <Route path='/blog-catalog' element={<BlogCatalog />} />
+                                                <Route path='/blog-catalog/:blogId' element={<BlogDetails onCreateCommentSubmit={onCreateCommentSubmit} />} />
 
-                                        <Route path='/checkout' element={<Checkout />} />
-                                        <Route path='/shop' element={<Shop products={Object.values(products)} />} />
-                                        <Route path='/shopping-cart' element={<ShoppingCard products={Object.values(products)} />} />
+                                                <Route path='/checkout' element={<Checkout />} />
+                                                <Route path='/shop' element={<Shop />} />
+                                                <Route path='/shopping-cart' element={<ShoppingCard />} />
 
-                                        <Route path='/product-catalog/:productId' element={<ShopDetails />} />
+                                                <Route path='/product-catalog/:productId' element={<ShopDetails />} />
 
-                                        <Route path='*' element={<Error404 />} />
-                                    </Routes>
+                                                <Route path='*' element={<Error404 />} />
+                                            </Routes>
+                                        </HeroProvider>
+                                    </ProductProvider>
                                 </BlogProvider>
                             </main>
                         </AuthProvider>

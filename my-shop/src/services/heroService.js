@@ -1,8 +1,16 @@
+import { requestFactory } from './requester';
 import { url } from '../config';
-const baseUrl = `${url}/data/heroes`;
+const baseUrl = `${url}/jsonstore/heroes`;
 
-export const getAll = async () => {
-    const response = await fetch(baseUrl);
-    const result = await response.json();
-    return Object.values(result);
-};
+export const heroServiceFactory = () => {
+    const request = requestFactory();
+
+    const getAll = async () => {
+        const result = await request.get(baseUrl);
+        return Object.values(result);
+    };
+
+    return {
+        getAll,
+    }
+}

@@ -62,7 +62,7 @@ export default function Offcanvas({ open }) {
                         <li><Link to="/contact">Contacts</Link></li>
                     </ul>
                 </div>
-                <div id="mobile-menu-wrap"></div>
+                {/* <div id="mobile-menu-wrap"></div> */}
                 <div className="offcanvas__text">
                     <p>Free shipping, 30-day return or refund guarantee.</p>
                 </div>

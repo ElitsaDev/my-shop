@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-
+import { ProductContext } from "../../context/ProductContext";
 import Product from "../product/Product";
 
-export default function Shop({ products }) {
-
+export default function Shop() {
+    const { products } = useContext (ProductContext);
     const [productsSort, setProductsSort] = useState(products);
 
     const OnChangeHandle = (e) => {
