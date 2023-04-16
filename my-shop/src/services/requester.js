@@ -26,8 +26,8 @@ const request = async (method, url, data) => {
     }
 
     try {
-        const response = await fetch(url, options);
-
+        const response = await fetch(url, options)
+        
         if (response.status === 204) {
             return response;
         }
@@ -40,6 +40,9 @@ const request = async (method, url, data) => {
 
         return result;
     } catch (err) {
+        if(err.message == 'Failed to fetch'){
+            return new Error( "Server is down!" + err.message);
+        }
         alert(err.message);
         throw err;
     }

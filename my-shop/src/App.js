@@ -54,7 +54,7 @@ function App() {
                 setIsLoading(false);
             })
             .catch(error => {
-                console.log("Error" + error);
+                console.log( error );
             });
     }, []);
 

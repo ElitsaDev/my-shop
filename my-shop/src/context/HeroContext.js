@@ -10,7 +10,7 @@ export function HeroProvider({ children }) {
     useEffect(() => {
         heroService.getAll()
             .then(data => {
-                console.log(data)
+                //console.log(data)
                 setHeroes(Object.values(data));
             })
             .catch(error => {

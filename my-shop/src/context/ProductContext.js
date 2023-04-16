@@ -11,7 +11,7 @@ export function ProductProvider({ children}) {
     useEffect(() => {
         productsService.getAll()
             .then(data => {
-                console.log(data)
+                //console.log(data)
                 setProducts(Object.values(Object.values(data)));
                 
             })

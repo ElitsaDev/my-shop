@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import { useShoppingCard } from "../../context/ShoppingCardContext";
 import { formatCurrency } from "../../utils/currencyFormater";
+import Rating from "./Rating";
 
 export default function Product({
     _id,
     branding,
     categories,
     color,
+    rating,
     imageUrl,
     name,
     price,
@@ -30,13 +32,14 @@ export default function Product({
             <div className="product__item__text">
                 <h6>{name}</h6>
                 <Link to="#" className="add-cart" onClick={() => increaseCardQuantity(_id)}>+ Add To Cart</Link>
-                <div className="rating">
+                <Rating value={rating}/>
+                {/* <div className="rating">
                     <i className="fa fa-star-o"></i>
                     <i className="fa fa-star-o"></i>
                     <i className="fa fa-star-o"></i>
                     <i className="fa fa-star-o"></i>
                     <i className="fa fa-star-o"></i>
-                </div>
+                </div> */}
                 <h5>{formatCurrency(price)}</h5>
                 <div className="product__color__select">
                     <label htmlFor="pc-1">
