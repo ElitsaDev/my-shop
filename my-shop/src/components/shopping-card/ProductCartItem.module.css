@@ -1,0 +1,27 @@
+.product__cart__item__text {
+    align-items: center;   
+    justify-content: center;
+    padding: 100px 0;
+}
+
+.quantity {
+    display: flexbox;
+}
+
+.pro-qty-2{
+    display: inline-flex; 
+}
+
+.counter{
+    width: 30px;
+}
+
+td:hover:nth-child(4n) i{
+    border: 4px solid #ebecf1;
+    background-color: #dc3545;
+}
+
+td:hover {
+    border-bottom: 4px solid red;
+}
+

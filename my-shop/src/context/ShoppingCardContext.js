@@ -3,7 +3,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 
 //todo change id to real value
 const ShoppingCardContext = createContext({
-    getItemQuantity(id) { },
+  //  getItemQuantity(id) { },
     increaseCardQuantity(id) { },
     decreaseCardQuantity(id) { },
     removeFromCard(id) { },
@@ -20,9 +20,9 @@ export function ShoppingCardProvider({ children }) {
     const [cardItems, setCardItems] = useState([]);
     const cardQuantity = cardItems.reduce((quantity, item) => item.quantity + quantity, 0);
 
-    function getItemQuantity(id) {
-        return cardItems.find(item => item.id === id)?.quantity || 0;
-    }
+    // function getItemQuantity(id) {
+    //     return cardItems.find(item => item.id === id)?.quantity || 0;
+    // }
 
     function increaseCardQuantity(id) {
         setCardItems(currentItems => {
@@ -61,7 +61,7 @@ export function ShoppingCardProvider({ children }) {
     }
 
     const contextObject = {
-        getItemQuantity,
+       // getItemQuantity,
         increaseCardQuantity,
         decreaseCardQuantity,
         removeFromCard,

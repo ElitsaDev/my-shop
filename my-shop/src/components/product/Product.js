@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { useShoppingCard } from "../../context/ShoppingCardContext";
+
+import { useShoppingCart } from "../../context/shoppingCart/ShoppingCartContext";
 import { formatCurrency } from "../../utils/currencyFormater";
 import Rating from "./Rating";
 
@@ -15,10 +16,10 @@ export default function Product({
     isNew,
     isBestSale,
 }) {
-    const { increaseCardQuantity } = useShoppingCard();
+
+    const { addToCart } = useShoppingCart();
 
     return (
-
         <div className="product__item">
             <div className="product__item__pic set-bg" data-setbg={imageUrl} >
                 <img src={imageUrl} alt={name}></img>
@@ -31,15 +32,21 @@ export default function Product({
             </div>
             <div className="product__item__text">
                 <h6>{name}</h6>
-                <Link to="#" className="add-cart" onClick={() => increaseCardQuantity(_id)}>+ Add To Cart</Link>
-                <Rating value={rating}/>
-                {/* <div className="rating">
-                    <i className="fa fa-star-o"></i>
-                    <i className="fa fa-star-o"></i>
-                    <i className="fa fa-star-o"></i>
-                    <i className="fa fa-star-o"></i>
-                    <i className="fa fa-star-o"></i>
-                </div> */}
+                <Link to="#" className="add-cart"
+                    onClick={() => addToCart({
+                        _id,
+                        branding,
+                        categories,
+                        color,
+                        rating,
+                        imageUrl,
+                        name,
+                        price,
+                        isNew,
+                        isBestSale,
+                    })}
+                >+ Add To Cart</Link>
+                <Rating value={rating} />
                 <h5>{formatCurrency(price)}</h5>
                 <div className="product__color__select">
                     <label htmlFor="pc-1">

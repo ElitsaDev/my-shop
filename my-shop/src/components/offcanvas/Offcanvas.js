@@ -2,11 +2,12 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styles from './Offcanvas.module.css';
 
-import { useShoppingCard } from "../../context/ShoppingCardContext";
 import { AuthContext } from "../../context/AuthContext";
+import  { useShoppingCart } from "../../context/shoppingCart/ShoppingCartContext";
 
 export default function Offcanvas({ open }) {
-    const { cardQuantity } = useShoppingCard({});
+   
+    const { cartQuantity } = useShoppingCart();
     const { userEmail, isAuthenticated, isAdmin } = useContext(AuthContext);
 
     let styleActive = '';
@@ -45,7 +46,7 @@ export default function Offcanvas({ open }) {
                             right: 130,
                             fontSize: "0.8rem",
                             transform: "translate(0%, -15%)",
-                        }}>{cardQuantity}</div>
+                        }}>{cartQuantity}</div>
                     <ul className={styles.slicknav_menu}>
                         <li className="active"><Link to="/">Home</Link></li>
                         <li><Link to="/shop">Shop</Link></li>

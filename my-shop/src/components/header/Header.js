@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useShoppingCard } from "../../context/ShoppingCardContext";
+
 import { AuthContext } from "../../context/AuthContext";
+import { useShoppingCart } from "../../context/shoppingCart/ShoppingCartContext";
 
 export default function Header({ open, setOpen }) {
-    const { cardQuantity } = useShoppingCard({});
+    
+    const { cartQuantity } = useShoppingCart();
     const { userEmail, isAuthenticated, isAdmin } = useContext(AuthContext);
 
     const location = useLocation();
@@ -87,7 +89,7 @@ export default function Header({ open, setOpen }) {
                                     right: 0,
                                     fontSize: "0.8rem",
                                     transform: "translate(-95%, -65%)",
-                                }}>{cardQuantity}</div>
+                                }}>{cartQuantity}</div>
                         </div>
                     </div>
                 </div>

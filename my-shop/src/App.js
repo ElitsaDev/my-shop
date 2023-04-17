@@ -13,7 +13,7 @@ import Shop from './components/shop/Shop';
 import Footer from './components/footer/Footer';
 import Contact from './components/contact/Contact';
 import Checkout from './components/checkout/Checkout';
-import ShoppingCard from './components/shopping-card/ShoppingCard';
+import ShoppingCart from './components/shopping-card/ShoppingCart';
 import About from './components/about/About';
 import ShopDetails from './components/shop/ShopDetails';
 import BlogCreate from './components/blog/blog-create/BlogCreate';
@@ -30,11 +30,12 @@ import { commentServiceFactory } from './services/commentService';
 import { heroServiceFactory } from './services/heroService';
 import { useOnClickOutside } from './hooks/useOnClickOutside';
 
-import { ShoppingCardProvider } from './context/ShoppingCardContext';
 import { AuthProvider } from './context/AuthContext';
 import { BlogProvider } from './context/BlogContext';
 import { ProductProvider } from './context/ProductContext';
 import { HeroProvider } from './context/HeroContext';
+
+import ShoppingCartProvider from './context/shoppingCart/ShoppingCartState';
 
 function App() {
     const [isLoading, setIsLoading] = useState(true);
@@ -85,7 +86,7 @@ function App() {
                 ? <PagePreloader />
                 :
                 <>
-                    <ShoppingCardProvider>
+                        <ShoppingCartProvider>
                         <AuthProvider>
                             <div ref={node}>
                                 <Offcanvas setOpen={setOpen} open={open} />
@@ -119,7 +120,7 @@ function App() {
 
                                                 <Route path='/checkout' element={<Checkout />} />
                                                 <Route path='/shop' element={<Shop />} />
-                                                <Route path='/shopping-cart' element={<ShoppingCard />} />
+                                                <Route path='/shopping-cart' element={<ShoppingCart />} />
 
                                                 <Route path='/product-catalog/:productId' element={<ShopDetails />} />
 
@@ -130,7 +131,7 @@ function App() {
                                 </BlogProvider>
                             </main>
                         </AuthProvider>
-                    </ShoppingCardProvider>
+                    </ShoppingCartProvider>    
                     <Footer />
                 </>
             }

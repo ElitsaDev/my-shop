@@ -1,18 +1,22 @@
 import { Link, useNavigate } from "react-router-dom";
 
-import ProductCardItem from "./ProductCardItem";
-import { useShoppingCard } from "../../context/ShoppingCardContext";
+import { useShoppingCart } from "../../context/shoppingCart/ShoppingCartContext";
 
-export default function ShoppingCard({
+import ProductCartItem from "./ProductCartItem";
+
+
+export default function ShoppingCart({
     cardId,
 }) {
-    const { cardItems } = useShoppingCard();
+    const { cartItems, cartQuantity } = useShoppingCart();
+
     const navigate = useNavigate();
 
     const onBackPageButtonClick = () => {
         navigate('/shop');
     };
 
+    console.log(cartItems);
     return (
         <>
             {/* <!-- Breadcrumb Section Begin --> */}
@@ -40,6 +44,12 @@ export default function ShoppingCard({
                     <div className="row">
                         <div className="col-lg-8">
                             <div className="shopping__cart__table">
+                                {cartQuantity === 0
+                                    && (<>
+                                        <h4>Cart is Empty</h4>
+                                        <img src="img/shopping-cart/empty-cart.png" alt="" />
+                                    </>)
+                                }
                                 <table>
                                     <thead>
                                         <tr>
@@ -50,10 +60,9 @@ export default function ShoppingCard({
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {cardItems.map(item =>
-                                            <ProductCardItem key={item.id} {...item} />
-                                        )
-                                        }
+                                        {cartItems && cartItems.map((item) =>
+                                            <ProductCartItem key={item._id} item={item} />
+                                        )}
                                     </tbody>
                                 </table>
                             </div>
