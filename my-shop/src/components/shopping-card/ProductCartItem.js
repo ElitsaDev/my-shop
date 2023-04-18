@@ -1,26 +1,21 @@
 import { useState, useEffect, useContext } from 'react';
-import { Link } from "react-router-dom";
 import styles from './ProductCartItem.module.css';
 
-import { productServiceFactory } from '../../services/productsService';
-import { useService } from "../../hooks/useService";
 import { useShoppingCart } from '../../context/shoppingCart/ShoppingCartContext';
-
 import { formatCurrency } from "../../utils/currencyFormater";
-import ShoppingCartContext from '../../context/shoppingCart/ShoppingCartContext';
 
 export default function ProductCartItem({
    item
 }) {
-    
-    const { cartItems, removeFromCart, getItemQuantity, changeCartQuantity } = useShoppingCart();
+    console.log(item)
+    const { removeFromCart, changeCartQuantity } = useShoppingCart();
     const [ quantity, setQuantity] = useState(Number(item.quantity));
+   
+    useEffect(() => {
+        setQuantity(quantity);
+    }, [quantity]); 
 
-
-   useEffect(() => {
-    setQuantity(quantity)
-   }, [quantity]);
-
+   
     return (
         <tr>
             <td className="product__cart__item">
@@ -37,15 +32,19 @@ export default function ProductCartItem({
                 <div className={styles["quantity"]}>
                     <div className="pro-qty-2">
                          {item.quantity > 0 && quantity > 0 &&
-                             <button onClick={() => setQuantity(quantity - 1) }><i class="fa fa-angle-left dec qtybtn"></i></button>
+                             <button onClick={() => setQuantity(quantity - 1) }><i className="fa fa-angle-left dec qtybtn"></i></button>
                         }
-                         <input type="text" value={quantity} className={styles["counter"]} onClick={() => changeCartQuantity({id: item.id, quantity: quantity })} />
-                        <button onClick={() => setQuantity(quantity + 1)}><i class="fa fa-angle-right inc qtybtn"></i></button> 
+                         <input className={styles["counter"]}
+                                type="text"
+                                value={quantity} 
+                                onChange={() => changeCartQuantity(item._id, item.quantity = quantity )}       
+                        />
+                        <button onClick={() => setQuantity(quantity + 1)}><i className="fa fa-angle-right inc qtybtn"></i></button> 
                     </div>
                 </div>
             </td>
              <td className="cart__price">{(item.discount && formatCurrency(item.price * (1 - item.discount / 100) * quantity)) || formatCurrency(item.price * quantity)}</td> 
-            <td className="cart__close"><i onClick={() => removeFromCart(item)} className="fa fa-close"></i></td>
+            <td className="cart__close"><i onClick={() => removeFromCart(item._id)} className="fa fa-close"></i></td>
         </tr>
     );
 }

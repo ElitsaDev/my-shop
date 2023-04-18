@@ -25,3 +25,16 @@ td:hover {
     border-bottom: 4px solid red;
 }
 
+/* @media screen and (max-width: 770px){
+    .product__cart__item__text
+     {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    
+    li {
+      flex-grow: 1;
+    }
+  } */

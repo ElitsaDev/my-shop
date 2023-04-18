@@ -9,8 +9,9 @@ export default function ShoppingCart({
     cardId,
 }) {
     const [total, setTotal] = useState();
-    const { cartItems, cartQuantity } = useShoppingCart();
+    const { cartItems, cartQuantity, clearCart } = useShoppingCart();
 
+   
     useEffect(() => {
         setTotal(
             cartItems.reduce((accumulator, currentValue) => accumulator + Number(currentValue.price) * currentValue.quantity, 0)
@@ -18,6 +19,7 @@ export default function ShoppingCart({
       }, [cartItems]);
     
     console.log(cartItems);
+    console.log(cartQuantity)
     return (
         <>
             {/* <!-- Breadcrumb Section Begin --> */}
@@ -45,7 +47,7 @@ export default function ShoppingCart({
                     <div className="row">
                         <div className="col-lg-8">
                             <div className="shopping__cart__table">
-                                {cartQuantity === 0
+                                {cartItems.length === 0
                                     && (<>
                                         <h4>Cart is Empty</h4>
                                         <img src="img/shopping-cart/empty-cart.png" alt="" />
@@ -75,7 +77,7 @@ export default function ShoppingCart({
                                 </div>
                                 <div className="col-lg-6 col-md-6 col-sm-6">
                                     <div className="continue__btn update__btn">
-                                        <Link to="#"><i className="fa fa-spinner"></i> Update cart</Link>
+                                        <Link to="#" onClick={clearCart}><i className="fa fa-spinner"></i> Clear cart</Link>
                                     </div>
                                 </div>
                             </div>

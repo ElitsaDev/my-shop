@@ -20,7 +20,7 @@ export default function Product({
 }) {
 
     const { cartItems, addToCart, removeFromCart } = useShoppingCart();
-    console.log(available)
+    
     return (
         <div className="product__item">
             <div className="product__item__pic set-bg" data-setbg={imageUrl} >

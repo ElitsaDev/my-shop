@@ -1,5 +1,6 @@
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_ITEM = 'REMOVE_ITEM';
+export const CLEAR_CART = 'CLEAR_CART';
 export const GET_ITEM_QUANTITY = 'GET_ITEM_QUANTITY';
 export const CHANGE_CART_QUANTITY = 'CHANGE_CART_QUANTITY';
 
@@ -14,40 +15,46 @@ export default function ShoppingCartReducer(state, action) {
                 }
             } else {
                 return state.cartItems.map(item => {
-                    if(item._id === action.payload._id){
-                        return  {
-                        ...state,
-                        cartItems: [...state.cartItems, { ...action.payload, quantity: Number(action.payload.quantity + 1) }]
-                        }  
+                    if (item._id === action.payload._id) {
+                        return {
+                            ...state,
+                            cartItems: [...state.cartItems, { ...action.payload, quantity: Number(action.payload.quantity + 1) }]
+                        }
                     } else {
                         return {
-                        ...state,
-                        cartItems: [...state.cartItems, { ...action.payload }]
+                            ...state,
+                            cartItems: [...state.cartItems, { ...action.payload }]
                         }
                     }
-                });        
+                });
             }
         }
         case REMOVE_ITEM: {
             return {
                 ...state,
-                cartItems: state.cartItems.filter(item => item._id !== action.payload._id)
+                cartItems: state.cartItems.filter((item) => item._id !== action.payload)
             }
         }
+        case CLEAR_CART:{
+            return {
+                ...state,
+                cartItems: []
+            }
+        }          
         case GET_ITEM_QUANTITY: {
             return {
                 ...state,
                 cartItems: state.cartItems.filter((item) => item._id === action.payload._id)?.quantity || 0
             }
         }
-
-        case CHANGE_CART_QUANTITY:
+        case CHANGE_CART_QUANTITY: {
             return {
                 ...state,
                 cartItems: state.cartItems.filter((item) =>
-                    item._id === action.payload.id ? (item.quantity = action.payload.quantity) : item.quantity
+                    item._id === action.payload._id ? (item.quantity = action.payload.quantity) : item.quantity
                 ),
             };
+        } 
         default:
             return state;
     }

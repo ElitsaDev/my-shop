@@ -84,7 +84,7 @@ export default function ShopDetails() {
                                     <div className="tab-pane" id="tabs-4" role="tabpanel">
                                         <div className="product__details__pic__item">
                                             <img src="img/shop-details/product-big-4.png" alt="" />
-                                            <Link to="https://www.youtube.com/watch?v=8PJ3_p7VqHw&list=RD8PJ3_p7VqHw&start_radio=1" className="video-popup"><i className="fa fa-play"></i></Link>
+                                            {/* <Link to="https://www.youtube.com/watch?v=8PJ3_p7VqHw&list=RD8PJ3_p7VqHw&start_radio=1" className="video-popup"><i className="fa fa-play"></i></Link> */}
                                         </div>
                                     </div>
                                 </div>

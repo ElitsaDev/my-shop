@@ -7,6 +7,8 @@ import {
     REMOVE_ITEM,
     GET_ITEM_QUANTITY,
     CHANGE_CART_QUANTITY,
+    CLEAR_CART,
+    
 } from "./ShoppingCartReduser";
 
 export default function ShoppingCartProvider({ children }) {
@@ -27,9 +29,13 @@ export default function ShoppingCartProvider({ children }) {
         dispatch({ type: ADD_TO_CART, payload: item })
     }
 
-    const removeFromCart = item => {
-        dispatch({ type: REMOVE_ITEM, payload: item })
+    const removeFromCart = itemId => {
+        dispatch({ type: REMOVE_ITEM, payload: itemId })
     }
+
+    const clearCart = () => {
+        dispatch({ type: CLEAR_CART });
+      };
 
     function changeCartQuantity(id, item) {
         dispatch({type: CHANGE_CART_QUANTITY, payload: {id, item}})
@@ -42,6 +48,8 @@ export default function ShoppingCartProvider({ children }) {
         addToCart,
         removeFromCart,
         changeCartQuantity,
+        clearCart,
+       
     }
 
     return (
