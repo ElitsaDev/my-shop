@@ -3,22 +3,24 @@ import { Link } from "react-router-dom";
 import { useShoppingCart } from "../../context/shoppingCart/ShoppingCartContext";
 import { formatCurrency } from "../../utils/currencyFormater";
 import Rating from "./Rating";
+import styles from './Product.module.css';
 
 export default function Product({
     _id,
-    branding,
     categories,
-    color,
-    rating,
-    imageUrl,
+    branding,
     name,
+    imageUrl,
     price,
+    rating,
+    color,
+    available,   
     isNew,
     isBestSale,
 }) {
 
-    const { addToCart } = useShoppingCart();
-
+    const { cartItems, addToCart, removeFromCart } = useShoppingCart();
+    console.log(available)
     return (
         <div className="product__item">
             <div className="product__item__pic set-bg" data-setbg={imageUrl} >
@@ -32,20 +34,40 @@ export default function Product({
             </div>
             <div className="product__item__text">
                 <h6>{name}</h6>
-                <Link to="#" className="add-cart"
-                    onClick={() => addToCart({
-                        _id,
-                        branding,
-                        categories,
-                        color,
-                        rating,
-                        imageUrl,
-                        name,
-                        price,
-                        isNew,
-                        isBestSale,
-                    })}
-                >+ Add To Cart</Link>
+                {}
+                {cartItems.some((product) => product._id === _id)
+                    ? <Link to="#" className="remove-cart"
+                        onClick={() => removeFromCart({
+                            _id,
+                            categories,
+                            branding,
+                            name,
+                            imageUrl,
+                            price,
+                            rating,
+                            color,
+                            available,   
+                            isNew,
+                            isBestSale,
+                        })}
+                    >- Remove from Cart</Link>
+                    : <Link to="#" className={available ? styles["add-cart"] : styles["out-of-stock"]}
+                        onClick={() => addToCart({
+                            _id,
+                            categories,
+                            branding,
+                            name,
+                            imageUrl,
+                            price,
+                            rating,
+                            color,
+                            available,   
+                            isNew,
+                            isBestSale,
+                        })}
+                    >{!available ? "Sorry, Sold Out " : "+ Add To Cart"}</Link>
+                }
+
                 <Rating value={rating} />
                 <h5>{formatCurrency(price)}</h5>
                 <div className="product__color__select">

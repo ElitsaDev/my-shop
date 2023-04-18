@@ -13,15 +13,6 @@ export default function ShoppingCartReducer(state, action) {
                     cartItems: [...state.cartItems, { ...action.payload, quantity: 1 }]
                 }
             } else {
-                /*
-                return currentItems.map(item => {
-                    if (item.id === id) {
-                        return { ...item, quantity: item.quantity + 1 }
-                    } else {
-                        return item;
-                    }
-                });
-                */
                 return state.cartItems.map(item => {
                     if(item._id === action.payload._id){
                         return  {
@@ -34,8 +25,7 @@ export default function ShoppingCartReducer(state, action) {
                         cartItems: [...state.cartItems, { ...action.payload }]
                         }
                     }
-                });
-                    
+                });        
             }
         }
         case REMOVE_ITEM: {

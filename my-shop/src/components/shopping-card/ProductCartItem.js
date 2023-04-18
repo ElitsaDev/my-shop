@@ -13,7 +13,7 @@ export default function ProductCartItem({
    item
 }) {
     
-    const { cartItems, removeItem, getItemQuantity, changeCartQuantity } = useShoppingCart();
+    const { cartItems, removeFromCart, getItemQuantity, changeCartQuantity } = useShoppingCart();
     const [ quantity, setQuantity] = useState(Number(item.quantity));
 
 
@@ -45,7 +45,7 @@ export default function ProductCartItem({
                 </div>
             </td>
              <td className="cart__price">{(item.discount && formatCurrency(item.price * (1 - item.discount / 100) * quantity)) || formatCurrency(item.price * quantity)}</td> 
-            <td className="cart__close"><i onClick={() => removeItem(item)} className="fa fa-close"></i></td>
+            <td className="cart__close"><i onClick={() => removeFromCart(item)} className="fa fa-close"></i></td>
         </tr>
     );
 }

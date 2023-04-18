@@ -27,7 +27,7 @@ export default function ShoppingCartProvider({ children }) {
         dispatch({ type: ADD_TO_CART, payload: item })
     }
 
-    const removeItem = item => {
+    const removeFromCart = item => {
         dispatch({ type: REMOVE_ITEM, payload: item })
     }
 
@@ -40,7 +40,7 @@ export default function ShoppingCartProvider({ children }) {
         cartItems: state.cartItems,
         cartQuantity: state.cartItems.length,
         addToCart,
-        removeItem,
+        removeFromCart,
         changeCartQuantity,
     }
 

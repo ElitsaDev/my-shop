@@ -3,19 +3,20 @@ import { Link, useNavigate } from "react-router-dom";
 import { useShoppingCart } from "../../context/shoppingCart/ShoppingCartContext";
 
 import ProductCartItem from "./ProductCartItem";
-
+import { useState, useEffect } from "react";
 
 export default function ShoppingCart({
     cardId,
 }) {
+    const [total, setTotal] = useState();
     const { cartItems, cartQuantity } = useShoppingCart();
 
-    const navigate = useNavigate();
-
-    const onBackPageButtonClick = () => {
-        navigate('/shop');
-    };
-
+    useEffect(() => {
+        setTotal(
+            cartItems.reduce((accumulator, currentValue) => accumulator + Number(currentValue.price) * currentValue.quantity, 0)
+        );
+      }, [cartItems]);
+    
     console.log(cartItems);
     return (
         <>
@@ -69,8 +70,7 @@ export default function ShoppingCart({
                             <div className="row">
                                 <div className="col-lg-6 col-md-6 col-sm-6">
                                     <div className="continue__btn">
-                                        <button onClick={onBackPageButtonClick}>Continue Shopping</button>
-                                        {/* <Navigate to="/shop">Continue Shopping</Navigate>   */}
+                                        <Link to="/shop">Continue Shopping</Link>
                                     </div>
                                 </div>
                                 <div className="col-lg-6 col-md-6 col-sm-6">
@@ -91,8 +91,8 @@ export default function ShoppingCart({
                             <div className="cart__total">
                                 <h6>Cart total</h6>
                                 <ul>
-                                    <li>Subtotal <span>$ 169.50</span></li>
-                                    <li>Total <span>$ 169.50</span></li>
+                                    <li>Subtotal <span>$ {total}</span></li>
+                                    <li>Total with VAT <span>$ {(total * 1.2).toFixed(2)}</span></li>
                                 </ul>
                                 <Link to={`/checkout/${cardId}`} className="primary-btn">Proceed to checkout</Link>
                             </div>

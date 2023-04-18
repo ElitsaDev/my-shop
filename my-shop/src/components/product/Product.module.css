@@ -1,0 +1,5 @@
+.out-of-stock{
+    pointer-events: none;
+    text-decoration:underline;
+    color: #b7b7b7 !important;
+}

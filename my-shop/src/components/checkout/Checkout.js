@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useShoppingCart } from "../../context/shoppingCart/ShoppingCartContext";
 import styles from "./Checkout.module.css";
 
 export default function Checkout() {
@@ -29,6 +30,15 @@ export default function Checkout() {
         phone: '',
         email: '',
     });
+
+    const [total, setTotal] = useState();
+    const { cartItems, cartQuantity } = useShoppingCart();
+
+    useEffect(() => {
+        setTotal(
+            cartItems.reduce((accumulator, currentValue) => accumulator + Number(currentValue.price) * currentValue.quantity, 0)
+        );
+      }, [cartItems]);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -263,14 +273,14 @@ export default function Checkout() {
                                         <h4 className="order__title">Your order</h4>
                                         <div className="checkout__order__products">Product <span>Total</span></div>
                                         <ul className="checkout__total__products">
-                                            <li>01. Vanilla salted caramel <span>$ 300.0</span></li>
-                                            <li>02. German chocolate <span>$ 170.0</span></li>
-                                            <li>03. Sweet autumn <span>$ 170.0</span></li>
-                                            <li>04. Cluten free mini dozen <span>$ 110.0</span></li>
+                                            {cartItems && cartItems.map((item) =>
+                                                <li key={item._id}>01. {item.name} <span>$ {item.price}</span></li>
+                                            )}
+                                            
                                         </ul>
                                         <ul className="checkout__total__all">
-                                            <li>Subtotal <span>$750.99</span></li>
-                                            <li>Total <span>$750.99</span></li>
+                                            <li>Subtotal <span>$ {total}</span></li>
+                                            <li>Total with VAT <span>$ {(total * 1.2).toFixed(2)}</span></li>
                                         </ul>
                                         <div className="checkout__input__checkbox">
                                             <label htmlFor="acc-or">
