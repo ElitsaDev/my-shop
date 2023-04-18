@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 
 import ProductCardItem from "./ProductCartItem";
-import { useShoppingCard } from "../../context/ShoppingCardContext";
+import { useShoppingCard } from "../../context/ShoppingCardContextOld";
 
 export default function ShoppingCardOld({
     cardId,

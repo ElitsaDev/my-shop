@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 
 import { productServiceFactory } from '../../services/productsService';
 import { useService } from '../../hooks/useService';
-import { useShoppingCard } from "../../context/ShoppingCardContext";
+import { useShoppingCard } from "../../context/ShoppingCardContextOld";
 
 export default function ShopDetails() {
     const { productId } = useParams();
@@ -19,7 +19,7 @@ export default function ShopDetails() {
                 console.log("Error " + error);
             })
     }, [productId]);
-    
+
     return (
         <>
             {/* <!-- Shop Details Section Begin --> */}
