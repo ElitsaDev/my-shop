@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
+import styles from './Product.module.css';
 
-import { useShoppingCart } from "../../context/shoppingCart/ShoppingCartContext";
 import { formatCurrency } from "../../utils/currencyFormater";
 import Rating from "./Rating";
-import styles from './Product.module.css';
+
+import { useShoppingCart } from "../../context/shoppingCart/ShoppingCartContext";
 
 export default function Product({
     _id,
@@ -14,13 +15,13 @@ export default function Product({
     price,
     rating,
     color,
-    available,   
+    available,
     isNew,
     isBestSale,
 }) {
 
-    const { cartItems, addToCart, removeFromCart } = useShoppingCart();
-    
+    const { cart, remove, addToCart } = useShoppingCart()
+
     return (
         <div className="product__item">
             <div className="product__item__pic set-bg" data-setbg={imageUrl} >
@@ -34,10 +35,10 @@ export default function Product({
             </div>
             <div className="product__item__text">
                 <h6>{name}</h6>
-                {}
-                {cartItems.some((product) => product._id === _id)
+                { }
+                {cart.some((product) => product._id === _id)
                     ? <Link to="#" className="remove-cart"
-                        onClick={() => removeFromCart({
+                        onClick={() => remove({
                             _id,
                             categories,
                             branding,
@@ -46,7 +47,7 @@ export default function Product({
                             price,
                             rating,
                             color,
-                            available,   
+                            available,
                             isNew,
                             isBestSale,
                         })}
@@ -61,7 +62,7 @@ export default function Product({
                             price,
                             rating,
                             color,
-                            available,   
+                            available,
                             isNew,
                             isBestSale,
                         })}

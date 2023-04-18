@@ -1,25 +1,12 @@
-import { Link, useNavigate } from "react-router-dom";
-
-import { useShoppingCart } from "../../context/shoppingCart/ShoppingCartContext";
+import { Link } from "react-router-dom";
 
 import ProductCartItem from "./ProductCartItem";
-import { useState, useEffect } from "react";
+import { useShoppingCart } from "../../context/shoppingCart/ShoppingCartContext";
 
-export default function ShoppingCart({
-    cardId,
-}) {
-    const [total, setTotal] = useState();
-    const { cartItems, cartQuantity, clearCart } = useShoppingCart();
+export default function ShoppingCart() {
 
-   
-    useEffect(() => {
-        setTotal(
-            cartItems.reduce((accumulator, currentValue) => accumulator + Number(currentValue.price) * currentValue.quantity, 0)
-        );
-      }, [cartItems]);
-    
-    console.log(cartItems);
-    console.log(cartQuantity)
+    const { cart, total, clearCart } = useShoppingCart();
+
     return (
         <>
             {/* <!-- Breadcrumb Section Begin --> */}
@@ -47,7 +34,7 @@ export default function ShoppingCart({
                     <div className="row">
                         <div className="col-lg-8">
                             <div className="shopping__cart__table">
-                                {cartItems.length === 0
+                                {cart.length === 0
                                     && (<>
                                         <h4>Cart is Empty</h4>
                                         <img src="img/shopping-cart/empty-cart.png" alt="" />
@@ -63,8 +50,10 @@ export default function ShoppingCart({
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {cartItems && cartItems.map((item) =>
-                                            <ProductCartItem key={item._id} item={item} />
+                                        {cart.map((item) => {
+                                            return <ProductCartItem key={item._id} {...item} />
+                                        }
+
                                         )}
                                     </tbody>
                                 </table>
@@ -96,7 +85,7 @@ export default function ShoppingCart({
                                     <li>Subtotal <span>$ {total}</span></li>
                                     <li>Total with VAT <span>$ {(total * 1.2).toFixed(2)}</span></li>
                                 </ul>
-                                <Link to={`/checkout/${cardId}`} className="primary-btn">Proceed to checkout</Link>
+                                <Link to={`/checkout`} className="primary-btn">Proceed to checkout</Link>
                             </div>
                         </div>
                     </div>

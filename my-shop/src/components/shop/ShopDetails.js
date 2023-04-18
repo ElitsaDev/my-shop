@@ -19,6 +19,7 @@ export default function ShopDetails() {
                 console.log("Error " + error);
             })
     }, [productId]);
+    
     return (
         <>
             {/* <!-- Shop Details Section Begin --> */}

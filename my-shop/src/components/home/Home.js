@@ -9,7 +9,6 @@ import HeroList from '../hero/HeroList';
 
 export default function Home() {
     
-
     return (
         <>
            

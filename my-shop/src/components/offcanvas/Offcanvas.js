@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import styles from './Offcanvas.module.css';
 
 import { AuthContext } from "../../context/AuthContext";
-import  { useShoppingCart } from "../../context/shoppingCart/ShoppingCartContext";
+import { useShoppingCart } from "../../context/shoppingCart/ShoppingCartContext";
 
 export default function Offcanvas({ open }) {
-   
-    const { cartQuantity } = useShoppingCart();
+
+    const { amount } = useShoppingCart();
     const { userEmail, isAuthenticated, isAdmin } = useContext(AuthContext);
 
     let styleActive = '';
@@ -46,7 +46,7 @@ export default function Offcanvas({ open }) {
                             right: 130,
                             fontSize: "0.8rem",
                             transform: "translate(0%, -15%)",
-                        }}>{cartQuantity}</div>
+                        }}>{amount}</div>
                     <ul className={styles.slicknav_menu}>
                         <li className="active"><Link to="/">Home</Link></li>
                         <li><Link to="/shop">Shop</Link></li>

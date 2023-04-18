@@ -6,7 +6,7 @@ import { useShoppingCart } from "../../context/shoppingCart/ShoppingCartContext"
 
 export default function Header({ open, setOpen }) {
     
-    const { cartQuantity } = useShoppingCart();
+    const { amount } = useShoppingCart();
     const { userEmail, isAuthenticated, isAdmin } = useContext(AuthContext);
 
     const location = useLocation();
@@ -89,7 +89,7 @@ export default function Header({ open, setOpen }) {
                                     right: 0,
                                     fontSize: "0.8rem",
                                     transform: "translate(-95%, -65%)",
-                                }}>{cartQuantity}</div>
+                                }}>{amount}</div>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+
 import { useShoppingCart } from "../../context/shoppingCart/ShoppingCartContext";
 import styles from "./Checkout.module.css";
 
@@ -31,14 +32,7 @@ export default function Checkout() {
         email: '',
     });
 
-    const [total, setTotal] = useState();
-    const { cartItems, cartQuantity } = useShoppingCart();
-
-    useEffect(() => {
-        setTotal(
-            cartItems.reduce((accumulator, currentValue) => accumulator + Number(currentValue.price) * currentValue.quantity, 0)
-        );
-      }, [cartItems]);
+    const { cart, total } = useShoppingCart();
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -57,7 +51,7 @@ export default function Checkout() {
         console.log(`${e.target.value}=${e.target.checked}`);
         setAccount(state => ({ ...state, [e.target.value]: e.target.checked }));
     };
-    
+
     const formValidate = (e) => {
         console.log('asdasd');
         const value = e.target.value;
@@ -76,7 +70,7 @@ export default function Checkout() {
         }
         setFormErrors(errors);
     };
-
+    let index = 1;
     return (
         <>
             {/* <!-- Breadcrumb Section Begin --> */}
@@ -273,10 +267,10 @@ export default function Checkout() {
                                         <h4 className="order__title">Your order</h4>
                                         <div className="checkout__order__products">Product <span>Total</span></div>
                                         <ul className="checkout__total__products">
-                                            {cartItems && cartItems.map((item) =>
-                                                <li key={item._id}>01. {item.name} <span>$ {item.price}</span></li>
+                                            {cart && cart.map((item) =>
+                                                <li key={item._id}>0{index++}. {item.name} <span>$ {item.price}</span></li>
                                             )}
-                                            
+
                                         </ul>
                                         <ul className="checkout__total__all">
                                             <li>Subtotal <span>$ {total}</span></li>

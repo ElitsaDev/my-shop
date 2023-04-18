@@ -35,7 +35,7 @@ import { BlogProvider } from './context/BlogContext';
 import { ProductProvider } from './context/ProductContext';
 import { HeroProvider } from './context/HeroContext';
 
-import ShoppingCartProvider from './context/shoppingCart/ShoppingCartState';
+import { ShoppingCartProvider } from './context/shoppingCart/ShoppingCartState';
 
 function App() {
     const [isLoading, setIsLoading] = useState(true);

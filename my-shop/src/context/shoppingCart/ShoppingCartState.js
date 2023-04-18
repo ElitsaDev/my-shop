@@ -1,60 +1,59 @@
-import { useReducer } from "react";
+import React, { useReducer, useEffect } from 'react';
+
+import reducer from './ShoppingCartReduser';
 import ShoppingCartContext from './ShoppingCartContext';
-import ShoppingCartReducer from './ShoppingCartReduser';
-//TODO - if try to add product in state, prevent this action
-import {
-    ADD_TO_CART,
-    REMOVE_ITEM,
-    GET_ITEM_QUANTITY,
-    CHANGE_CART_QUANTITY,
-    CLEAR_CART,
-    
-} from "./ShoppingCartReduser";
 
-export default function ShoppingCartProvider({ children }) {
-    const initialState = {
-        cartItems: [],
-        cartQuantity: 0,
-    };
+const initialState = {
+    loading: false,
+    cart: [],
+    total: 0,
+    amount: 0
+};
 
-    const [state, dispatch] = useReducer(ShoppingCartReducer, initialState);
-
-   // const cartQuantity = state.cartItems.reduce((quantity, item) => item.quantity + quantity, 0);
-
-    function getItemQuantity(item) {
-        dispatch({type: GET_ITEM_QUANTITY, payload: item})
-    }
-    
-    const addToCart = item => {
-        dispatch({ type: ADD_TO_CART, payload: item })
-    }
-
-    const removeFromCart = itemId => {
-        dispatch({ type: REMOVE_ITEM, payload: itemId })
-    }
+export const ShoppingCartProvider = ({ children }) => {
+    const [state, dispatch] = useReducer(reducer, initialState);
 
     const clearCart = () => {
-        dispatch({ type: CLEAR_CART });
-      };
+        dispatch({ type: 'CLEAR_CART' });
+    };
 
-    function changeCartQuantity(id, item) {
-        dispatch({type: CHANGE_CART_QUANTITY, payload: {id, item}})
-    }
+    const addToCart = (item) => {
+        dispatch({ type: 'ADD_TO_CART', payload: item });
+    };
+
+    const remove = (item) => {
+        dispatch({ type: 'REMOVE_ITEM', payload: item });
+    };
+
+    const increase = (id) => {
+        dispatch({ type: 'INCREASE', payload: id });
+    };
+
+    const decrease = (id) => {
+        dispatch({ type: 'DECREASE', payload: id });
+    };
+
+    useEffect(() => {
+        dispatch({ type: 'GET_TOTALS' });
+    }, [state.cart]);
+
+    const toggleAmount = (id, type) => {
+        dispatch({ type: 'TOGGLE_AMOUNT', payload: { id, type } });
+    };
 
     const contextObject = {
-        getItemQuantity,
-        cartItems: state.cartItems,
-        cartQuantity: state.cartItems.length,
-        addToCart,
-        removeFromCart,
-        changeCartQuantity,
+        ...state,
         clearCart,
-       
+        remove,
+        increase,
+        decrease,
+        toggleAmount,
+        addToCart,
     }
 
     return (
-        <ShoppingCartContext.Provider value={contextObject}>
+        <ShoppingCartContext.Provider value={contextObject} >
             {children}
         </ShoppingCartContext.Provider>
     );
-}
+};

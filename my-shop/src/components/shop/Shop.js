@@ -4,7 +4,7 @@ import { ProductContext } from "../../context/ProductContext";
 import Product from "../product/Product";
 
 export default function Shop() {
-    const { products } = useContext (ProductContext);
+    const { products } = useContext(ProductContext);
     const [productsSort, setProductsSort] = useState(products);
 
     const OnChangeHandle = (e) => {

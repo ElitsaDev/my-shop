@@ -23,6 +23,5 @@ export default function Rating({value, color}){
 };
 
 Rating.defaultProps = {
-    color: "#f7941d",
-    
+    color: "#f7941d",   
 }
