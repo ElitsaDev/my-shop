@@ -3,14 +3,15 @@ import { useParams, Link } from 'react-router-dom';
 
 import { productServiceFactory } from '../../services/productsService';
 import { useService } from '../../hooks/useService';
-import { useShoppingCard } from "../../context/ShoppingCardContextOld";
+import { useShoppingCart } from '../../context/shoppingCart/ShoppingCartContext';
+import Rating from '../product/Rating';
 
 export default function ShopDetails() {
     const { productId } = useParams();
     const [product, setProduct] = useState({});
     const productService = useService(productServiceFactory);
 
-    const { increaseCardQuantity } = useShoppingCard();
+    const { cart, remove, addToCart } = useShoppingCart();
 
     useEffect(() => {
         productService.getOne(productId)
@@ -40,25 +41,29 @@ export default function ShopDetails() {
                                 <ul className="nav nav-tabs" role="tablist">
                                     <li className="nav-item">
                                         <Link className="nav-link active" data-toggle="tab" to="#tabs-1" role="tab">
-                                            <div className="product__thumb__pic set-bg" data-setbg="img/shop-details/thumb-1.png">
-                                            </div>
+                                                <img src={`/${product.imageUrl}`} alt={product.name} 
+                                                style={{
+                                                    width: "20rem",
+                                                }}
+                                                />
+                                            <div style={{ backgroundImage: "url('/img/shop-details/thumb-1.png')" }}/>
                                         </Link>
                                     </li>
                                     <li className="nav-item">
                                         <Link className="nav-link" data-toggle="tab" to="#tabs-2" role="tab">
-                                            <div className="product__thumb__pic set-bg" data-setbg="img/shop-details/thumb-2.png">
+                                            <div className="product__thumb__pic set-bg" data-setbg="/img/shop-details/thumb-2.png">
                                             </div>
                                         </Link>
                                     </li>
                                     <li className="nav-item">
                                         <Link className="nav-link" data-toggle="tab" to="#tabs-3" role="tab">
-                                            <div className="product__thumb__pic set-bg" data-setbg="img/shop-details/thumb-3.png">
+                                            <div className="product__thumb__pic set-bg" data-setbg="/img/shop-details/thumb-3.png">
                                             </div>
                                         </Link>
                                     </li>
                                     <li className="nav-item">
                                         <Link className="nav-link" data-toggle="tab" to="#tabs-4" role="tab">
-                                            <div className="product__thumb__pic set-bg" data-setbg="img/shop-details/thumb-4.png">
+                                            <div className="product__thumb__pic set-bg" data-setbg="/img/shop-details/thumb-4.png">
                                                 <i className="fa fa-play"></i>
                                             </div>
                                         </Link>
@@ -69,22 +74,22 @@ export default function ShopDetails() {
                                 <div className="tab-content">
                                     <div className="tab-pane active" id="tabs-1" role="tabpanel">
                                         <div className="product__details__pic__item">
-                                            <img src="img/shop-details/product-big-2.png" alt="" />
+                                            <img src="/img/shop-details/product-big-2.png" alt="" />
                                         </div>
                                     </div>
                                     <div className="tab-pane" id="tabs-2" role="tabpanel">
                                         <div className="product__details__pic__item">
-                                            <img src="img/shop-details/product-big-3.png" alt="" />
+                                            <img src="/img/shop-details/product-big-3.png" alt="" />
                                         </div>
                                     </div>
                                     <div className="tab-pane" id="tabs-3" role="tabpanel">
                                         <div className="product__details__pic__item">
-                                            <img src="img/shop-details/product-big.png" alt="" />
+                                            <img src="/img/shop-details/product-big.png" alt="" />
                                         </div>
                                     </div>
                                     <div className="tab-pane" id="tabs-4" role="tabpanel">
                                         <div className="product__details__pic__item">
-                                            <img src="img/shop-details/product-big-4.png" alt="" />
+                                            <img src="/img/shop-details/product-big-4.png" alt="" />
                                             {/* <Link to="https://www.youtube.com/watch?v=8PJ3_p7VqHw&list=RD8PJ3_p7VqHw&start_radio=1" className="video-popup"><i className="fa fa-play"></i></Link> */}
                                         </div>
                                     </div>
@@ -100,14 +105,10 @@ export default function ShopDetails() {
                                 <div className="product__details__text">
                                     <h4>{product.name}</h4>
                                     <div className="rating">
-                                        <i className="fa fa-star"></i>
-                                        <i className="fa fa-star"></i>
-                                        <i className="fa fa-star"></i>
-                                        <i className="fa fa-star"></i>
-                                        <i className="fa fa-star-o"></i>
+                                        <Rating value={product.rating} />
                                         <span>&emsp;{product.rating} Rating </span>
                                     </div>
-                                    <h3>$270.00 <span>70.00</span></h3>
+                                    <h3>${product.price} <span>70.00</span></h3>
                                     <p>Coat with quilted lining and an adjustable hood. Featuring long sleeves with adjustable
                                         cuff tabs, adjustable asymmetric hem with elastic side tabs and a front zip fastening
                                         with placket.</p>
@@ -147,8 +148,19 @@ export default function ShopDetails() {
                                         </div>
                                     </div>
                                     <div className="product__details__cart__option">
-
-                                        <Link to="#" className="primary-btn" onClick={() => increaseCardQuantity(productId)} >add to cart</Link>
+                                        {cart.some((item) => item._id === product._id)
+                                            ? <Link to="#" className="primary-btn"
+                                                onClick={() => remove(
+                                                    product
+                                                )}
+                                            >- Remove from Cart</Link>
+                                            : <Link to="#" className="primary-btn"
+                                                onClick={() => addToCart(
+                                                    product
+                                                )}
+                                            >{!product.available ? "Sorry, Sold Out " : "+ Add To Cart"}</Link>
+                                        }
+                                        {/* <Link to="#" className="primary-btn" onClick={() => increaseCardQuantity(productId)} >add to cart</Link> */}
                                     </div>
                                     <div className="product__details__btns__option">
                                         <Link to="#"><i className="fa fa-heart"></i> add to wishlist</Link>

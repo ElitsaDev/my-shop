@@ -35,7 +35,7 @@ export default function Product({
             </div>
             <div className="product__item__text">
                 <h6>{name}</h6>
-                { }
+                
                 {cart.some((product) => product._id === _id)
                     ? <Link to="#" className="remove-cart"
                         onClick={() => remove({

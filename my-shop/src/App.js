@@ -118,7 +118,7 @@ function App() {
                                                 <Route path='/blog-catalog' element={<BlogCatalog />} />
                                                 <Route path='/blog-catalog/:blogId' element={<BlogDetails onCreateCommentSubmit={onCreateCommentSubmit} />} />
 
-                                                <Route path='/checkout' element={<Checkout />} />
+                                                <Route path='/checkout'  element={<Checkout />} />
                                                 <Route path='/shop' element={<Shop />} />
                                                 <Route path='/shopping-cart' element={<ShoppingCart />} />
 
