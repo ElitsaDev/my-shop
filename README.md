@@ -5,7 +5,7 @@ Also are used Bootstrap 4, HTML5 & CSS3 for structure, styling, and the result a
 The project was started with the template (https://themewagon.com/themes/free-bootstrap-4-html5-ecommerce-website-template-malefashion/) but modified after that - added many forms, menu, and buttons, and change styling when necessary.
 
 # Parts
-The site is designed as e-commerce, but for the moment only the blog part is fully developed as a Minimal Vibe Product to be shown to the client. 
+The site is designed as e-commerce. 
 ## 1. Home page:
 ### Header 
 -On the right side is the top navigation with login, register, and logout functionality. When a user is a login there is shown his user email.
